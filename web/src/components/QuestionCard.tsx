@@ -106,9 +106,14 @@ export function QuestionCard({
               <p className="text-xs font-semibold text-cyan-600 uppercase tracking-wide">Question {questionNumber} of {totalQuestions}</p>
               <p className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mt-1">{Math.round(((questionNumber - 1) / totalQuestions) * 100)}%</p>
             </div>
-            <span className="text-sm font-bold text-gray-500">
-              {questionNumber}/{totalQuestions}
-            </span>
+            <div className="flex gap-2 items-center">
+              <span className={`px-3 py-1 rounded-full text-xs font-bold text-white ${question.difficultyLevel === 1 ? 'bg-green-500' : question.difficultyLevel === 2 ? 'bg-orange-500' : 'bg-red-500'}`}>
+                Level {question.difficultyLevel}
+              </span>
+              <span className="text-sm font-bold text-gray-500">
+                {questionNumber}/{totalQuestions}
+              </span>
+            </div>
           </div>
           <div className="w-full bg-cyan-100 rounded-full h-2 overflow-hidden">
             <div

@@ -1,3 +1,13 @@
+export type DifficultyLevel = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
+export interface TierInfo {
+  level: DifficultyLevel;
+  name: string;
+  description: string;
+  emoji: string;
+  color: string;
+}
+
 export interface Country {
   code: string;
   name: string;
@@ -28,6 +38,7 @@ export interface Question {
   correctAnswer: 'North' | 'South' | 'East' | 'West';
   type: 'latitudinal' | 'longitudinal';
   options: string[];
+  difficultyLevel: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
 }
 
 export interface UserAnswer {
@@ -46,6 +57,7 @@ export interface QuizSession {
   score: number;
   totalQuestions: number;
   questionType: string;
+  difficultyLevel: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
   startedAt: string;
   completedAt?: string;
   createdAt: string;

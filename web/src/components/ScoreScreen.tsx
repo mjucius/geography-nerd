@@ -1,4 +1,4 @@
-import type { UserAnswer, Question } from '../types';
+import type { UserAnswer, Question, DifficultyLevel } from '../types';
 import { MapView } from './MapView';
 
 interface ScoreScreenProps {
@@ -6,8 +6,12 @@ interface ScoreScreenProps {
   totalQuestions: number;
   answers: UserAnswer[];
   questions: Question[];
-  onRetake: () => void;
+  onStartLevel?: (level: DifficultyLevel) => void;
+  onRetakeHome?: () => void;
+  onRetake?: () => void;
   loading?: boolean;
+  difficultyLevel?: DifficultyLevel;
+  nextLevelAvailable?: boolean;
 }
 
 export function ScoreScreen({
@@ -15,10 +19,30 @@ export function ScoreScreen({
   totalQuestions,
   answers,
   questions,
+  onStartLevel,
+  onRetakeHome,
   onRetake,
   loading = false,
+  difficultyLevel = 1,
+  nextLevelAvailable = false,
 }: ScoreScreenProps) {
   const percentage = Math.round((score / totalQuestions) * 100);
+
+  const getLevelName = (level: number) => {
+    const names: { [key: number]: string } = {
+      1: 'Capital Foundations',
+      2: 'Capital Challenge',
+      3: 'Capital Precision',
+      4: 'Global Capitals',
+      5: 'Capital Extremes',
+      6: 'Major Cities WW',
+      7: 'City Expert',
+      8: 'Geographic Precision',
+      9: 'The Challenge',
+      10: 'Random Extreme'
+    };
+    return names[level] || 'Unknown Level';
+  };
 
   const getScoreMessage = () => {
     if (percentage === 100) return "Perfect score! You're a geography expert! 🏆";
@@ -36,6 +60,18 @@ export function ScoreScreen({
           Quiz Complete!
         </h2>
 
+        {/* Difficulty Level Badge */}
+        <div className="mb-6 text-center">
+          <span className={`inline-block px-4 py-2 rounded-full text-sm font-bold text-white ${
+            difficultyLevel! <= 3 ? 'bg-green-500' :
+            difficultyLevel! <= 5 ? 'bg-blue-500' :
+            difficultyLevel! <= 7 ? 'bg-orange-500' :
+            'bg-red-500'
+          }`}>
+            Level {difficultyLevel}: {getLevelName(difficultyLevel!)}
+          </span>
+        </div>
+
         {/* Score Display */}
         <div className="mb-10 text-center">
           <div className="mb-6">
@@ -45,6 +81,96 @@ export function ScoreScreen({
             <div className="text-4xl font-bold text-cyan-600">{percentage}%</div>
           </div>
           <p className="text-xl text-gray-700 font-medium">{getScoreMessage()}</p>
+
+          {/* Level Progression Message */}
+          {nextLevelAvailable && difficultyLevel! < 10 && (
+            <div className="mt-6 p-4 bg-gradient-to-r from-cyan-100 to-blue-100 border-2 border-cyan-400 rounded-xl">
+              <p className="text-lg font-bold text-cyan-700">🎉 Level Up! 🎉</p>
+              <p className="text-sm text-cyan-600 mt-1">
+                You've unlocked Level {difficultyLevel! + 1}: {getLevelName(difficultyLevel! + 1)}!
+              </p>
+              <p className="text-xs text-cyan-600 mt-2">Choose what to play next:</p>
+
+              {/* Level Selection Buttons */}
+              <div className="mt-4 space-y-2">
+                {/* Current Level Button */}
+                <button
+                  onClick={() => onStartLevel?.(difficultyLevel!)}
+                  disabled={loading}
+                  className="w-full bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-400 text-white font-bold py-2.5 px-4 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 transform disabled:scale-100 disabled:shadow-none text-sm"
+                >
+                  {loading ? 'Starting...' : `📌 Stay at Level ${difficultyLevel}`}
+                </button>
+
+                {/* Next Level Button */}
+                <button
+                  onClick={() => onStartLevel?.((difficultyLevel! + 1) as DifficultyLevel)}
+                  disabled={loading}
+                  className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-400 text-white font-bold py-2.5 px-4 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 transform disabled:scale-100 disabled:shadow-none text-sm"
+                >
+                  {loading ? 'Starting...' : `⬆️ Try Level ${difficultyLevel! + 1}: ${getLevelName(difficultyLevel! + 1)}`}
+                </button>
+              </div>
+            </div>
+          )}
+          {!nextLevelAvailable && score < 8 && difficultyLevel! < 10 && (
+            <div className="mt-6 p-4 bg-gradient-to-r from-blue-100 to-cyan-100 border-2 border-blue-400 rounded-xl">
+              <p className="text-sm text-blue-700 font-bold mb-3">Get 8 or more correct to unlock the next level. Choose your next level:</p>
+
+              {/* Level Selection Buttons */}
+              <div className="space-y-2">
+                {/* Previous Level Button (if available) */}
+                {difficultyLevel! > 1 && (
+                  <button
+                    onClick={() => onStartLevel?.((difficultyLevel! - 1) as DifficultyLevel)}
+                    disabled={loading}
+                    className="w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 disabled:from-gray-400 disabled:to-gray-400 text-white font-bold py-2.5 px-4 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 transform disabled:scale-100 disabled:shadow-none text-sm"
+                  >
+                    {loading ? 'Starting...' : `⬇️ Go to Level ${difficultyLevel! - 1}: ${getLevelName(difficultyLevel! - 1)}`}
+                  </button>
+                )}
+
+                {/* Current Level Button */}
+                <button
+                  onClick={() => onStartLevel?.(difficultyLevel!)}
+                  disabled={loading}
+                  className="w-full bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-400 text-white font-bold py-2.5 px-4 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 transform disabled:scale-100 disabled:shadow-none text-sm"
+                >
+                  {loading ? 'Starting...' : `🔄 Try Again at Level ${difficultyLevel}`}
+                </button>
+              </div>
+            </div>
+          )}
+          {difficultyLevel === 10 && (
+            <div className="mt-6 p-4 bg-gradient-to-r from-red-100 to-orange-100 border-2 border-red-400 rounded-xl">
+              <p className="text-lg font-bold text-red-700">🏆 You've Reached the Peak! 🏆</p>
+              <p className="text-sm text-red-600 mt-1">
+                You're at Level 10: Random Extreme - the ultimate challenge!
+              </p>
+              <p className="text-xs text-red-600 mt-2">Choose your next move:</p>
+
+              {/* Level Selection Buttons */}
+              <div className="mt-4 space-y-2">
+                {/* Go Back Button */}
+                <button
+                  onClick={() => onStartLevel?.((difficultyLevel! - 1) as DifficultyLevel)}
+                  disabled={loading}
+                  className="w-full bg-gradient-to-r from-emerald-600 to-green-600 hover:from-emerald-700 hover:to-green-700 disabled:from-gray-400 disabled:to-gray-400 text-white font-bold py-2.5 px-4 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 transform disabled:scale-100 disabled:shadow-none text-sm"
+                >
+                  {loading ? 'Starting...' : `⬇️ Go to Level 9: ${getLevelName(9)}`}
+                </button>
+
+                {/* Retry Button */}
+                <button
+                  onClick={() => onStartLevel?.(difficultyLevel!)}
+                  disabled={loading}
+                  className="w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 disabled:from-gray-400 disabled:to-gray-400 text-white font-bold py-2.5 px-4 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 transform disabled:scale-100 disabled:shadow-none text-sm"
+                >
+                  {loading ? 'Starting...' : `🔄 Try Again at Level 10`}
+                </button>
+              </div>
+            </div>
+          )}
         </div>
 
         {/* Progress Bar */}
@@ -116,14 +242,25 @@ export function ScoreScreen({
           </div>
         </div>
 
-        {/* Retake Button */}
-        <button
-          onClick={onRetake}
-          disabled={loading}
-          className="w-full bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-400 text-white font-bold text-lg py-4 px-6 rounded-full transition-all duration-300 hover:shadow-2xl hover:scale-105 transform disabled:scale-100 disabled:shadow-none"
-        >
-          {loading ? 'Starting new quiz...' : 'Take Another Quiz 🚀'}
-        </button>
+        {/* Retake Home Button */}
+        {onRetakeHome && (
+          <button
+            onClick={onRetakeHome}
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 disabled:from-gray-400 disabled:to-gray-400 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 transform disabled:scale-100 disabled:shadow-none"
+          >
+            {loading ? 'Going to home...' : '← Back to Home'}
+          </button>
+        )}
+        {!onRetakeHome && onRetake && (
+          <button
+            onClick={onRetake}
+            disabled={loading}
+            className="w-full bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-400 text-white font-bold text-lg py-4 px-6 rounded-full transition-all duration-300 hover:shadow-2xl hover:scale-105 transform disabled:scale-100 disabled:shadow-none"
+          >
+            {loading ? 'Starting new quiz...' : 'Take Another Quiz 🚀'}
+          </button>
+        )}
       </div>
     </div>
   );

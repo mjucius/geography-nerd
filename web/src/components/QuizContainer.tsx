@@ -12,6 +12,8 @@ export function QuizContainer({ onComplete }: QuizContainerProps) {
     questions,
     currentQuestionIndex,
     answers,
+    difficultyLevel,
+    nextLevelAvailable,
     loading,
     error,
     quizCompleted,
@@ -55,7 +57,10 @@ export function QuizContainer({ onComplete }: QuizContainerProps) {
         totalQuestions={questions.length}
         answers={answers}
         questions={questions}
-        onRetake={() => {
+        difficultyLevel={difficultyLevel}
+        nextLevelAvailable={nextLevelAvailable}
+        onStartLevel={(level) => startQuiz(level)}
+        onRetakeHome={() => {
           startQuiz();
           onComplete?.();
         }}

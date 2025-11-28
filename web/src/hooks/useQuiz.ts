@@ -1,38 +1,50 @@
 import { useState, useCallback } from 'react';
-import type { Question, UserAnswer } from '../types';
+import type { Question, UserAnswer, DifficultyLevel } from '../types';
 import {
-  getCities,
+  getCitiesByDifficulty,
   generateQuestions,
   createQuizSession,
   saveQuizResponse,
   completeQuizSession
 } from '../services/quizService';
+import {
+  getUserStartingLevel,
+  determineNextLevel,
+  updateCityPairStats
+} from '../services/difficultyService';
 
 export function useQuiz() {
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<UserAnswer[]>([]);
   const [sessionId, setSessionId] = useState<number | null>(null);
+  const [difficultyLevel, setDifficultyLevel] = useState<DifficultyLevel>(1);
+  const [nextLevelAvailable, setNextLevelAvailable] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [quizCompleted, setQuizCompleted] = useState(false);
 
-  const startQuiz = useCallback(async () => {
+  const startQuiz = useCallback(async (level?: DifficultyLevel) => {
     try {
       setLoading(true);
       setError(null);
 
+      // Determine difficulty level
+      const startingLevel = level || (await getUserStartingLevel());
+      setDifficultyLevel(startingLevel);
+
       // Create quiz session
-      const session = await createQuizSession();
+      const session = await createQuizSession(startingLevel);
       setSessionId(session.id);
 
-      // Fetch cities and generate questions
-      const cities = await getCities();
-      const generatedQuestions = generateQuestions(cities);
+      // Fetch cities filtered by difficulty level and generate questions
+      const cities = await getCitiesByDifficulty(startingLevel);
+      const generatedQuestions = await generateQuestions(cities, startingLevel);
       setQuestions(generatedQuestions);
       setCurrentQuestionIndex(0);
       setAnswers([]);
       setQuizCompleted(false);
+      setNextLevelAvailable(false);
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Failed to start quiz';
       setError(message);
@@ -95,6 +107,15 @@ export function useQuiz() {
       const score = answers.filter(a => a.isCorrect).length;
       await completeQuizSession(sessionId, score);
 
+      // Update city pair difficulty statistics
+      await updateCityPairStats(answers, difficultyLevel);
+
+      // Check if user qualifies for next level
+      const nextLevel = determineNextLevel(score, difficultyLevel);
+      if (nextLevel > difficultyLevel) {
+        setNextLevelAvailable(true);
+      }
+
       setQuizCompleted(true);
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Failed to submit quiz';
@@ -102,7 +123,7 @@ export function useQuiz() {
     } finally {
       setLoading(false);
     }
-  }, [sessionId, answers]);
+  }, [sessionId, answers, difficultyLevel]);
 
   const getScore = useCallback(() => {
     return answers.filter(a => a.isCorrect).length;
@@ -113,6 +134,8 @@ export function useQuiz() {
     currentQuestionIndex,
     answers,
     sessionId,
+    difficultyLevel,
+    nextLevelAvailable,
     loading,
     error,
     quizCompleted,
