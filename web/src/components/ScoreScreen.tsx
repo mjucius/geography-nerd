@@ -1,5 +1,6 @@
 import type { UserAnswer, Question, DifficultyLevel } from '../types';
 import { MapView } from './MapView';
+import { AdSense } from './AdSense';
 
 interface ScoreScreenProps {
   score: number;
@@ -240,6 +241,11 @@ export function ScoreScreen({
               );
             })}
           </div>
+        </div>
+
+        {/* Ad Space */}
+        <div className="my-10">
+          <AdSense slot="1234567890" format="auto" responsive={true} />
         </div>
 
         {/* Retake Home Button */}

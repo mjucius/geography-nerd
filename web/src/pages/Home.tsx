@@ -1,3 +1,5 @@
+import { AdSense } from '../components/AdSense';
+
 interface HomeProps {
   onStartQuiz: () => void;
 }
@@ -42,6 +44,11 @@ export function Home({ onStartQuiz }: HomeProps) {
             <h3 className="text-xl font-semibold text-gray-900 mb-3">Global Coverage</h3>
             <p className="text-gray-600 leading-relaxed">Questions span major cities from every continent on Earth</p>
           </div>
+        </div>
+
+        {/* Ad Space */}
+        <div className="mt-12">
+          <AdSense slot="9876543210" format="auto" responsive={true} />
         </div>
 
         {/* How It Works */}
