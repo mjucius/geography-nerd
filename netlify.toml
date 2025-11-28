@@ -1,9 +1,13 @@
 [build]
-  command = "npm run build:web"
+  command = "cd web && npm install && npm run build"
   publish = "web/dist"
 
 [build.environment]
   NODE_VERSION = "18"
+
+# Environment variables must be set in Netlify dashboard:
+# VITE_SUPABASE_URL - Your Supabase project URL
+# VITE_SUPABASE_ANON_KEY - Your Supabase anonymous key
 
 [[redirects]]
   from = "/*"
