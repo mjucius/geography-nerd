@@ -1,0 +1,17 @@
+{
+  "name": "@geography-nerd/backend",
+  "version": "1.0.0",
+  "description": "Geography Nerd - Backend/Database setup",
+  "private": true,
+  "scripts": {
+    "import-cities": "node import-cities.js",
+    "build": "echo 'Backend uses Supabase - no build step needed'"
+  },
+  "keywords": [
+    "supabase",
+    "postgis",
+    "geonames"
+  ],
+  "author": "",
+  "license": "MIT"
+}
