@@ -31,8 +31,13 @@ export interface City {
   };
 }
 
+export type QuestionTextPart =
+  | { type: 'text'; content: string }
+  | { type: 'city'; cityName: string; countryName: string };
+
 export interface Question {
   questionText: string;
+  questionTextParts: QuestionTextPart[];
   city1: City;
   city2: City;
   correctAnswer: 'North' | 'South' | 'East' | 'West';

@@ -27,7 +27,7 @@ export function ScoreScreen({
   difficultyLevel = 1,
   nextLevelAvailable = false,
 }: ScoreScreenProps) {
-  const percentage = Math.round((score / totalQuestions) * 100);
+  const percentage = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
 
   const getLevelName = (level: number) => {
     const names: { [key: number]: string } = {

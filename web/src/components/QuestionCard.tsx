@@ -1,5 +1,6 @@
 import type { Question, UserAnswer, DifficultyLevel } from '../types';
 import { MapView } from './MapView';
+import { QuestionText } from './QuestionText';
 
 interface QuestionCardProps {
   question: Question;
@@ -137,9 +138,9 @@ export function QuestionCard({
 
         {/* Question Box */}
         <div className="mb-6 bg-gradient-to-br from-cyan-50 to-blue-50 rounded-2xl p-4 border-2 border-cyan-200 shadow-sm">
-          <h3 className="text-xl font-semibold text-gray-900 text-center leading-relaxed">
-            {question.questionText}
-          </h3>
+          <div className="text-xl font-semibold text-gray-900 text-center leading-relaxed">
+            <QuestionText parts={question.questionTextParts} />
+          </div>
         </div>
 
         {/* Answer Options */}

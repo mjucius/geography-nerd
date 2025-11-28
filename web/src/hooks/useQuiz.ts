@@ -5,12 +5,12 @@ import {
   generateQuestions,
   createQuizSession,
   saveQuizResponse,
-  completeQuizSession
+  completeQuizSession,
 } from '../services/quizService';
 import {
   getUserStartingLevel,
   determineNextLevel,
-  updateCityPairStats
+  updateCityPairStats,
 } from '../services/difficultyService';
 
 export function useQuiz() {
@@ -54,7 +54,7 @@ export function useQuiz() {
   }, []);
 
   const answerQuestion = useCallback((answer: string) => {
-    if (currentQuestionIndex >= questions.length) {
+    if (currentQuestionIndex >= questions.length || !sessionId) {
       return;
     }
 
@@ -72,7 +72,25 @@ export function useQuiz() {
     };
 
     setAnswers([...answers, newAnswer]);
-  }, [currentQuestionIndex, questions, answers]);
+
+    // Save response and update stats in the background without blocking UI (fire-and-forget)
+    saveQuizResponse({
+      sessionId,
+      city1Id: newAnswer.city1Id,
+      city2Id: newAnswer.city2Id,
+      questionText: newAnswer.questionText,
+      userAnswer: newAnswer.userAnswer,
+      correctAnswer: newAnswer.correctAnswer,
+      isCorrect: newAnswer.isCorrect,
+    }).catch(() => {
+      // Silently ignore save errors - answers are kept in memory
+    });
+
+    // Update city pair difficulty statistics
+    updateCityPairStats([newAnswer], difficultyLevel).catch(() => {
+      // Silently ignore stats update errors
+    });
+  }, [currentQuestionIndex, questions, answers, sessionId, difficultyLevel]);
 
   const nextQuestion = useCallback(() => {
     if (currentQuestionIndex < questions.length - 1) {
@@ -90,25 +108,9 @@ export function useQuiz() {
       setLoading(true);
       setError(null);
 
-      // Save all responses
-      for (const answer of answers) {
-        await saveQuizResponse({
-          sessionId,
-          city1Id: answer.city1Id,
-          city2Id: answer.city2Id,
-          questionText: answer.questionText,
-          userAnswer: answer.userAnswer,
-          correctAnswer: answer.correctAnswer,
-          isCorrect: answer.isCorrect,
-        });
-      }
-
       // Calculate score and complete session
       const score = answers.filter(a => a.isCorrect).length;
       await completeQuizSession(sessionId, score);
-
-      // Update city pair difficulty statistics
-      await updateCityPairStats(answers, difficultyLevel);
 
       // Check if user qualifies for next level
       const nextLevel = determineNextLevel(score, difficultyLevel);

@@ -12,10 +12,10 @@ export async function updateCityPairStats(answers: UserAnswer[], difficultyLevel
       .eq('city_1_id', answer.city1Id)
       .eq('city_2_id', answer.city2Id)
       .eq('difficulty_level', difficultyLevel)
-      .single();
+      .maybeSingle();
 
     if (existing) {
-      // Update existing record
+      // Update existing record - increment the appropriate counter
       const newCorrectCount = existing.correct_count + (answer.isCorrect ? 1 : 0);
       const newIncorrectCount = existing.incorrect_count + (answer.isCorrect ? 0 : 1);
 

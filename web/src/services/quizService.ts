@@ -1,5 +1,5 @@
 import { supabase } from './supabaseClient';
-import type { City, Question, QuizSession, QuizResponse, DifficultyLevel } from '../types';
+import type { City, Question, QuizSession, QuizResponse, DifficultyLevel, QuestionTextPart } from '../types';
 
 export async function getCities(): Promise<City[]> {
   const { data, error } = await supabase
@@ -242,16 +242,33 @@ function generateSingleQuestion(
   const formattedCity1Name = formatCityName(city1.name, city1.country_code);
   const formattedCity2Name = formatCityName(city2.name, city2.country_code);
 
+  let questionTextParts: QuestionTextPart[] = [];
+
   if (isLatitudinal) {
     questionText = `Is ${formattedCity1Name}, ${country1Name} north or south of ${formattedCity2Name}, ${country2Name}?`;
     correctAnswer = city1.latitude > city2.latitude ? 'North' : 'South';
+    questionTextParts = [
+      { type: 'text', content: 'Is ' },
+      { type: 'city', cityName: formattedCity1Name, countryName: country1Name },
+      { type: 'text', content: ' north or south of ' },
+      { type: 'city', cityName: formattedCity2Name, countryName: country2Name },
+      { type: 'text', content: '?' }
+    ];
   } else {
     questionText = `Is ${formattedCity1Name}, ${country1Name} east or west of ${formattedCity2Name}, ${country2Name}?`;
     correctAnswer = lonDiff > 0 ? 'East' : 'West';
+    questionTextParts = [
+      { type: 'text', content: 'Is ' },
+      { type: 'city', cityName: formattedCity1Name, countryName: country1Name },
+      { type: 'text', content: ' east or west of ' },
+      { type: 'city', cityName: formattedCity2Name, countryName: country2Name },
+      { type: 'text', content: '?' }
+    ];
   }
 
   return {
     questionText,
+    questionTextParts,
     city1,
     city2,
     correctAnswer,
