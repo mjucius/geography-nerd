@@ -1,4 +1,4 @@
-import type { Question, UserAnswer } from '../types';
+import type { Question, UserAnswer, DifficultyLevel } from '../types';
 import { MapView } from './MapView';
 
 interface QuestionCardProps {
@@ -11,6 +11,7 @@ interface QuestionCardProps {
   onNext?: () => void;
   onSubmit?: () => void;
   isLastQuestion?: boolean;
+  userDifficultyLevel?: DifficultyLevel;
 }
 
 export function QuestionCard({
@@ -23,6 +24,7 @@ export function QuestionCard({
   onNext,
   onSubmit,
   isLastQuestion = false,
+  userDifficultyLevel = 1,
 }: QuestionCardProps) {
   const getOptionConfig = (option: string) => {
     if (question.type === 'latitudinal') {
@@ -97,8 +99,8 @@ export function QuestionCard({
   const isEastWest = question.type === 'longitudinal';
 
   return (
-    <div className="w-full flex items-center justify-center min-h-screen px-4 py-6 bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50">
-      <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-6 border border-cyan-100">
+    <div className="w-full bg-white rounded-3xl shadow-2xl border border-cyan-100">
+      <div className="p-6">
         {/* Header with progress */}
         <div className="mb-4">
           <div className="flex justify-between items-end mb-2">
@@ -107,9 +109,19 @@ export function QuestionCard({
               <p className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mt-1">{Math.round(((questionNumber - 1) / totalQuestions) * 100)}%</p>
             </div>
             <div className="flex gap-2 items-center">
-              <span className={`px-3 py-1 rounded-full text-xs font-bold text-white ${question.difficultyLevel === 1 ? 'bg-green-500' : question.difficultyLevel === 2 ? 'bg-orange-500' : 'bg-red-500'}`}>
-                Level {question.difficultyLevel}
+              <span className={`px-3 py-1 rounded-full text-xs font-bold text-white ${
+                userDifficultyLevel! <= 3 ? 'bg-green-500' :
+                userDifficultyLevel! <= 5 ? 'bg-blue-500' :
+                userDifficultyLevel! <= 7 ? 'bg-orange-500' :
+                'bg-red-500'
+              }`}>
+                Level {userDifficultyLevel}
               </span>
+              {question.difficultyLevel > userDifficultyLevel && (
+                <span className="px-2 py-1 rounded-full text-xs font-bold text-white bg-amber-500">
+                  Challenge
+                </span>
+              )}
               <span className="text-sm font-bold text-gray-500">
                 {questionNumber}/{totalQuestions}
               </span>
@@ -132,7 +144,7 @@ export function QuestionCard({
 
         {/* Answer Options */}
         <div className="mb-4 flex justify-center">
-          <div className={isEastWest ? 'flex gap-4 w-full' : 'flex flex-col gap-3 w-full max-w-xs'}>
+          <div className={isEastWest ? 'flex gap-3 w-full' : 'flex flex-col gap-2 w-full max-w-xs'}>
             {(isEastWest
               ? ['West', 'East'] // Reverse order for East/West: West on left, East on right
               : question.options // Keep normal order for North/South
@@ -142,16 +154,16 @@ export function QuestionCard({
                 <div
                   key={option}
                   onClick={() => !loading && !lastAnswer && onAnswer(option)}
-                  className={`cursor-pointer group relative rounded-2xl overflow-hidden transition-all duration-300 transform shadow-lg ${!loading && !lastAnswer ? 'hover:scale-105 hover:shadow-2xl' : 'opacity-50'} ${isEastWest ? 'flex-1 h-36' : 'h-24 w-full'}`}
+                  className={`cursor-pointer group relative rounded-xl overflow-hidden transition-all duration-300 transform shadow-md ${!loading && !lastAnswer ? 'hover:scale-105 hover:shadow-lg' : 'opacity-50'} ${isEastWest ? 'flex-1 h-20' : 'h-16 w-full'}`}
                 >
                   {/* Background with gradient */}
                   <div className={`absolute inset-0 ${config.bg} transition-all duration-300 ${!loading && !lastAnswer ? 'group-hover:brightness-110' : ''}`}></div>
 
                   {/* Content */}
-                  <div className="relative h-full flex flex-col items-center justify-center gap-1 p-4">
-                    <div className="text-4xl drop-shadow-lg">{config.icon}</div>
+                  <div className="relative h-full flex flex-col items-center justify-center gap-0 p-2">
+                    <div className="text-2xl drop-shadow-lg">{config.icon}</div>
                     <div className="text-center">
-                      <div className="text-xl font-bold text-white drop-shadow-md">
+                      <div className="text-sm font-bold text-white drop-shadow-md">
                         {option}
                       </div>
                     </div>
@@ -159,7 +171,7 @@ export function QuestionCard({
 
                   {/* Selection border for answered */}
                   {lastAnswer?.userAnswer === option && (
-                    <div className={`absolute inset-0 border-[6px] rounded-2xl pointer-events-none ${lastAnswer.isCorrect ? 'border-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.6)]' : 'border-white shadow-[0_0_20px_rgba(255,255,255,0.6)]'}`}></div>
+                    <div className={`absolute inset-0 border-[4px] rounded-xl pointer-events-none ${lastAnswer.isCorrect ? 'border-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.6)]' : 'border-white shadow-[0_0_20px_rgba(255,255,255,0.6)]'}`}></div>
                   )}
                 </div>
               );
@@ -169,29 +181,33 @@ export function QuestionCard({
 
         {/* Feedback Section */}
         {lastAnswer && (
-          <div className={`rounded-2xl p-4 border-2 shadow-lg ${lastAnswer.isCorrect ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-300' : 'bg-gradient-to-br from-rose-50 to-red-50 border-red-300'}`}>
-            <div className="flex items-start gap-3 mb-3">
-              <div className={`text-3xl flex-shrink-0 ${lastAnswer.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
-                {lastAnswer.isCorrect ? '✓' : '✕'}
-              </div>
-              <div className="flex-1">
-                <h4 className={`text-lg font-bold mb-2 ${lastAnswer.isCorrect ? 'text-green-900' : 'text-red-900'}`}>
-                  {lastAnswer.isCorrect ? 'Correct!' : 'Incorrect'}
-                </h4>
-                <div className="space-y-1 text-sm text-gray-700">
-                  <p>
-                    <span className="font-medium">Your answer:</span> <span className="font-bold text-gray-900">{lastAnswer.userAnswer}</span>
-                  </p>
-                  {!lastAnswer.isCorrect && (
+          <div
+            onClick={() => isLastQuestion ? (onSubmit && onSubmit()) : (!isLastQuestion && onNext && onNext())}
+            className={`rounded-2xl p-4 border-2 shadow-lg cursor-pointer transition-all duration-300 hover:shadow-xl ${lastAnswer.isCorrect ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-300 hover:bg-gradient-to-br hover:from-green-100 hover:to-emerald-100' : 'bg-gradient-to-br from-rose-50 to-red-50 border-red-300 hover:bg-gradient-to-br hover:from-rose-100 hover:to-red-100'}`}>
+            <div className="flex items-start justify-between gap-3 mb-3">
+              <div className="flex items-start gap-3 flex-1">
+                <div className={`text-3xl flex-shrink-0 ${lastAnswer.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
+                  {lastAnswer.isCorrect ? '✓' : '✕'}
+                </div>
+                <div className="flex-1">
+                  <h4 className={`text-lg font-bold mb-2 ${lastAnswer.isCorrect ? 'text-green-900' : 'text-red-900'}`}>
+                    {lastAnswer.isCorrect ? 'Correct!' : 'Incorrect'}
+                  </h4>
+                  <div className="space-y-1 text-sm text-gray-700">
                     <p>
-                      <span className="font-medium">Correct answer:</span> <span className="font-bold text-green-700">{lastAnswer.correctAnswer}</span>
+                      <span className="font-medium">Your answer:</span> <span className="font-bold text-gray-900">{lastAnswer.userAnswer}</span>
                     </p>
-                  )}
-                  <div className="mt-2 pt-2 border-t border-gray-300 space-y-0.5 text-xs">
-                    <div className="font-bold text-gray-800">Distance between cities:</div>
-                    {getDirectionInfo()}
+                    {!lastAnswer.isCorrect && (
+                      <p>
+                        <span className="font-medium">Correct answer:</span> <span className="font-bold text-green-700">{lastAnswer.correctAnswer}</span>
+                      </p>
+                    )}
                   </div>
                 </div>
+              </div>
+              <div className="text-right text-xs text-gray-700 flex-shrink-0 whitespace-nowrap pt-1">
+                <div className="font-bold text-gray-800 mb-1">Distance:</div>
+                {getDirectionInfo()}
               </div>
             </div>
 

@@ -30,10 +30,10 @@ export function QuizContainer({ onComplete }: QuizContainerProps) {
 
   if (loading && questions.length === 0) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-800 via-teal-700 to-cyan-600">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-4 border-cyan-200 border-t-cyan-600 mx-auto mb-4"></div>
-          <p className="text-gray-700 text-lg font-medium">Loading quiz...</p>
+          <div className="animate-spin rounded-full h-16 w-16 border-4 border-teal-300 border-t-yellow-50 mx-auto mb-4"></div>
+          <p className="text-yellow-50 text-lg font-medium">Loading quiz...</p>
         </div>
       </div>
     );
@@ -41,8 +41,8 @@ export function QuizContainer({ onComplete }: QuizContainerProps) {
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50">
-        <div className="bg-red-50 border-2 border-red-300 text-red-700 px-6 py-4 rounded-xl shadow-lg max-w-md">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-800 via-teal-700 to-cyan-600">
+        <div className="bg-red-900 border-2 border-red-500 text-red-100 px-6 py-4 rounded-xl shadow-lg max-w-md">
           <p className="font-bold text-lg mb-2">Error</p>
           <p>{error}</p>
         </div>
@@ -71,9 +71,9 @@ export function QuizContainer({ onComplete }: QuizContainerProps) {
 
   if (questions.length === 0 || currentQuestionIndex >= questions.length) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50">
+      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-800 via-teal-700 to-cyan-600">
         <div className="text-center">
-          <p className="text-gray-700 text-lg font-medium">No questions available</p>
+          <p className="text-yellow-50 text-lg font-medium">No questions available</p>
         </div>
       </div>
     );
@@ -85,20 +85,26 @@ export function QuizContainer({ onComplete }: QuizContainerProps) {
   const hasAnsweredCurrent = lastAnswer !== undefined;
 
   return (
-    <div className="bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 min-h-screen">
-      <QuestionCard
-        question={currentQuestion}
-        questionNumber={currentQuestionIndex + 1}
-        totalQuestions={questions.length}
-        lastAnswer={lastAnswer}
-        onAnswer={(answer) => {
-          answerQuestion(answer);
-        }}
-        loading={loading}
-        onNext={hasAnsweredCurrent && !isLastQuestion ? () => nextQuestion() : undefined}
-        onSubmit={hasAnsweredCurrent && isLastQuestion ? () => submitQuiz() : undefined}
-        isLastQuestion={isLastQuestion}
-      />
+    <div className="bg-gradient-to-br from-slate-800 via-teal-700 to-cyan-600 min-h-screen">
+      {/* Question Panel at Top */}
+      <div className="flex justify-center px-4 pt-6 pb-6">
+        <div className="w-full max-w-2xl">
+          <QuestionCard
+            question={currentQuestion}
+            questionNumber={currentQuestionIndex + 1}
+            totalQuestions={questions.length}
+            lastAnswer={lastAnswer}
+            onAnswer={(answer) => {
+              answerQuestion(answer);
+            }}
+            loading={loading}
+            onNext={hasAnsweredCurrent && !isLastQuestion ? () => nextQuestion() : undefined}
+            onSubmit={hasAnsweredCurrent && isLastQuestion ? () => submitQuiz() : undefined}
+            isLastQuestion={isLastQuestion}
+            userDifficultyLevel={difficultyLevel}
+          />
+        </div>
+      </div>
     </div>
   );
 }

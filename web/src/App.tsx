@@ -9,7 +9,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState<AppPage>('home');
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50">
+    <div className="min-h-screen bg-gradient-to-br from-slate-800 via-teal-700 to-cyan-600">
       <Navigation />
 
       <main>

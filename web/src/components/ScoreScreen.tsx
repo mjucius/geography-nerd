@@ -31,16 +31,16 @@ export function ScoreScreen({
 
   const getLevelName = (level: number) => {
     const names: { [key: number]: string } = {
-      1: 'Capital Foundations',
-      2: 'Capital Challenge',
-      3: 'Capital Precision',
-      4: 'Global Capitals',
-      5: 'Capital Extremes',
-      6: 'Major Cities WW',
-      7: 'City Expert',
-      8: 'Geographic Precision',
-      9: 'The Challenge',
-      10: 'Random Extreme'
+      1: 'Novice',
+      2: 'Student',
+      3: 'Traveler',
+      4: 'Scholar',
+      5: 'Professor',
+      6: 'Expert',
+      7: 'Navigator',
+      8: 'Explorer',
+      9: 'Geographer',
+      10: 'Cartographer'
     };
     return names[level] || 'Unknown Level';
   };
@@ -54,10 +54,10 @@ export function ScoreScreen({
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-teal-50 via-cyan-50 to-blue-50 flex items-center justify-center px-4">
-      <div className="w-full max-w-2xl bg-white rounded-3xl shadow-2xl p-10 border border-cyan-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-800 via-teal-700 to-cyan-600 flex items-center justify-center px-4">
+      <div className="w-full max-w-2xl bg-slate-900 rounded-3xl shadow-2xl p-10 border border-teal-500">
         {/* Header */}
-        <h2 className="text-5xl font-bold text-center mb-8 bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 bg-clip-text text-transparent">
+        <h2 className="text-5xl font-bold text-center mb-8 bg-gradient-to-r from-yellow-100 to-yellow-50 bg-clip-text text-transparent">
           Quiz Complete!
         </h2>
 
@@ -76,12 +76,12 @@ export function ScoreScreen({
         {/* Score Display */}
         <div className="mb-10 text-center">
           <div className="mb-6">
-            <div className="text-7xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mb-2">
+            <div className="text-7xl font-bold bg-gradient-to-r from-yellow-100 to-yellow-50 bg-clip-text text-transparent mb-2">
               {score}/{totalQuestions}
             </div>
-            <div className="text-4xl font-bold text-cyan-600">{percentage}%</div>
+            <div className="text-4xl font-bold text-cyan-400">{percentage}%</div>
           </div>
-          <p className="text-xl text-gray-700 font-medium">{getScoreMessage()}</p>
+          <p className="text-xl text-yellow-100 font-medium">{getScoreMessage()}</p>
 
           {/* Level Progression Message */}
           {nextLevelAvailable && difficultyLevel! < 10 && (
@@ -176,9 +176,9 @@ export function ScoreScreen({
 
         {/* Progress Bar */}
         <div className="mb-10">
-          <div className="w-full bg-cyan-100 rounded-full h-3 overflow-hidden shadow-inner">
+          <div className="w-full bg-slate-700 rounded-full h-3 overflow-hidden shadow-inner">
             <div
-              className="bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 h-3 rounded-full transition-all duration-1000 shadow-lg"
+              className="bg-gradient-to-r from-teal-500 via-cyan-500 to-cyan-400 h-3 rounded-full transition-all duration-1000 shadow-lg"
               style={{ width: `${percentage}%` }}
             ></div>
           </div>
@@ -186,48 +186,73 @@ export function ScoreScreen({
 
         {/* Answer Breakdown */}
         <div className="mb-10">
-          <h3 className="text-2xl font-bold text-gray-900 mb-6">
+          <h3 className="text-2xl font-bold text-yellow-50 mb-6">
             Answer Breakdown
           </h3>
           <div className="space-y-4 max-h-96 overflow-y-auto pr-2">
             {answers.map((answer, index) => {
               const question = questions[index];
+
+              const calculateDistance = () => {
+                if (!question) return null;
+                const latDiff = Math.abs(question.city1.latitude - question.city2.latitude);
+                const lonDiff = Math.abs(question.city1.longitude - question.city2.longitude);
+                const latDiffKm = latDiff * 111.32;
+                const lonDiffKm = lonDiff * 111.32;
+                const latDiffMiles = latDiffKm * 0.621371;
+                const lonDiffMiles = lonDiffKm * 0.621371;
+
+                const nsDirection = question.city1.latitude > question.city2.latitude ? 'North' : 'South';
+                const ewDirection = question.city1.longitude > question.city2.longitude ? 'East' : 'West';
+
+                return (
+                  <>
+                    <div>
+                      {latDiff.toFixed(2)}° ({latDiffKm.toFixed(1)} km / {latDiffMiles.toFixed(1)} mi) {nsDirection}
+                    </div>
+                    <div>
+                      {lonDiff.toFixed(2)}° ({lonDiffKm.toFixed(1)} km / {lonDiffMiles.toFixed(1)} mi) {ewDirection}
+                    </div>
+                  </>
+                );
+              };
+
               return (
                 <div
                   key={index}
-                  className={`p-4 rounded-xl border-2 shadow-md transition-all hover:shadow-lg ${
+                  className={`p-4 rounded-2xl border-2 shadow-md transition-all hover:shadow-lg ${
                     answer.isCorrect
                       ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-300'
                       : 'bg-gradient-to-br from-rose-50 to-red-50 border-red-300'
                   }`}
                 >
-                  <div className="flex items-start justify-between gap-4 mb-3">
-                    <div className="flex-1 min-w-0">
-                      <p className="font-bold text-gray-900 text-sm mb-1">
-                        Question {index + 1}
-                      </p>
-                      <p className="text-sm text-gray-700 mb-2">
-                        {answer.questionText}
-                      </p>
-                      <p className="text-xs text-gray-600">
-                        <span className="font-medium">Your answer:</span> <span className="font-bold text-gray-900">{answer.userAnswer}</span>
-                        {!answer.isCorrect && (
-                          <span className="block mt-1">
-                            <span className="font-medium">Correct:</span> <span className="font-bold text-green-700">{answer.correctAnswer}</span>
-                          </span>
-                        )}
-                      </p>
-                    </div>
-                    <div className="flex-shrink-0">
-                      <span
-                        className={`inline-flex items-center justify-center w-9 h-9 rounded-full text-sm font-bold shadow-md ${
-                          answer.isCorrect
-                            ? 'bg-gradient-to-br from-green-500 to-emerald-600 text-white'
-                            : 'bg-gradient-to-br from-rose-500 to-red-600 text-white'
-                        }`}
-                      >
+                  <div className="flex items-start justify-between gap-3 mb-3">
+                    <div className="flex items-start gap-3 flex-1">
+                      <div className={`text-3xl flex-shrink-0 ${answer.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
                         {answer.isCorrect ? '✓' : '✕'}
-                      </span>
+                      </div>
+                      <div className="flex-1">
+                        <h4 className={`text-lg font-bold mb-2 ${answer.isCorrect ? 'text-green-900' : 'text-red-900'}`}>
+                          Question {index + 1}: {answer.isCorrect ? 'Correct!' : 'Incorrect'}
+                        </h4>
+                        <div className="space-y-1 text-sm text-gray-700">
+                          <p className="text-gray-800 font-medium mb-2">
+                            {answer.questionText}
+                          </p>
+                          <p>
+                            <span className="font-medium">Your answer:</span> <span className="font-bold text-gray-900">{answer.userAnswer}</span>
+                          </p>
+                          {!answer.isCorrect && (
+                            <p>
+                              <span className="font-medium">Correct answer:</span> <span className="font-bold text-green-700">{answer.correctAnswer}</span>
+                            </p>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="text-right text-xs text-gray-700 flex-shrink-0 whitespace-nowrap pt-1">
+                      <div className="font-bold text-gray-800 mb-1">Distance:</div>
+                      {calculateDistance()}
                     </div>
                   </div>
 
@@ -253,7 +278,7 @@ export function ScoreScreen({
           <button
             onClick={onRetakeHome}
             disabled={loading}
-            className="w-full bg-gradient-to-r from-gray-600 to-gray-700 hover:from-gray-700 hover:to-gray-800 disabled:from-gray-400 disabled:to-gray-400 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 transform disabled:scale-100 disabled:shadow-none"
+            className="w-full bg-gradient-to-r from-slate-700 to-slate-600 hover:from-slate-800 hover:to-slate-700 disabled:from-slate-600 disabled:to-slate-600 text-white font-bold py-3 px-6 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 transform disabled:scale-100 disabled:shadow-none"
           >
             {loading ? 'Going to home...' : '← Back to Home'}
           </button>
