@@ -12,8 +12,12 @@ import {
   determineNextLevel,
   updateCityPairStats,
 } from '../services/difficultyService';
+import { updateUserProgress } from '../services/userProgressService';
+import { storeOrphanedSessionId } from '../services/sessionService';
+import { useAuth } from './useAuth';
 
 export function useQuiz() {
+  const { user } = useAuth();
   const [questions, setQuestions] = useState<Question[]>([]);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState<UserAnswer[]>([]);
@@ -30,7 +34,7 @@ export function useQuiz() {
       setError(null);
 
       // Determine difficulty level
-      const startingLevel = level || (await getUserStartingLevel());
+      const startingLevel = level || (await getUserStartingLevel(user?.id));
       setDifficultyLevel(startingLevel);
 
       // Create quiz session
@@ -51,7 +55,7 @@ export function useQuiz() {
     } finally {
       setLoading(false);
     }
-  }, []);
+  }, [user]);
 
   const answerQuestion = useCallback((answer: string) => {
     if (currentQuestionIndex >= questions.length || !sessionId) {
@@ -118,6 +122,16 @@ export function useQuiz() {
         setNextLevelAvailable(true);
       }
 
+      // Update user progress if logged in, otherwise store session for later association
+      if (user?.id) {
+        updateUserProgress(user.id, score, nextLevel).catch(() => {
+          // Silently ignore progress update errors
+        });
+      } else {
+        // Store session ID for later association when user signs up
+        storeOrphanedSessionId(sessionId);
+      }
+
       setQuizCompleted(true);
     } catch (err) {
       const message = err instanceof Error ? err.message : 'Failed to submit quiz';
@@ -125,7 +139,7 @@ export function useQuiz() {
     } finally {
       setLoading(false);
     }
-  }, [sessionId, answers, difficultyLevel]);
+  }, [sessionId, answers, difficultyLevel, user]);
 
   const getScore = useCallback(() => {
     return answers.filter(a => a.isCorrect).length;

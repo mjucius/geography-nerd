@@ -1,0 +1,23 @@
+# Supabase configuration for Geography Nerd
+
+[api]
+port = 54331
+schemas = ["public", "graphql_public"]
+extra_search_path = ["public", "extensions"]
+max_rows = 1000
+
+[db]
+port = 54332
+major_version = 15
+
+[studio]
+port = 54333
+
+[inbucket]
+port = 54334
+
+[realtime]
+enabled = true
+
+[storage]
+file_size_limit = 52428800

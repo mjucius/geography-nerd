@@ -13,6 +13,8 @@ interface ScoreScreenProps {
   loading?: boolean;
   difficultyLevel?: DifficultyLevel;
   nextLevelAvailable?: boolean;
+  onSaveProgress?: () => void;
+  isLoggedIn?: boolean;
 }
 
 export function ScoreScreen({
@@ -26,6 +28,8 @@ export function ScoreScreen({
   loading = false,
   difficultyLevel = 1,
   nextLevelAvailable = false,
+  onSaveProgress,
+  isLoggedIn = false,
 }: ScoreScreenProps) {
   const percentage = totalQuestions > 0 ? Math.round((score / totalQuestions) * 100) : 0;
 
@@ -272,6 +276,22 @@ export function ScoreScreen({
         <div className="my-10">
           <AdSense slot="1234567890" format="auto" responsive={true} />
         </div>
+
+        {/* Save Progress Button (for non-logged-in users) */}
+        {!isLoggedIn && onSaveProgress && (
+          <div className="mb-6 p-4 bg-gradient-to-r from-blue-50 to-cyan-50 border-2 border-blue-400 rounded-xl">
+            <p className="text-center text-blue-800 font-semibold mb-3">
+              Want to save your progress and unlock more features?
+            </p>
+            <button
+              onClick={onSaveProgress}
+              disabled={loading}
+              className="w-full bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 disabled:from-gray-400 disabled:to-gray-400 text-white font-bold py-2.5 px-4 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 transform disabled:scale-100 disabled:shadow-none"
+            >
+              {loading ? 'Processing...' : '💾 Save Your Progress'}
+            </button>
+          </div>
+        )}
 
         {/* Retake Home Button */}
         {onRetakeHome && (

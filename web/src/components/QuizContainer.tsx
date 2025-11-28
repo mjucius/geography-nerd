@@ -1,13 +1,16 @@
 import { useEffect } from 'react';
+import { useAuth } from '../hooks/useAuth';
 import { useQuiz } from '../hooks/useQuiz';
 import { QuestionCard } from './QuestionCard';
 import { ScoreScreen } from './ScoreScreen';
 
 interface QuizContainerProps {
   onComplete?: () => void;
+  onSavePrompt?: () => void;
 }
 
-export function QuizContainer({ onComplete }: QuizContainerProps) {
+export function QuizContainer({ onComplete, onSavePrompt }: QuizContainerProps) {
+  const { user } = useAuth();
   const {
     questions,
     currentQuestionIndex,
@@ -65,6 +68,8 @@ export function QuizContainer({ onComplete }: QuizContainerProps) {
           onComplete?.();
         }}
         loading={loading}
+        onSaveProgress={onSavePrompt}
+        isLoggedIn={!!user}
       />
     );
   }

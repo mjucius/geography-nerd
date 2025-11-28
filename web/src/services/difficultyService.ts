@@ -69,7 +69,18 @@ export async function getUserStartingLevel(userId?: string): Promise<DifficultyL
     return 1; // Anonymous users always start at level 1
   }
 
-  // Get the user's last completed quiz
+  // Get user's current progress
+  const { data: progress } = await supabase
+    .from('user_progress')
+    .select('current_difficulty_level')
+    .eq('user_id', userId)
+    .single();
+
+  if (progress) {
+    return progress.current_difficulty_level as DifficultyLevel;
+  }
+
+  // Fallback for legacy users: get the user's last completed quiz
   const { data: lastQuiz } = await supabase
     .from('quiz_sessions')
     .select('difficulty_level, score')
