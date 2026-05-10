@@ -1,8 +1,7 @@
 {
-  "name": "@geography-nerd/backend",
+  "name": "@geography-nerd/supabase",
   "version": "1.0.0",
-  "description": "Geography Nerd - Backend/Database setup",
-  "private": true,
+  "description": "Geography Nerd - Optional Supabase city data setup",
   "scripts": {
     "import-cities": "node import-cities.js",
     "build": "echo 'Backend uses Supabase - no build step needed'"

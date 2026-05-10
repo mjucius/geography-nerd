@@ -1022,4 +1022,65 @@ INSERT INTO cities (name, country, population, latitude, longitude) VALUES
 ('Melbourne City Centre', 'AU', 60057, -37.81501, 144.96657),
 ('Invercargill', 'NZ', 57600, -46.4, 168.35);
 
+UPDATE cities
+SET country_code = country
+WHERE country_code IS NULL;
+
+UPDATE cities
+SET region = countries.region
+FROM countries
+WHERE cities.country_code = countries.code
+  AND cities.region IS NULL;
+
+UPDATE cities
+SET is_capital = TRUE
+WHERE (name, country_code) IN (
+  ('Beijing', 'CN'),
+  ('Shanghai', 'CN'),
+  ('Delhi', 'IN'),
+  ('Mumbai', 'IN'),
+  ('Dhaka', 'BD'),
+  ('Tokyo', 'JP'),
+  ('Jakarta', 'ID'),
+  ('Manila', 'PH'),
+  ('Bangkok', 'TH'),
+  ('Ho Chi Minh City', 'VN'),
+  ('Istanbul', 'TR'),
+  ('Moscow', 'RU'),
+  ('Cairo', 'EG'),
+  ('Lagos', 'NG'),
+  ('Mexico City', 'MX'),
+  ('Sao Paulo', 'BR'),
+  ('Buenos Aires', 'AR'),
+  ('Lima', 'PE'),
+  ('Bogota', 'CO'),
+  ('Caracas', 'VE'),
+  ('Washington', 'US'),
+  ('London', 'GB'),
+  ('Paris', 'FR'),
+  ('Berlin', 'DE'),
+  ('Madrid', 'ES'),
+  ('Rome', 'IT'),
+  ('Amsterdam', 'NL'),
+  ('Brussels', 'BE'),
+  ('Vienna', 'AT'),
+  ('Prague', 'CZ'),
+  ('Warsaw', 'PL'),
+  ('Budapest', 'HU'),
+  ('Bucharest', 'RO'),
+  ('Sofia', 'BG'),
+  ('Athens', 'GR'),
+  ('Baghdad', 'IQ'),
+  ('Tehran', 'IR'),
+  ('Dubai', 'AE'),
+  ('Seoul', 'KR'),
+  ('Singapore', 'SG'),
+  ('Hong Kong', 'HK'),
+  ('Taipei', 'TW'),
+  ('Karachi', 'PK'),
+  ('Lahore', 'PK'),
+  ('Kolkata', 'IN'),
+  ('Bengaluru', 'IN')
+);
+
 COMMIT;

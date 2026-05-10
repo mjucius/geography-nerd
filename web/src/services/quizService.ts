@@ -1,86 +1,5 @@
-import { supabase } from './supabaseClient';
-import type { City, Question, QuizSession, QuizResponse, DifficultyLevel, QuestionTextPart } from '../types';
-
-export async function getCities(): Promise<City[]> {
-  const { data, error } = await supabase
-    .from('cities')
-    .select('*, countries(code, name, region)')
-    .order('population', { ascending: false })
-    .limit(100);
-
-  if (error) {
-    throw new Error(`Failed to fetch cities: ${error.message}`);
-  }
-
-  return data || [];
-}
-
-/**
- * Get cities filtered by 10-tier difficulty system
- *
- * Tiers 1-3: Major capitals with varying difficulty ratios
- * Tiers 4-5: All capitals with varying difficulty ratios
- * Tiers 6-7: Mixed cities (capitals + non-capitals) with varying difficulty ratios
- * Tiers 8-9: All cities with extreme difficulty ratios
- * Tier 10: All cities with any difficulty ratio (random)
- */
-export async function getCitiesByDifficulty(difficultyLevel: DifficultyLevel): Promise<City[]> {
-  let query = supabase
-    .from('cities')
-    .select('*, countries(code, name, region)')
-    .order('population', { ascending: false });
-
-  switch (difficultyLevel) {
-    case 1:
-      // Capital Foundations: Major capitals (>500K) + clear ratio (>0.75)
-      query = query.eq('is_capital', true).gt('population', 500000);
-      break;
-    case 2:
-      // Capital Challenge: Major capitals (>500K), no ratio filter
-      query = query.eq('is_capital', true).gt('population', 500000);
-      break;
-    case 3:
-      // Capital Precision: All major capitals (>200K)
-      query = query.eq('is_capital', true).gt('population', 200000);
-      break;
-    case 4:
-      // Global Capitals: All capitals (any size), clear ratio (>0.5)
-      query = query.eq('is_capital', true);
-      break;
-    case 5:
-      // Capital Extremes: All capitals (any size), close ratio (0.05-0.5)
-      query = query.eq('is_capital', true);
-      break;
-    case 6:
-      // Major Cities WW: All cities >1M population, clear ratio (>0.75)
-      query = query.gt('population', 1000000);
-      break;
-    case 7:
-      // City Expert: All cities >500K population, any ratio
-      query = query.gt('population', 500000);
-      break;
-    case 8:
-      // Geographic Precision: All cities >250K, very close ratio (0.01-0.2)
-      query = query.gt('population', 250000);
-      break;
-    case 9:
-      // The Challenge: All cities >100K, extreme ratio (<0.01)
-      query = query.gt('population', 100000);
-      break;
-    case 10:
-      // Random Extreme: All cities >50K, any ratio
-      query = query.gt('population', 50000);
-      break;
-  }
-
-  const { data, error } = await query.limit(100);
-
-  if (error) {
-    throw new Error(`Failed to fetch cities for tier ${difficultyLevel}: ${error.message}`);
-  }
-
-  return data || [];
-}
+import type { City, Question, DifficultyLevel, QuestionTextPart } from '../types';
+import { getCitiesByDifficulty } from './cityDataService';
 
 /**
  * Calculate distance ratio between lat and lon differences
@@ -150,10 +69,7 @@ export async function generateQuestions(cities: City[], difficultyLevel: Difficu
 
   // Generate questions from current tier
   for (let i = 0; i < questionsFromCurrentTier; i++) {
-    const question = generateSingleQuestion(
-      shuffledCities,
-      difficultyLevel
-    );
+    const question = generateSingleQuestion(shuffledCities, difficultyLevel);
     if (question) {
       questions.push(question);
     }
@@ -166,14 +82,17 @@ export async function generateQuestions(cities: City[], difficultyLevel: Difficu
     const shuffledNextCities = shuffleArray([...nextTierCities]);
 
     for (let i = 0; i < questionsFromNextTier; i++) {
-      const question = generateSingleQuestion(
-        shuffledNextCities,
-        nextTier
-      );
+      const question = generateSingleQuestion(shuffledNextCities, nextTier);
       if (question) {
         questions.push(question);
       }
     }
+  }
+
+  while (questions.length < 10) {
+    const question = generateSingleQuestion(shuffledCities, difficultyLevel, false);
+    if (!question) break;
+    questions.push(question);
   }
 
   // Shuffle final question order to mix current and preview questions
@@ -185,7 +104,8 @@ export async function generateQuestions(cities: City[], difficultyLevel: Difficu
  */
 function generateSingleQuestion(
   cities: City[],
-  tier: DifficultyLevel
+  tier: DifficultyLevel,
+  enforceRatio = true
 ): Question | null {
   let city1: City | null = null;
   let city2: City | null = null;
@@ -212,7 +132,7 @@ function generateSingleQuestion(
     const ratio = getDistanceRatio(latDiff, lonDiffAbs);
 
     // Check if ratio matches tier requirements
-    if (isValidRatioForTier(ratio, tier)) {
+    if (!enforceRatio || isValidRatioForTier(ratio, tier)) {
       isValidPair = true;
     }
   }
@@ -278,59 +198,8 @@ function generateSingleQuestion(
   };
 }
 
-export async function createQuizSession(difficultyLevel: DifficultyLevel = 1): Promise<QuizSession> {
-  const { data, error } = await supabase
-    .from('quiz_sessions')
-    .insert({
-      question_type: 'direction',
-      score: 0,
-      total_questions: 10,
-      difficulty_level: difficultyLevel
-    })
-    .select()
-    .single();
-
-  if (error) {
-    throw new Error(`Failed to create quiz session: ${error.message}`);
-  }
-
-  return data;
-}
-
-export async function saveQuizResponse(response: Omit<QuizResponse, 'id' | 'answeredAt'>): Promise<void> {
-  const { error } = await supabase
-    .from('quiz_responses')
-    .insert({
-      session_id: response.sessionId,
-      city_1_id: response.city1Id,
-      city_2_id: response.city2Id,
-      question_text: response.questionText,
-      user_answer: response.userAnswer,
-      correct_answer: response.correctAnswer,
-      is_correct: response.isCorrect
-    });
-
-  if (error) {
-    throw new Error(`Failed to save quiz response: ${error.message}`);
-  }
-}
-
-export async function completeQuizSession(sessionId: number, score: number): Promise<void> {
-  const { error } = await supabase
-    .from('quiz_sessions')
-    .update({
-      score,
-      completed_at: new Date().toISOString()
-    })
-    .eq('id', sessionId);
-
-  if (error) {
-    throw new Error(`Failed to complete quiz session: ${error.message}`);
-  }
-}
-
 function getRandomPair(length: number): [number, number] {
-  let index1 = Math.floor(Math.random() * length);
+  const index1 = Math.floor(Math.random() * length);
   let index2 = Math.floor(Math.random() * length);
 
   while (index2 === index1) {

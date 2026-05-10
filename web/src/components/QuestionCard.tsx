@@ -29,29 +29,35 @@ export function QuestionCard({
 }: QuestionCardProps) {
   const getOptionConfig = (option: string) => {
     if (question.type === 'latitudinal') {
-      // North/South
       if (option === 'North') {
         return {
-          bg: 'bg-gradient-to-br from-blue-500 to-blue-600',
-          icon: '⬆️',
+          label: 'North',
+          marker: 'N',
+          direction: 'Top of the map',
+          accent: 'border-[#244a52] text-[#244a52]',
         };
       } else {
         return {
-          bg: 'bg-gradient-to-br from-orange-500 to-orange-600',
-          icon: '⬇️',
+          label: 'South',
+          marker: 'S',
+          direction: 'Bottom of the map',
+          accent: 'border-[#8a4f2b] text-[#8a4f2b]',
         };
       }
     } else {
-      // East/West
       if (option === 'East') {
         return {
-          bg: 'bg-gradient-to-br from-emerald-500 to-green-600',
-          icon: '➡️',
+          label: 'East',
+          marker: 'E',
+          direction: 'Right on the map',
+          accent: 'border-[#1e6964] text-[#1e6964]',
         };
       } else {
         return {
-          bg: 'bg-gradient-to-br from-rose-500 to-red-600',
-          icon: '⬅️',
+          label: 'West',
+          marker: 'W',
+          direction: 'Left on the map',
+          accent: 'border-[#7a5a8a] text-[#7a5a8a]',
         };
       }
     }
@@ -98,133 +104,128 @@ export function QuestionCard({
   };
 
   const isEastWest = question.type === 'longitudinal';
+  const progress = Math.round(((questionNumber - 1) / totalQuestions) * 100);
 
   return (
-    <div className="w-full bg-white rounded-3xl shadow-2xl border border-cyan-100">
-      <div className="p-6">
-        {/* Header with progress */}
+    <div className="w-full rounded-[1.25rem] border border-[#d8cdb9] bg-[#fffaf0] shadow-[0_16px_42px_rgba(23,32,42,0.10)] sm:rounded-[1.75rem] sm:shadow-[0_24px_70px_rgba(23,32,42,0.12)]">
+      <div className="p-3.5 sm:p-7">
         <div className="mb-4">
-          <div className="flex justify-between items-end mb-2">
+          <div className="mb-3 flex items-start justify-between gap-3 sm:items-end sm:gap-4">
             <div>
-              <p className="text-xs font-semibold text-cyan-600 uppercase tracking-wide">Question {questionNumber} of {totalQuestions}</p>
-              <p className="text-2xl font-bold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent mt-1">{Math.round(((questionNumber - 1) / totalQuestions) * 100)}%</p>
+              <p className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-[#55706f] sm:text-xs sm:tracking-[0.22em]">Question {questionNumber} of {totalQuestions}</p>
+              <p className="mt-1 text-2xl font-black tracking-tight text-[#17202a] sm:text-3xl">{progress}%</p>
             </div>
-            <div className="flex gap-2 items-center">
-              <span className={`px-3 py-1 rounded-full text-xs font-bold text-white ${
-                userDifficultyLevel! <= 3 ? 'bg-green-500' :
-                userDifficultyLevel! <= 5 ? 'bg-blue-500' :
-                userDifficultyLevel! <= 7 ? 'bg-orange-500' :
-                'bg-red-500'
-              }`}>
+            <div className="flex flex-wrap justify-end gap-2">
+              <span className="rounded-full border border-[#d8cdb9] bg-[#f5efe2] px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.12em] text-[#55706f] sm:px-3 sm:text-xs sm:tracking-[0.16em]">
                 Level {userDifficultyLevel}
               </span>
               {question.difficultyLevel > userDifficultyLevel && (
-                <span className="px-2 py-1 rounded-full text-xs font-bold text-white bg-amber-500">
+                <span className="rounded-full bg-[#c97938] px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white sm:px-3 sm:text-xs sm:tracking-[0.16em]">
                   Challenge
                 </span>
               )}
-              <span className="text-sm font-bold text-gray-500">
+              <span className="rounded-full border border-[#d8cdb9] px-2.5 py-1 font-mono text-[0.68rem] font-bold text-[#55706f] sm:px-3 sm:text-xs">
                 {questionNumber}/{totalQuestions}
               </span>
             </div>
           </div>
-          <div className="w-full bg-cyan-100 rounded-full h-2 overflow-hidden">
+          <div className="h-2 w-full overflow-hidden rounded-full bg-[#e2d6c2]">
             <div
-              className="bg-gradient-to-r from-teal-600 via-cyan-600 to-blue-600 h-2 rounded-full transition-all duration-500"
+              className="h-2 rounded-full bg-[#1e6964] transition-all duration-500"
               style={{ width: `${((questionNumber - 1) / totalQuestions) * 100}%` }}
             ></div>
           </div>
         </div>
 
-        {/* Question Box */}
-        <div className="mb-6 bg-gradient-to-br from-cyan-50 to-blue-50 rounded-2xl p-4 border-2 border-cyan-200 shadow-sm">
-          <div className="text-xl font-semibold text-gray-900 text-center leading-relaxed">
+        <div className="mb-4 rounded-2xl border border-[#d8cdb9] bg-[#f5efe2] p-3.5 sm:mb-6 sm:p-5">
+          <div className="text-center text-lg font-bold leading-relaxed text-[#17202a] min-[390px]:text-xl sm:text-2xl">
             <QuestionText parts={question.questionTextParts} />
           </div>
         </div>
 
-        {/* Answer Options */}
         <div className="mb-4 flex justify-center">
-          <div className={isEastWest ? 'flex gap-3 w-full' : 'flex flex-col gap-2 w-full max-w-xs'}>
+          <div className={isEastWest ? 'grid w-full grid-cols-1 gap-2 min-[390px]:grid-cols-2 sm:gap-3' : 'grid w-full max-w-sm grid-cols-1 gap-2 sm:gap-3'}>
             {(isEastWest
-              ? ['West', 'East'] // Reverse order for East/West: West on left, East on right
-              : question.options // Keep normal order for North/South
+              ? ['West', 'East']
+              : question.options
             ).map((option) => {
               const config = getOptionConfig(option);
+              const selected = lastAnswer?.userAnswer === option;
               return (
-                <div
+                <button
                   key={option}
                   onClick={() => !loading && !lastAnswer && onAnswer(option)}
-                  className={`cursor-pointer group relative rounded-xl overflow-hidden transition-all duration-300 transform shadow-md ${!loading && !lastAnswer ? 'hover:scale-105 hover:shadow-lg' : 'opacity-50'} ${isEastWest ? 'flex-1 h-20' : 'h-16 w-full'}`}
+                  disabled={loading || !!lastAnswer}
+                  className={`group min-h-[4.5rem] rounded-2xl border bg-white p-3 text-left transition sm:min-h-24 sm:p-4 ${
+                    selected
+                      ? lastAnswer?.isCorrect
+                        ? 'border-[#1e6964] ring-4 ring-[#1e6964]/15'
+                        : 'border-[#b95f4a] ring-4 ring-[#b95f4a]/15'
+                      : 'border-[#d8cdb9] hover:-translate-y-0.5 hover:border-[#1e6964] hover:shadow-md'
+                  } disabled:cursor-default`}
                 >
-                  {/* Background with gradient */}
-                  <div className={`absolute inset-0 ${config.bg} transition-all duration-300 ${!loading && !lastAnswer ? 'group-hover:brightness-110' : ''}`}></div>
-
-                  {/* Content */}
-                  <div className="relative h-full flex flex-col items-center justify-center gap-0 p-2">
-                    <div className="text-2xl drop-shadow-lg">{config.icon}</div>
-                    <div className="text-center">
-                      <div className="text-sm font-bold text-white drop-shadow-md">
-                        {option}
-                      </div>
-                    </div>
+                  <div className="flex items-center gap-3 sm:gap-4">
+                    <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl border-2 bg-[#f5efe2] font-mono text-lg font-black sm:h-12 sm:w-12 sm:text-xl ${config.accent}`}>
+                      {config.marker}
+                    </span>
+                    <span>
+                      <span className="block text-base font-black text-[#17202a] sm:text-lg">{config.label}</span>
+                      <span className="mt-0.5 block text-xs font-medium text-[#66726d] sm:text-sm">{config.direction}</span>
+                    </span>
                   </div>
-
-                  {/* Selection border for answered */}
-                  {lastAnswer?.userAnswer === option && (
-                    <div className={`absolute inset-0 border-[4px] rounded-xl pointer-events-none ${lastAnswer.isCorrect ? 'border-yellow-400 shadow-[0_0_20px_rgba(250,204,21,0.6)]' : 'border-white shadow-[0_0_20px_rgba(255,255,255,0.6)]'}`}></div>
-                  )}
-                </div>
+                </button>
               );
             })}
           </div>
         </div>
 
-        {/* Feedback Section */}
         {lastAnswer && (
           <div
             onClick={() => isLastQuestion ? (onSubmit && onSubmit()) : (!isLastQuestion && onNext && onNext())}
-            className={`rounded-2xl p-4 border-2 shadow-lg cursor-pointer transition-all duration-300 hover:shadow-xl ${lastAnswer.isCorrect ? 'bg-gradient-to-br from-green-50 to-emerald-50 border-green-300 hover:bg-gradient-to-br hover:from-green-100 hover:to-emerald-100' : 'bg-gradient-to-br from-rose-50 to-red-50 border-red-300 hover:bg-gradient-to-br hover:from-rose-100 hover:to-red-100'}`}>
-            <div className="flex items-start justify-between gap-3 mb-3">
-              <div className="flex items-start gap-3 flex-1">
-                <div className={`text-3xl flex-shrink-0 ${lastAnswer.isCorrect ? 'text-green-600' : 'text-red-600'}`}>
+            className={`cursor-pointer rounded-2xl border p-3 transition hover:shadow-md sm:p-4 ${
+              lastAnswer.isCorrect
+                ? 'border-[#a8c8b4] bg-[#eef7ef]'
+                : 'border-[#d9afa3] bg-[#fff1ec]'
+            }`}
+          >
+            <div className="mb-3 flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+              <div className="flex flex-1 items-start gap-3">
+                <div className={`grid h-10 w-10 flex-shrink-0 place-items-center rounded-full text-xl font-black ${lastAnswer.isCorrect ? 'bg-[#1e6964] text-white' : 'bg-[#b95f4a] text-white'}`}>
                   {lastAnswer.isCorrect ? '✓' : '✕'}
                 </div>
                 <div className="flex-1">
-                  <h4 className={`text-lg font-bold mb-2 ${lastAnswer.isCorrect ? 'text-green-900' : 'text-red-900'}`}>
+                  <h4 className="mb-2 text-lg font-black text-[#17202a]">
                     {lastAnswer.isCorrect ? 'Correct!' : 'Incorrect'}
                   </h4>
-                  <div className="space-y-1 text-sm text-gray-700">
+                  <div className="space-y-1 text-sm text-[#53625d]">
                     <p>
-                      <span className="font-medium">Your answer:</span> <span className="font-bold text-gray-900">{lastAnswer.userAnswer}</span>
+                      <span className="font-semibold">Your answer:</span> <span className="font-black text-[#17202a]">{lastAnswer.userAnswer}</span>
                     </p>
                     {!lastAnswer.isCorrect && (
                       <p>
-                        <span className="font-medium">Correct answer:</span> <span className="font-bold text-green-700">{lastAnswer.correctAnswer}</span>
+                        <span className="font-semibold">Correct answer:</span> <span className="font-black text-[#1e6964]">{lastAnswer.correctAnswer}</span>
                       </p>
                     )}
                   </div>
                 </div>
               </div>
-              <div className="text-right text-xs text-gray-700 flex-shrink-0 whitespace-nowrap pt-1">
-                <div className="font-bold text-gray-800 mb-1">Distance:</div>
+              <div className="shrink-0 rounded-xl border border-[#d8cdb9] bg-white/70 p-2.5 text-left text-xs leading-5 text-[#53625d] md:text-right">
+                <div className="mb-1 font-black uppercase tracking-[0.14em] text-[#17202a]">Distance</div>
                 {getDirectionInfo()}
               </div>
             </div>
 
-            {/* Map showing the two cities */}
             <div className="mt-3">
               <MapView city1={question.city1} city2={question.city2} />
             </div>
 
-            {/* Next/Submit Button */}
             {!isLastQuestion && onNext && (
               <div className="mt-4">
                 <button
                   onClick={onNext}
-                  className="w-full bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-700 hover:to-cyan-700 text-white font-semibold py-2.5 px-6 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 transform"
+                  className="min-h-12 w-full rounded-xl bg-[#17202a] px-6 font-black text-[#fffaf0] transition hover:bg-[#244a52] focus:outline-none focus:ring-4 focus:ring-[#1e6964]/25"
                 >
-                  Next Question →
+                  Next Question
                 </button>
               </div>
             )}
@@ -234,9 +235,9 @@ export function QuestionCard({
                 <button
                   onClick={onSubmit}
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 disabled:from-gray-400 disabled:to-gray-400 text-white font-semibold py-2.5 px-6 rounded-full transition-all duration-300 hover:shadow-lg hover:scale-105 transform disabled:scale-100 disabled:shadow-none"
+                  className="min-h-12 w-full rounded-xl bg-[#1e6964] px-6 font-black text-white transition hover:bg-[#244a52] disabled:bg-[#9b9f98] focus:outline-none focus:ring-4 focus:ring-[#1e6964]/25"
                 >
-                  {loading ? 'Submitting...' : 'Complete Quiz ✓'}
+                  {loading ? 'Finishing...' : 'Complete Quiz'}
                 </button>
               </div>
             )}

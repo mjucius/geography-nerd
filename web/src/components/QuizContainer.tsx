@@ -1,16 +1,13 @@
 import { useEffect } from 'react';
-import { useAuth } from '../hooks/useAuth';
 import { useQuiz } from '../hooks/useQuiz';
 import { QuestionCard } from './QuestionCard';
 import { ScoreScreen } from './ScoreScreen';
 
 interface QuizContainerProps {
   onComplete?: () => void;
-  onSavePrompt?: () => void;
 }
 
-export function QuizContainer({ onComplete, onSavePrompt }: QuizContainerProps) {
-  const { user } = useAuth();
+export function QuizContainer({ onComplete }: QuizContainerProps) {
   const {
     questions,
     currentQuestionIndex,
@@ -33,10 +30,10 @@ export function QuizContainer({ onComplete, onSavePrompt }: QuizContainerProps) 
 
   if (loading && questions.length === 0) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-800 via-teal-700 to-cyan-600">
+      <div className="flex min-h-[calc(100vh-73px)] items-center justify-center bg-[#f5efe2]">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-4 border-teal-300 border-t-yellow-50 mx-auto mb-4"></div>
-          <p className="text-yellow-50 text-lg font-medium">Loading quiz...</p>
+          <div className="mx-auto mb-4 h-14 w-14 animate-spin rounded-full border-4 border-[#d8cdb9] border-t-[#1e6964]"></div>
+          <p className="text-lg font-bold text-[#17202a]">Plotting your route...</p>
         </div>
       </div>
     );
@@ -44,8 +41,8 @@ export function QuizContainer({ onComplete, onSavePrompt }: QuizContainerProps) 
 
   if (error) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-800 via-teal-700 to-cyan-600">
-        <div className="bg-red-900 border-2 border-red-500 text-red-100 px-6 py-4 rounded-xl shadow-lg max-w-md">
+      <div className="flex min-h-[calc(100vh-73px)] items-center justify-center bg-[#f5efe2] p-4">
+        <div className="max-w-md rounded-2xl border border-[#d7836a] bg-[#fffaf0] px-6 py-4 text-[#7a2f23] shadow-sm">
           <p className="font-bold text-lg mb-2">Error</p>
           <p>{error}</p>
         </div>
@@ -68,17 +65,15 @@ export function QuizContainer({ onComplete, onSavePrompt }: QuizContainerProps) 
           onComplete?.();
         }}
         loading={loading}
-        onSaveProgress={onSavePrompt}
-        isLoggedIn={!!user}
       />
     );
   }
 
   if (questions.length === 0 || currentQuestionIndex >= questions.length) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-slate-800 via-teal-700 to-cyan-600">
+      <div className="flex min-h-[calc(100vh-73px)] items-center justify-center bg-[#f5efe2]">
         <div className="text-center">
-          <p className="text-yellow-50 text-lg font-medium">No questions available</p>
+          <p className="text-lg font-bold text-[#17202a]">No questions available</p>
         </div>
       </div>
     );
@@ -90,10 +85,9 @@ export function QuizContainer({ onComplete, onSavePrompt }: QuizContainerProps) 
   const hasAnsweredCurrent = lastAnswer !== undefined;
 
   return (
-    <div className="bg-gradient-to-br from-slate-800 via-teal-700 to-cyan-600 min-h-screen">
-      {/* Question Panel at Top */}
-      <div className="flex justify-center px-4 pt-6 pb-6">
-        <div className="w-full max-w-2xl">
+    <div className="min-h-[calc(100vh-73px)] bg-[#f5efe2]">
+      <div className="flex justify-center px-3 py-4 sm:px-4 sm:py-10">
+        <div className="w-full max-w-3xl">
           <QuestionCard
             question={currentQuestion}
             questionNumber={currentQuestionIndex + 1}

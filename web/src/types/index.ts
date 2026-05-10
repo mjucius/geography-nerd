@@ -29,6 +29,8 @@ export interface City {
     type: string;
     coordinates: [number, number];
   };
+  is_capital?: boolean;
+  region?: string;
 }
 
 export type QuestionTextPart =
@@ -54,28 +56,4 @@ export interface UserAnswer {
   userAnswer: string;
   correctAnswer: string;
   isCorrect: boolean;
-}
-
-export interface QuizSession {
-  id: number;
-  userId: string;
-  score: number;
-  totalQuestions: number;
-  questionType: string;
-  difficultyLevel: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-  startedAt: string;
-  completedAt?: string;
-  createdAt: string;
-}
-
-export interface QuizResponse {
-  id: number;
-  sessionId: number;
-  city1Id: number;
-  city2Id: number;
-  questionText: string;
-  userAnswer: string;
-  correctAnswer: string;
-  isCorrect: boolean;
-  answeredAt: string;
 }

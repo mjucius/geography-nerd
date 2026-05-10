@@ -1,6 +1,5 @@
 {
   "name": "@geography-nerd/web",
-  "private": true,
   "version": "1.0.0",
   "type": "module",
   "description": "Geography Nerd - Frontend React application",

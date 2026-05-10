@@ -2,15 +2,15 @@
   "name": "geography-nerd-monorepo",
   "version": "1.0.0",
   "description": "Geography Nerd - Interactive trivia website for geographic knowledge",
-  "private": true,
   "workspaces": [
     "web",
-    "backend"
+    "supabase"
   ],
   "scripts": {
     "dev:web": "npm run dev -w web",
     "build:web": "npm run build -w web",
-    "build": "npm run build -w web && npm run build -w backend"
+    "build": "npm run build -w web",
+    "generate:local-cities": "node scripts/generate-local-cities.mjs"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.17"

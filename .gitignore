@@ -1,7 +1,6 @@
 # Dependencies
 node_modules/
-package-lock.json
-yarn.lock
+.npm-cache/
 
 # Environment variables
 .env
@@ -24,6 +23,9 @@ build/
 # Runtime
 .netlify/
 .cache/
+supabase/.temp/
+supabase/.branches/
+.claude/
 
 # Logs
 npm-debug.log*

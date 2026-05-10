@@ -33,7 +33,7 @@ export function MapView({ city1, city2 }: MapViewProps) {
   const bounds = new LatLngBounds([position1, position2]);
 
   return (
-    <div className="w-full h-48 rounded-xl overflow-hidden shadow-md border-2 border-cyan-200">
+    <div className="h-36 w-full overflow-hidden rounded-xl border border-[#d8cdb9] shadow-sm sm:h-48">
       <MapContainer
         bounds={bounds}
         boundsOptions={{ padding: [50, 50] }}
