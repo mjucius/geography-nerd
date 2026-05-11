@@ -23,8 +23,6 @@ build/
 # Runtime
 .netlify/
 .cache/
-supabase/.temp/
-supabase/.branches/
 .claude/
 
 # Logs

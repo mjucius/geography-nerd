@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Navigation } from './components/Navigation';
+import { Footer } from './components/Footer';
 import { Home } from './pages/Home';
 import { QuizContainer } from './components/QuizContainer';
 
@@ -9,10 +10,10 @@ function App() {
   const [currentPage, setCurrentPage] = useState<AppPage>('home');
 
   return (
-    <div className="min-h-screen bg-[#f5efe2] text-[#17202a]">
+    <div className="flex min-h-screen flex-col bg-[#f5efe2] text-[#17202a]">
       <Navigation onHomeClick={() => setCurrentPage('home')} />
 
-      <main>
+      <main className="flex-1">
         {currentPage === 'quiz' ? (
           <QuizContainer
             onComplete={() => setCurrentPage('home')}
@@ -21,6 +22,8 @@ function App() {
           <Home onStartQuiz={() => setCurrentPage('quiz')} />
         )}
       </main>
+
+      <Footer />
     </div>
   );
 }

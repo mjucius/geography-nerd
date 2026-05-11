@@ -17,3 +17,7 @@ The game displays maps with React Leaflet and CARTO raster tiles based on OpenSt
 - Leaflet: https://leafletjs.com/
 
 Map attribution is displayed in the map UI.
+
+## Logo
+
+The Geography Nerd logo (`assets/GeographyNerd-Logo_*.png`) was generated using Google's Nano Banana AI image generation. The logo is provided alongside the source code under the project's MIT license.

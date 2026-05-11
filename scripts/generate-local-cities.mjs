@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 
-const importSql = fs.readFileSync('supabase/cities-import.sql', 'utf8');
-const schemaSql = fs.readFileSync('supabase/schema.sql', 'utf8');
+const importSql = fs.readFileSync('data/cities-import.sql', 'utf8');
+const schemaSql = fs.readFileSync('data/countries.sql', 'utf8');
 
 const countries = new Map();
 for (const match of schemaSql.matchAll(/\('([^']+)', '((?:[^']|'')+)', '([^']+)'\)/g)) {

@@ -1,35 +1,6 @@
-CREATE EXTENSION IF NOT EXISTS postgis;
-
-CREATE TABLE IF NOT EXISTS countries (
-  code VARCHAR(2) PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  region VARCHAR(100),
-  population INTEGER,
-  area DECIMAL(12, 2),
-  created_at TIMESTAMP DEFAULT NOW()
-);
-
-CREATE TABLE IF NOT EXISTS cities (
-  id BIGSERIAL PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  country VARCHAR(255) NOT NULL,
-  country_code VARCHAR(2),
-  population INTEGER,
-  latitude DECIMAL(10, 6) NOT NULL,
-  longitude DECIMAL(10, 6) NOT NULL,
-  location GEOGRAPHY(POINT, 4326) GENERATED ALWAYS AS (
-    ST_Point(longitude, latitude)::geography
-  ) STORED,
-  is_capital BOOLEAN DEFAULT FALSE,
-  region VARCHAR(100),
-  created_at TIMESTAMP DEFAULT NOW()
-);
-
-CREATE INDEX IF NOT EXISTS cities_location_gist ON cities USING GIST (location);
-CREATE INDEX IF NOT EXISTS cities_population_idx ON cities(population DESC);
-CREATE INDEX IF NOT EXISTS cities_country_code_idx ON cities(country_code);
-CREATE INDEX IF NOT EXISTS cities_is_capital_idx ON cities(is_capital);
-CREATE INDEX IF NOT EXISTS cities_region_idx ON cities(region);
+-- Country metadata used by scripts/generate-local-cities.mjs.
+-- The country tuples below are parsed by regex; new entries follow the same
+-- ('CODE', 'Country Name', 'Region') format.
 
 INSERT INTO countries (code, name, region) VALUES
   ('AE', 'United Arab Emirates', 'Asia'),
@@ -115,14 +86,4 @@ INSERT INTO countries (code, name, region) VALUES
   ('VE', 'Venezuela', 'Americas'),
   ('VN', 'Vietnam', 'Asia'),
   ('ZA', 'South Africa', 'Africa'),
-  ('ZM', 'Zambia', 'Africa')
-ON CONFLICT (code) DO NOTHING;
-
-ALTER TABLE cities ENABLE ROW LEVEL SECURITY;
-ALTER TABLE countries ENABLE ROW LEVEL SECURITY;
-
-CREATE POLICY "Cities are publicly readable" ON cities
-  FOR SELECT USING (true);
-
-CREATE POLICY "Countries are publicly readable" ON countries
-  FOR SELECT USING (true);
+  ('ZM', 'Zambia', 'Africa');

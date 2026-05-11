@@ -1,23 +1,35 @@
 # Geography Nerd
 
-Geography Nerd is a browser game that tests directional geography: given two cities, decide whether one is north, south, east, or west of the other.
+<p align="center">
+  <img src="assets/GeographyNerd-Logo_200.png" alt="Geography Nerd logo" width="160" />
+</p>
 
-The app is intentionally simple for open-source use:
+<p align="center">
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" /></a>
+  <a href="https://github.com/mjucius/geography-nerd/actions/workflows/ci.yml"><img src="https://github.com/mjucius/geography-nerd/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
+  <img src="https://img.shields.io/badge/node-%3E%3D18-brightgreen.svg" alt="Node 18+" />
+  <a href="https://github.com/mjucius/geography-nerd/issues"><img src="https://img.shields.io/github/issues/mjucius/geography-nerd.svg" alt="Issues" /></a>
+</p>
+
+**Geography Nerd** is a browser game that tests directional geography: given two cities, decide whether one is north, south, east, or west of the other.
+
+**[Play the live demo →](https://geographynerd.jucius.com)**
+
+The app is intentionally simple:
 
 - No accounts
 - No app-level analytics
 - No quiz/session/answer tracking
 - No ads
-- Local city data by default
-- Optional Supabase city data source for hosted deployments
+- City data is bundled locally and ships with the build
 
 ## Tech Stack
 
 - React 19 + TypeScript
 - Vite
 - Tailwind CSS
-- React Leaflet
-- Optional Supabase read-only city database
+- React Leaflet + CARTO raster tiles
+- Vitest for unit tests
 
 ## Quick Start
 
@@ -31,46 +43,22 @@ npm install
 npm run dev:web
 ```
 
-The app runs at `http://localhost:5173` and does not require environment variables in local mode.
-
-## Data Source Modes
-
-Local mode is the default. It uses `web/src/data/localCities.ts`, generated from the checked-in city import SQL:
-
-```bash
-npm run generate:local-cities
-```
-
-Hosted Supabase mode is optional. Set these variables in `web/.env.local` or your host:
-
-```bash
-VITE_CITY_DATA_SOURCE=supabase
-VITE_SUPABASE_URL=https://your-project.supabase.co
-VITE_SUPABASE_ANON_KEY=your-anon-key
-```
-
-If `VITE_CITY_DATA_SOURCE=supabase` is not set, or Supabase credentials are missing, the app uses local data.
-
-## Supabase Setup
-
-Supabase is only used as a public read-only city database.
-
-1. Create a Supabase project.
-2. Run `supabase/schema.sql` or apply the migration in `supabase/migrations/`.
-3. Run `supabase/cities-import.sql` in the SQL editor.
-4. Set the Supabase environment variables for your hosted web app.
-
-The schema does not create auth, profiles, quiz sessions, quiz responses, or progress tables.
+The app runs at `http://localhost:5173` and requires no environment variables.
 
 ## Scripts
 
 ```bash
-npm run dev:web
-npm run build:web
-npm run lint -w web
-npm run generate:local-cities
-npm run import-cities -w supabase
+npm run dev:web                # start the Vite dev server
+npm run build:web              # type-check + production build
+npm run lint                   # lint the frontend
+npm run test                   # run Vitest unit tests
+npm run generate:local-cities  # rebuild web/src/data/localCities.ts
+npm run import-cities          # refresh data/cities-import.sql from GeoNames
 ```
+
+## City Data
+
+The bundled city list lives in `web/src/data/localCities.ts`. It is generated from `data/cities-import.sql` (top ~1000 cities from GeoNames with regional weighting) and the country lookup in `data/countries.sql`. See `CONTRIBUTING.md` for how to refresh it.
 
 ## Privacy
 
@@ -78,19 +66,12 @@ The application does not create user accounts, persist quiz state, store answers
 
 ## Attribution
 
-City data is derived from GeoNames. Maps use OpenStreetMap-derived tiles through CARTO. See `ATTRIBUTION.md`.
+City data is derived from GeoNames. Maps use OpenStreetMap-derived tiles through CARTO. The logo was generated with Google's Nano Banana AI. See `ATTRIBUTION.md` for the full list of sources.
 
 ## License
 
-Code is licensed under MIT. Data and map sources retain their own licenses and attribution requirements.
+Code is licensed under [MIT](LICENSE). Data and map sources retain their own licenses and attribution requirements.
 
-## Maintainer Notes
+## Contributing
 
-Do not commit local environment or Supabase CLI state:
-
-- `web/.env.local`
-- `supabase/.temp/`
-- `supabase/.branches/`
-- `.claude/`
-
-For the first public release, prefer creating a fresh public repository from this cleaned working tree instead of publishing the old private Git history.
+See `CONTRIBUTING.md` for development setup and `CODE_OF_CONDUCT.md` for community expectations. Security issues should be reported via the process in `SECURITY.md`.

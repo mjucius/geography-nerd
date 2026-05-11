@@ -1,16 +1,38 @@
 {
   "name": "geography-nerd-monorepo",
   "version": "1.0.0",
-  "description": "Geography Nerd - Interactive trivia website for geographic knowledge",
+  "description": "Geography Nerd - browser game that tests directional geography knowledge. No accounts, no ads, no tracking.",
+  "author": "Geography Nerd contributors <mjucius@users.noreply.github.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mjucius/geography-nerd.git"
+  },
+  "homepage": "https://geographynerd.jucius.com",
+  "bugs": {
+    "url": "https://github.com/mjucius/geography-nerd/issues"
+  },
+  "keywords": [
+    "geography",
+    "quiz",
+    "game",
+    "react",
+    "typescript",
+    "education",
+    "vite",
+    "leaflet"
+  ],
   "workspaces": [
-    "web",
-    "supabase"
+    "web"
   ],
   "scripts": {
     "dev:web": "npm run dev -w web",
     "build:web": "npm run build -w web",
     "build": "npm run build -w web",
-    "generate:local-cities": "node scripts/generate-local-cities.mjs"
+    "lint": "npm run lint -w web",
+    "test": "npm run test -w web",
+    "generate:local-cities": "node scripts/generate-local-cities.mjs",
+    "import-cities": "node scripts/import-cities.mjs"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.17"

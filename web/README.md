@@ -6,6 +6,7 @@ React/Vite frontend for Geography Nerd.
 npm run dev -w web
 npm run build -w web
 npm run lint -w web
+npm run test -w web
 ```
 
-The app uses local city data by default. Optional Supabase city reads are configured with `VITE_CITY_DATA_SOURCE=supabase`, `VITE_SUPABASE_URL`, and `VITE_SUPABASE_ANON_KEY`.
+The app loads cities from `web/src/data/localCities.ts`, generated at build-time from the SQL fixtures under `../data/`. See the root `README.md` for the full setup.
