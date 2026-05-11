@@ -34,7 +34,10 @@
     "generate:local-cities": "node scripts/generate-local-cities.mjs",
     "import-cities": "node scripts/import-cities.mjs"
   },
+  "engines": {
+    "node": ">=20"
+  },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.17"
+    "@tailwindcss/postcss": "^4.3.0"
   }
 }
