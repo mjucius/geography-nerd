@@ -35,9 +35,9 @@
     "import-cities": "node scripts/import-cities.mjs"
   },
   "engines": {
-    "node": ">=20"
+    "node": ">=24"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.0"
+    "@tailwindcss/postcss": "^4.3.3"
   }
 }

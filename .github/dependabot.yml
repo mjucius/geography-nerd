@@ -1,5 +1,9 @@
 version: 2
 updates:
+  # npm workspaces: the root package-lock.json covers every workspace member
+  # (there is no web/package-lock.json), so a single "/" entry is correct.
+  # A separate "/web" entry produces PRs that edit web/package.json without
+  # the lockfile, which fails `npm ci`.
   - package-ecosystem: npm
     directory: "/"
     schedule:
@@ -7,15 +11,21 @@ updates:
     open-pull-requests-limit: 5
     labels:
       - dependencies
-
-  - package-ecosystem: npm
-    directory: "/web"
-    schedule:
-      interval: weekly
-    open-pull-requests-limit: 5
-    labels:
-      - dependencies
-      - web
+    groups:
+      # Routine bumps arrive as one PR so they stop starving majors
+      # against the open-pull-requests-limit.
+      npm-minor-and-patch:
+        applies-to: version-updates
+        patterns:
+          - "*"
+        update-types:
+          - minor
+          - patch
+    ignore:
+      # typescript-eslint peers on `typescript: >=4.8.4 <6.1.0` and has no
+      # release that accepts TypeScript 7. Drop this ignore once it does.
+      - dependency-name: typescript
+        versions: [">=7"]
 
   - package-ecosystem: github-actions
     directory: "/"
