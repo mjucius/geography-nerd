@@ -2,6 +2,8 @@
 
 ## Development
 
+This project targets Node.js 24 (see `.nvmrc`).
+
 ```bash
 npm install
 npm run dev:web
@@ -12,6 +14,7 @@ Run checks before opening a pull request:
 ```bash
 npm run lint -w web
 npm run build:web
+npm run test -w web
 ```
 
 ## Data Changes

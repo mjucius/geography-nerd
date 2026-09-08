@@ -162,7 +162,7 @@ function generateSingleQuestion(
   const formattedCity1Name = formatCityName(city1.name, city1.country_code);
   const formattedCity2Name = formatCityName(city2.name, city2.country_code);
 
-  let questionTextParts: QuestionTextPart[] = [];
+  let questionTextParts: QuestionTextPart[];
 
   if (isLatitudinal) {
     questionText = `Is ${formattedCity1Name}, ${country1Name} north or south of ${formattedCity2Name}, ${country2Name}?`;

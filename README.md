@@ -7,7 +7,7 @@
 <p align="center">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="MIT License" /></a>
   <a href="https://github.com/mjucius/geography-nerd/actions/workflows/ci.yml"><img src="https://github.com/mjucius/geography-nerd/actions/workflows/ci.yml/badge.svg" alt="CI" /></a>
-  <img src="https://img.shields.io/badge/node-%3E%3D20-brightgreen.svg" alt="Node 20+" />
+  <img src="https://img.shields.io/badge/node-%3E%3D24-brightgreen.svg" alt="Node 24+" />
   <a href="https://github.com/mjucius/geography-nerd/issues"><img src="https://img.shields.io/github/issues/mjucius/geography-nerd.svg" alt="Issues" /></a>
 </p>
 
@@ -35,7 +35,7 @@ The app is intentionally simple:
 
 Requirements:
 
-- Node.js 20+
+- Node.js 24+ (a `.nvmrc` is provided)
 - npm
 
 ```bash
