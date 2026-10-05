@@ -26,3 +26,21 @@ export const question: Question = {
   options: ['North', 'South'],
   difficultyLevel: 1,
 };
+
+// Mean latitude ~58N, so the cos-scaled east-west km (1,592) is far from the raw-degree value (2,991).
+export const longitudinalQuestion: Question = {
+  ...question,
+  questionText: 'Is Oslo east or west of Moscow?',
+  questionTextParts: [
+    { type: 'text', content: 'Is' },
+    { type: 'city', cityName: 'Oslo', countryName: 'Norway' },
+    { type: 'text', content: 'east or west of' },
+    { type: 'city', cityName: 'Moscow', countryName: 'Russia' },
+    { type: 'text', content: '?' },
+  ],
+  city1: city('Oslo', 59.91, 10.75),
+  city2: city('Moscow', 55.76, 37.62),
+  correctAnswer: 'West',
+  type: 'longitudinal',
+  options: ['East', 'West'],
+};

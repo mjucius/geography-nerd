@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { QuestionCard } from '../QuestionCard';
-import { question } from '../../test-fixtures';
+import { longitudinalQuestion, question } from '../../test-fixtures';
 
 describe('QuestionCard', () => {
   it('shows progress once, as text plus a progress bar', () => {
@@ -51,6 +51,13 @@ describe('QuestionCard', () => {
       expect(screen.getByText('Incorrect')).toBeInTheDocument();
       expect(screen.getByText(/North by 7,742 km \/ 4,811 mi/)).toBeInTheDocument();
       expect(container).not.toHaveTextContent('°');
+    });
+
+    it('scales the east-west distance by latitude', () => {
+      render(
+        <QuestionCard question={longitudinalQuestion} questionNumber={1} totalQuestions={10} onAnswer={() => {}} lastAnswer={answered} onNext={() => {}} />
+      );
+      expect(screen.getByText('West by 1,592 km / 989 mi')).toBeInTheDocument();
     });
 
     it('advances only from the Next button, not from clicking the panel', async () => {

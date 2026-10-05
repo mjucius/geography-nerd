@@ -98,3 +98,11 @@
 2026-10-05T17:50:24Z dev -> reviewer: T-009 code for review
 2026-10-05T17:50:36Z reviewer -> dev: T-009 code approved (round 1), two nits
 2026-10-05T17:50:45Z dev -> team-lead: T-009 done, committed
+2026-10-05T17:51:08Z team-lead -> qa: CEO wants QA now on M3 so far (T-008, T-009 at 2ffe442); T-010 stays on hold
+2026-10-05T17:51:43Z qa -> team-lead: M3 QA at 2ffe442: filed T-011
+2026-10-05T17:51:49Z team-lead -> dev: work QA ticket T-011 (East/West km component test); T-010 still on hold
+2026-10-05T17:52:05Z dev -> reviewer: T-011 plan for review
+2026-10-05T17:52:17Z reviewer -> dev: T-011 plan approved (round 1)
+2026-10-05T17:52:35Z dev -> reviewer: T-011 code for review
+2026-10-05T17:52:44Z reviewer -> dev: T-011 code approved (round 1), one nit
+2026-10-05T17:52:54Z dev -> team-lead: T-011 done, committed

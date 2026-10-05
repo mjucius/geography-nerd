@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ScoreScreen } from '../ScoreScreen';
-import { question } from '../../test-fixtures';
+import { longitudinalQuestion, question } from '../../test-fixtures';
 import type { UserAnswer } from '../../types';
 
 const answers: UserAnswer[] = Array.from({ length: 10 }, (_, i) => ({
@@ -46,6 +46,14 @@ describe('ScoreScreen', () => {
 
     await user.click(screen.getByText(/Question text 1$/));
     await waitFor(() => expect(container.querySelector('.leaflet-container')).toBeNull());
+  });
+
+  it('shows the same latitude-scaled east-west distance as the reveal', async () => {
+    const user = userEvent.setup();
+    renderScreen({ questions: [longitudinalQuestion, ...questions.slice(1)] });
+
+    await user.click(screen.getByText(/Question text 1$/));
+    expect(screen.getByText('West by 1,592 km / 989 mi')).toBeInTheDocument();
   });
 
   it('offers the right level actions', async () => {
