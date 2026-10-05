@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { ScoreScreen } from '../ScoreScreen';
-import { longitudinalQuestion, question } from '../../test-fixtures';
+import { longitudinalQuestion, question, sameLongitudeQuestion } from '../../test-fixtures';
 import type { UserAnswer } from '../../types';
 
 const answers: UserAnswer[] = Array.from({ length: 10 }, (_, i) => ({
@@ -54,6 +54,15 @@ describe('ScoreScreen', () => {
 
     await user.click(screen.getByText(/Question text 1$/));
     expect(screen.getByText('West by 1,592 km / 989 mi')).toBeInTheDocument();
+  });
+
+  it('says Same longitude instead of a zero distance', async () => {
+    const user = userEvent.setup();
+    const { container } = renderScreen({ questions: [sameLongitudeQuestion, ...questions.slice(1)] });
+
+    await user.click(screen.getByText(/Question text 1$/));
+    expect(screen.getByText('Same longitude')).toBeInTheDocument();
+    expect(container).not.toHaveTextContent('by 0 km');
   });
 
   it('offers the right level actions', async () => {

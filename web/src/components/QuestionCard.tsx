@@ -1,7 +1,7 @@
 import type { Question, UserAnswer, DifficultyLevel } from '../types';
 import { MapView } from './MapView';
 import { QuestionText } from './QuestionText';
-import { formatDistance, getDistanceInfo } from '../services/distance';
+import { formatOffset, getDistanceInfo } from '../services/distance';
 
 interface QuestionCardProps {
   question: Question;
@@ -132,8 +132,8 @@ export function QuestionCard({
                     Correct answer: <span className="font-bold text-teal">{lastAnswer.correctAnswer}</span>
                   </p>
                 )}
-                <p>{ns.direction} by {formatDistance(ns)}</p>
-                <p>{ew.direction} by {formatDistance(ew)}</p>
+                <p>{formatOffset(ns, 'Same latitude')}</p>
+                <p>{formatOffset(ew, 'Same longitude')}</p>
               </div>
             </div>
 

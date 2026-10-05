@@ -2,7 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { QuestionCard } from '../QuestionCard';
-import { longitudinalQuestion, question } from '../../test-fixtures';
+import { longitudinalQuestion, question, sameLongitudeQuestion } from '../../test-fixtures';
 
 describe('QuestionCard', () => {
   it('shows progress once, as text plus a progress bar', () => {
@@ -58,6 +58,14 @@ describe('QuestionCard', () => {
         <QuestionCard question={longitudinalQuestion} questionNumber={1} totalQuestions={10} onAnswer={() => {}} lastAnswer={answered} onNext={() => {}} />
       );
       expect(screen.getByText('West by 1,592 km / 989 mi')).toBeInTheDocument();
+    });
+
+    it('says Same longitude instead of a zero distance', () => {
+      const { container } = render(
+        <QuestionCard question={sameLongitudeQuestion} questionNumber={1} totalQuestions={10} onAnswer={() => {}} lastAnswer={answered} onNext={() => {}} />
+      );
+      expect(screen.getByText('Same longitude')).toBeInTheDocument();
+      expect(container).not.toHaveTextContent('by 0 km');
     });
 
     it('advances only from the Next button, not from clicking the panel', async () => {

@@ -44,3 +44,9 @@ export const longitudinalQuestion: Question = {
   type: 'longitudinal',
   options: ['East', 'West'],
 };
+
+// Same meridian (exact 0 degrees east-west), different latitude.
+export const sameLongitudeQuestion: Question = {
+  ...longitudinalQuestion,
+  city2: city('Aarhus', 55.76, 10.75),
+};

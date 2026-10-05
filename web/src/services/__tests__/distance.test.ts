@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { formatDistance, getDistanceInfo, wrapLongitudeDiff } from '../distance';
+import { formatDistance, formatOffset, getDistanceInfo, wrapLongitudeDiff } from '../distance';
 
 const tokyo = { latitude: 35.68, longitude: 139.69 };
 const sydney = { latitude: -33.87, longitude: 151.21 };
@@ -36,6 +36,31 @@ describe('getDistanceInfo', () => {
   it('leaves north-south alone', () => {
     const { ns } = getDistanceInfo({ latitude: 60, longitude: 0 }, { latitude: 50, longitude: 0 });
     expect(ns.km).toBeCloseTo(1113.2, 1);
+  });
+});
+
+describe('same longitude / same latitude', () => {
+  it('flags an exact 0 degree gap and says Same longitude', () => {
+    const { ns, ew } = getDistanceInfo({ latitude: 10, longitude: 20 }, { latitude: 0, longitude: 20 });
+    expect(ew.same).toBe(true);
+    expect(formatOffset(ew, 'Same longitude')).toBe('Same longitude');
+    expect(ns.same).toBe(false);
+  });
+
+  it('says Same latitude for an exact 0 degree north-south gap', () => {
+    const { ns, ew } = getDistanceInfo({ latitude: 10, longitude: 30 }, { latitude: 10, longitude: 20 });
+    expect(formatOffset(ns, 'Same latitude')).toBe('Same latitude');
+    expect(formatOffset(ew, 'Same longitude')).toBe('East by 1,096 km / 681 mi');
+  });
+
+  it('treats 180 and -180 as the same longitude', () => {
+    expect(getDistanceInfo({ latitude: 5, longitude: 180 }, { latitude: 0, longitude: -180 }).ew.same).toBe(true);
+  });
+
+  it('keeps the direction for a tiny non-zero gap', () => {
+    const { ew } = getDistanceInfo({ latitude: 0, longitude: 20.0001 }, { latitude: 0, longitude: 20 });
+    expect(ew.same).toBe(false);
+    expect(formatOffset(ew, 'Same longitude')).toBe('East by 0 km / 0 mi');
   });
 });
 

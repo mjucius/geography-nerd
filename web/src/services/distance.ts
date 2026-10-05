@@ -5,6 +5,7 @@ interface Point {
 
 interface Offset<D extends string> {
   direction: D;
+  same: boolean;
   km: number;
   mi: number;
 }
@@ -14,7 +15,7 @@ const MI_PER_KM = 0.621371;
 
 const offset = <D extends string>(degrees: number, direction: D, scale = 1): Offset<D> => {
   const km = Math.abs(degrees) * KM_PER_DEGREE * scale;
-  return { direction, km, mi: km * MI_PER_KM };
+  return { direction, same: degrees === 0, km, mi: km * MI_PER_KM };
 };
 
 // Longitude difference the short way round, in [-180, 180].
@@ -38,6 +39,10 @@ export function getDistanceInfo(city1: Point, city2: Point) {
     ew: offset(lonDiff, lonDiff > 0 ? 'East' : 'West', Math.cos(meanLatRad)),
   };
 }
+
+// Only an exact 0 degree gap reads as "same"; a tiny gap keeps its direction.
+export const formatOffset = (o: Offset<string>, sameLabel: string) =>
+  o.same ? sameLabel : `${o.direction} by ${formatDistance(o)}`;
 
 export const formatDistance = ({ km, mi }: { km: number; mi: number }) =>
   `${Math.round(km).toLocaleString('en-US')} km / ${Math.round(mi).toLocaleString('en-US')} mi`;

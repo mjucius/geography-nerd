@@ -1,7 +1,7 @@
 import type { UserAnswer, Question, DifficultyLevel } from '../types';
 import { useState } from 'react';
 import { MapView } from './MapView';
-import { formatDistance, getDistanceInfo } from '../services/distance';
+import { formatOffset, getDistanceInfo } from '../services/distance';
 
 const primaryButton =
   'min-h-12 w-full rounded-control bg-teal px-4 text-sm font-bold text-surface transition hover:bg-teal-deep disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal';
@@ -49,8 +49,8 @@ function RouteRow({ index, answer, question }: RouteRowProps) {
 
         {open && question && distance && (
           <div className="pb-4 pl-11 text-sm text-ink-soft">
-            <p>{distance.ns.direction} by {formatDistance(distance.ns)}</p>
-            <p>{distance.ew.direction} by {formatDistance(distance.ew)}</p>
+            <p>{formatOffset(distance.ns, 'Same latitude')}</p>
+            <p>{formatOffset(distance.ew, 'Same longitude')}</p>
             <div className="mt-3">
               <MapView city1={question.city1} city2={question.city2} />
             </div>

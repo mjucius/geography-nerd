@@ -125,3 +125,16 @@
 2026-10-05T18:16:47Z dev -> reviewer: T-012 code for review
 2026-10-05T18:16:57Z reviewer -> dev: T-012 code approved (round 1)
 2026-10-05T18:17:00Z dev: T-012 done, committing
+2026-10-05T18:17:06Z team-lead -> qa: re-run M3 QA (T-008 to T-012) at 85172db
+2026-10-05T18:17:50Z qa -> team-lead: M3 re-run at 85172db all pass, no new tickets
+2026-10-05T18:17:52Z team-lead -> ceo: M3 done, QA clean at 85172db (T-008 to T-012)
+2026-10-05T18:21:49Z team-lead -> pm: CEO decision: equal longitude shows "Same longitude"; write acceptance
+2026-10-05T18:22:04Z pm -> team-lead: Same longitude acceptance written (items 23-24)
+2026-10-05T18:22:35Z team-lead -> pm: CEO: exact 0° only; add "Same latitude" for north-south
+2026-10-05T18:22:46Z pm -> team-lead: items 23-24 updated for exact-0 and Same latitude
+2026-10-05T18:22:56Z team-lead -> dev: ticket and build brief items 23-24 (Same longitude/latitude), CEO decided
+2026-10-05T18:23:18Z dev -> reviewer: T-013 plan for review
+2026-10-05T18:23:33Z reviewer -> dev: T-013 plan approved (round 1), one nit
+2026-10-05T18:24:17Z dev -> reviewer: T-013 code for review
+2026-10-05T18:24:33Z reviewer -> dev: T-013 code approved (round 1), one nit
+2026-10-05T18:24:41Z dev: T-013 done, committing
