@@ -138,3 +138,11 @@
 2026-10-05T18:24:17Z dev -> reviewer: T-013 code for review
 2026-10-05T18:24:33Z reviewer -> dev: T-013 code approved (round 1), one nit
 2026-10-05T18:24:41Z dev: T-013 done, committing
+2026-10-05T18:24:48Z team-lead -> qa: QA T-013 (Same longitude/latitude, brief 23-24) at 6fd2190
+2026-10-05T18:26:06Z qa -> team-lead: T-013 at 6fd2190 passes, no tickets
+2026-10-05T18:26:10Z team-lead -> ceo: T-013 done, QA clean at 6fd2190; M3 complete
+2026-10-05T18:26:19Z team-lead -> team: CEO says stop here; team stands down
+2026-10-05T21:16:10Z team-lead -> pm: CEO idea: research better difficulty progression (city obscurity, close-on-axis pairs); write brief
+2026-10-05T21:19:20Z pm -> team-lead: difficulty progression brief draft ready (options A/B/C, recommend A, 7 open questions)
+2026-10-05T21:27:22Z team-lead -> pm: CEO decisions: A, Wikidata sitelinks, keep 10 levels, no persistence, drop capitals, keep 8/10 + 2 previews, stop at 1,000 cities; write acceptance
+2026-10-05T21:27:45Z pm -> team-lead: v1 scope and acceptance written; no open questions; 3 added items for CEO
