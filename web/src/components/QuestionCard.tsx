@@ -1,6 +1,7 @@
 import type { Question, UserAnswer, DifficultyLevel } from '../types';
 import { MapView } from './MapView';
 import { QuestionText } from './QuestionText';
+import { formatDistance, getDistanceInfo } from '../services/distance';
 
 interface QuestionCardProps {
   question: Question;
@@ -37,46 +38,7 @@ export function QuestionCard({
     return { label: option, ...configs[option] };
   };
 
-  const calculateDistance = () => {
-    const latDiff = Math.abs(question.city1.latitude - question.city2.latitude);
-    const lonDiff = Math.abs(question.city1.longitude - question.city2.longitude);
-
-    // Convert degrees to kilometers (1 degree ≈ 111.32 km)
-    const latDiffKm = latDiff * 111.32;
-    const lonDiffKm = lonDiff * 111.32;
-
-    // Convert to miles (1 km ≈ 0.621371 miles)
-    const latDiffMiles = latDiffKm * 0.621371;
-    const lonDiffMiles = lonDiffKm * 0.621371;
-
-    return {
-      latDiff,
-      lonDiff,
-      latDiffKm,
-      lonDiffKm,
-      latDiffMiles,
-      lonDiffMiles
-    };
-  };
-
-  const getDirectionInfo = () => {
-    const { latDiff, lonDiff, latDiffKm, lonDiffKm, latDiffMiles, lonDiffMiles } = calculateDistance();
-
-    const nsDirection = question.city1.latitude > question.city2.latitude ? 'North' : 'South';
-    const ewDirection = question.city1.longitude > question.city2.longitude ? 'East' : 'West';
-
-    return (
-      <>
-        <div>
-          {latDiff.toFixed(2)}° ({latDiffKm.toFixed(1)} km / {latDiffMiles.toFixed(1)} mi) {nsDirection}
-        </div>
-        <div>
-          {lonDiff.toFixed(2)}° ({lonDiffKm.toFixed(1)} km / {lonDiffMiles.toFixed(1)} mi) {ewDirection}
-        </div>
-      </>
-    );
-  };
-
+  const { ns, ew } = getDistanceInfo(question.city1, question.city2);
   const isEastWest = question.type === 'longitudinal';
 
   return (
@@ -150,68 +112,56 @@ export function QuestionCard({
         </div>
 
         {lastAnswer && (
-          <div
-            onClick={() => isLastQuestion ? (onSubmit && onSubmit()) : (!isLastQuestion && onNext && onNext())}
-            className={`cursor-pointer rounded-2xl border p-3 transition hover:shadow-md sm:p-4 ${
-              lastAnswer.isCorrect
-                ? 'border-[#a8c8b4] bg-[#eef7ef]'
-                : 'border-[#d9afa3] bg-[#fff1ec]'
-            }`}
-          >
-            <div className="mb-3 flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
-              <div className="flex flex-1 items-start gap-3">
-                <div className={`grid h-10 w-10 flex-shrink-0 place-items-center rounded-full text-xl font-black ${lastAnswer.isCorrect ? 'bg-[#1e6964] text-white' : 'bg-[#b95f4a] text-white'}`}>
-                  {lastAnswer.isCorrect ? '✓' : '✕'}
-                </div>
-                <div className="flex-1">
-                  <h4 className="mb-2 text-lg font-black text-[#17202a]">
-                    {lastAnswer.isCorrect ? 'Correct!' : 'Incorrect'}
-                  </h4>
-                  <div className="space-y-1 text-sm text-[#53625d]">
-                    <p>
-                      <span className="font-semibold">Your answer:</span> <span className="font-black text-[#17202a]">{lastAnswer.userAnswer}</span>
-                    </p>
-                    {!lastAnswer.isCorrect && (
-                      <p>
-                        <span className="font-semibold">Correct answer:</span> <span className="font-black text-[#1e6964]">{lastAnswer.correctAnswer}</span>
-                      </p>
-                    )}
-                  </div>
-                </div>
+          <section aria-live="polite" className="border-t border-line pt-4">
+            <div className="flex items-start gap-3">
+              <div
+                aria-hidden="true"
+                className={`grid h-10 w-10 shrink-0 place-items-center rounded-full text-xl font-bold text-surface ${lastAnswer.isCorrect ? 'bg-teal' : 'bg-clay'}`}
+              >
+                {lastAnswer.isCorrect ? '✓' : '✕'}
               </div>
-              <div className="shrink-0 rounded-xl border border-[#d8cdb9] bg-white/70 p-2.5 text-left text-xs leading-5 text-[#53625d] md:text-right">
-                <div className="mb-1 font-black uppercase tracking-[0.14em] text-[#17202a]">Distance</div>
-                {getDirectionInfo()}
+              <div className="flex-1 space-y-1 text-sm text-ink-soft">
+                <h4 className="text-lg font-bold text-ink">
+                  {lastAnswer.isCorrect ? 'Correct!' : 'Incorrect'}
+                </h4>
+                <p>
+                  Your answer: <span className="font-bold text-ink">{lastAnswer.userAnswer}</span>
+                </p>
+                {!lastAnswer.isCorrect && (
+                  <p>
+                    Correct answer: <span className="font-bold text-teal">{lastAnswer.correctAnswer}</span>
+                  </p>
+                )}
+                <p>{ns.direction} by {formatDistance(ns)}</p>
+                <p>{ew.direction} by {formatDistance(ew)}</p>
               </div>
             </div>
 
-            <div className="mt-3">
+            <div className="mt-4">
               <MapView city1={question.city1} city2={question.city2} />
             </div>
 
             {!isLastQuestion && onNext && (
-              <div className="mt-4">
-                <button
-                  onClick={onNext}
-                  className="min-h-12 w-full rounded-xl bg-[#17202a] px-6 font-black text-[#fffaf0] transition hover:bg-[#244a52] focus:outline-none focus:ring-4 focus:ring-[#1e6964]/25"
-                >
-                  Next Question
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={onNext}
+                className="mt-4 min-h-12 w-full rounded-control bg-teal px-6 font-bold text-surface transition hover:bg-teal-deep focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+              >
+                Next Question
+              </button>
             )}
 
             {isLastQuestion && onSubmit && (
-              <div className="mt-4">
-                <button
-                  onClick={onSubmit}
-                  disabled={loading}
-                  className="min-h-12 w-full rounded-xl bg-[#1e6964] px-6 font-black text-white transition hover:bg-[#244a52] disabled:bg-[#9b9f98] focus:outline-none focus:ring-4 focus:ring-[#1e6964]/25"
-                >
-                  {loading ? 'Finishing...' : 'Complete Quiz'}
-                </button>
-              </div>
+              <button
+                type="button"
+                onClick={onSubmit}
+                disabled={loading}
+                className="mt-4 min-h-12 w-full rounded-control bg-teal px-6 font-bold text-surface transition hover:bg-teal-deep disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+              >
+                {loading ? 'Finishing...' : 'Complete Quiz'}
+              </button>
             )}
-          </div>
+          </section>
         )}
       </div>
     </div>

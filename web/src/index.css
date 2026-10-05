@@ -43,3 +43,28 @@ body {
 button {
   font: inherit;
 }
+
+/* Map: muted tiles, palette pins and route line */
+.leaflet-tile-pane {
+  filter: sepia(0.25) saturate(0.85);
+}
+
+.map-pin {
+  border: 2px solid var(--color-surface);
+  border-radius: 9999px;
+}
+
+.map-pin-1 {
+  background: var(--color-amber);
+}
+
+.map-pin-2 {
+  background: var(--color-teal-deep);
+}
+
+.route-line {
+  stroke: var(--color-teal);
+  stroke-width: 3px;
+  stroke-linecap: round;
+  stroke-dasharray: 8 8;
+}

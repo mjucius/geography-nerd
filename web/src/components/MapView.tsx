@@ -1,5 +1,5 @@
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
-import { Icon, LatLngBounds } from 'leaflet';
+import { DivIcon, LatLngBounds } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 interface City {
@@ -13,16 +13,11 @@ interface MapViewProps {
   city2: City;
 }
 
-// Fix for default marker icons in React Leaflet
-const defaultIcon = new Icon({
-  iconUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png',
-  iconRetinaUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon-2x.png',
-  shadowUrl: 'https://unpkg.com/leaflet@1.9.4/dist/images/marker-shadow.png',
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41]
-});
+// Pins are plain divs styled in index.css, so they use the palette and need no image files.
+const pin = (className: string) =>
+  new DivIcon({ className: `map-pin ${className}`, iconSize: [20, 20], iconAnchor: [10, 10], popupAnchor: [0, -10] });
+const pin1 = pin('map-pin-1');
+const pin2 = pin('map-pin-2');
 
 export function MapView({ city1, city2 }: MapViewProps) {
   // Create positions for markers and line
@@ -33,7 +28,7 @@ export function MapView({ city1, city2 }: MapViewProps) {
   const bounds = new LatLngBounds([position1, position2]);
 
   return (
-    <div className="h-36 w-full overflow-hidden rounded-xl border border-[#d8cdb9] shadow-sm sm:h-48">
+    <div className="h-36 w-full overflow-hidden rounded-control border border-line sm:h-48">
       <MapContainer
         bounds={bounds}
         boundsOptions={{ padding: [50, 50] }}
@@ -46,14 +41,10 @@ export function MapView({ city1, city2 }: MapViewProps) {
           maxZoom={19}
         />
 
-        {/* Line connecting the two cities */}
-        <Polyline
-          positions={[position1, position2]}
-          pathOptions={{ color: '#0891b2', weight: 3, opacity: 0.7, dashArray: '10, 10' }}
-        />
+        {/* Line connecting the two cities, coloured in index.css */}
+        <Polyline positions={[position1, position2]} pathOptions={{ className: 'route-line' }} />
 
-        {/* City 1 Marker */}
-        <Marker position={position1} icon={defaultIcon}>
+        <Marker position={position1} icon={pin1}>
           <Popup>
             <div className="text-center font-semibold">
               {city1.name}
@@ -61,8 +52,7 @@ export function MapView({ city1, city2 }: MapViewProps) {
           </Popup>
         </Marker>
 
-        {/* City 2 Marker */}
-        <Marker position={position2} icon={defaultIcon}>
+        <Marker position={position2} icon={pin2}>
           <Popup>
             <div className="text-center font-semibold">
               {city2.name}

@@ -38,4 +38,47 @@ describe('QuestionCard', () => {
     );
     expect(screen.getByRole('button', { name: /South/ })).toBeDisabled();
   });
+
+  describe('after answering', () => {
+    const answered = {
+      questionIndex: 0, city1Id: 1, city2Id: 2, questionText: '', userAnswer: 'South', correctAnswer: 'North', isCorrect: false,
+    };
+
+    it('shows the result and distances in km and miles, with no degrees', () => {
+      const { container } = render(
+        <QuestionCard question={question} questionNumber={1} totalQuestions={10} onAnswer={() => {}} lastAnswer={answered} onNext={() => {}} />
+      );
+      expect(screen.getByText('Incorrect')).toBeInTheDocument();
+      expect(screen.getByText(/North by 7,742 km \/ 4,811 mi/)).toBeInTheDocument();
+      expect(container).not.toHaveTextContent('°');
+    });
+
+    it('advances only from the Next button, not from clicking the panel', async () => {
+      const onNext = vi.fn();
+      const user = userEvent.setup();
+      render(
+        <QuestionCard question={question} questionNumber={1} totalQuestions={10} onAnswer={() => {}} lastAnswer={answered} onNext={onNext} />
+      );
+
+      await user.click(screen.getByText('Incorrect'));
+      await user.click(screen.getByText(/Your answer/));
+      expect(onNext).not.toHaveBeenCalled();
+
+      await user.click(screen.getByRole('button', { name: /Next Question/ }));
+      expect(onNext).toHaveBeenCalledOnce();
+    });
+
+    it('completes the quiz only from the Complete Quiz button', async () => {
+      const onSubmit = vi.fn();
+      const user = userEvent.setup();
+      render(
+        <QuestionCard question={question} questionNumber={10} totalQuestions={10} onAnswer={() => {}} lastAnswer={answered} isLastQuestion onSubmit={onSubmit} />
+      );
+
+      await user.click(screen.getByText('Incorrect'));
+      expect(onSubmit).not.toHaveBeenCalled();
+      await user.click(screen.getByRole('button', { name: /Complete Quiz/ }));
+      expect(onSubmit).toHaveBeenCalledOnce();
+    });
+  });
 });

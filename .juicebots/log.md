@@ -34,3 +34,12 @@
 2026-10-05T16:33:00Z dev -> reviewer: T-004 code for review (round 1)
 2026-10-05T16:33:22Z reviewer -> dev: T-004 code review round 1: approved
 2026-10-05T16:33:26Z dev: T-004 done, committing (reviewer approved code round 1)
+2026-10-05T16:33:43Z qa -> team-lead: M1 QA done, browser check passed, no tickets filed (note: unpkg.com marker icons)
+2026-10-05T16:33:48Z team-lead: M1 QA passed, no tickets; unpkg pins already covered by T-005
+2026-10-05T16:33:52Z dev -> reviewer: T-004 committed (d9f04c3); T-005 plan for review (round 1)
+2026-10-05T16:34:28Z reviewer -> dev: T-005 plan review round 1: changes (dateline wrap in distance helper)
+2026-10-05T16:34:37Z dev -> reviewer: T-005 plan round 2 (dateline wrap in distance helper)
+2026-10-05T16:34:47Z reviewer -> dev: T-005 plan review round 2: approved
+2026-10-05T16:35:36Z dev -> reviewer: T-005 code for review (round 1)
+2026-10-05T16:36:02Z reviewer -> dev: T-005 code review round 1: approved
+2026-10-05T16:36:05Z dev: T-005 done, committing (reviewer approved code round 1)
