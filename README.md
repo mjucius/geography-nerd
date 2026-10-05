@@ -15,13 +15,7 @@
 
 **[Play the live demo →](https://geographynerd.jucius.com)**
 
-The app is intentionally simple:
-
-- No accounts
-- No app-level analytics
-- No quiz/session/answer tracking
-- No ads
-- City data is bundled locally and ships with the build
+There are no accounts, ads, or analytics, and nothing about your quiz or answers is tracked. The city data ships with the build.
 
 ## Tech Stack
 
@@ -62,7 +56,7 @@ The bundled city list lives in `web/src/data/localCities.ts`. It is generated fr
 
 ## Privacy
 
-The application does not create user accounts, persist quiz state, store answers, or include app-level tracking/ads. See `PRIVACY.md` for external service notes.
+The app stores no accounts, quiz state, or answers, and has no tracking or ads. `PRIVACY.md` covers the external services it still talks to.
 
 ## Attribution
 
@@ -74,4 +68,4 @@ Code is licensed under [MIT](LICENSE). Data and map sources retain their own lic
 
 ## Contributing
 
-See `CONTRIBUTING.md` for development setup and `CODE_OF_CONDUCT.md` for community expectations. Security issues should be reported via the process in `SECURITY.md`.
+See `CONTRIBUTING.md` for development setup and `CODE_OF_CONDUCT.md` for community expectations. Report security issues as described in `SECURITY.md`.

@@ -17,7 +17,7 @@ export function Home({ onStartQuiz }: HomeProps) {
         </h2>
 
         <p className="mt-4 max-w-2xl text-base leading-7 text-ink-soft sm:text-lg sm:leading-8">
-          Compare two cities, choose the direction, then reveal the route. Ten quick questions, no accounts, just geography instinct.
+          Ten quick questions, no accounts. Trust your instinct.
         </p>
 
         <button

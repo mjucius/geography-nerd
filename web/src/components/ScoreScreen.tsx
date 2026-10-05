@@ -137,9 +137,6 @@ export function ScoreScreen({
           <h2 className="mt-5 text-2xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
             {getScoreMessage()}
           </h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-soft sm:text-base">
-            Review each route below, then choose whether to stay with this level or push into the next set of questions.
-          </p>
 
           {nextLevelAvailable && difficultyLevel! < 10 && (
             <div className="mt-5 border-t border-line pt-4">

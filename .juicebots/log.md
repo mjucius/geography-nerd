@@ -53,3 +53,13 @@
 2026-10-05T16:44:06Z dev -> reviewer: T-007 code for review (round 1)
 2026-10-05T16:44:33Z reviewer -> dev: T-007 code review round 1: approved (M2 code-complete)
 2026-10-05T16:44:37Z dev: T-007 done, committing (reviewer approved code round 1)
+2026-10-05T16:44:43Z dev -> team-lead: DONE, T-001..T-007 committed (72d039d last)
+2026-10-05T16:44:48Z team-lead -> qa: QA M2 (T-002..T-007, 52fee18..72d039d)
+2026-10-05T16:48:05Z qa -> team-lead: M2 QA done, all checked items pass, no tickets; note on About modal keyboard behaviour
+2026-10-05T16:48:09Z team-lead: M2 QA passed, no tickets; visual refresh v1 complete (not deployed)
+2026-10-05T16:57:24Z team-lead -> dev: CEO confirmed requesting copy edits; send to reviewer, then commit
+2026-10-05T16:57:29Z dev -> reviewer: copy edits (README, web/README, index.html, Home, ScoreScreen) for review
+2026-10-05T16:57:49Z reviewer -> dev: copy edit review: approved (README fact verified; Home body voice flagged as pm call)
+2026-10-05T16:57:53Z dev -> pm: Home body copy voice check before committing copy edits
+2026-10-05T16:57:59Z team-lead -> dev: Home copy line covered by CEO's request; commit copy edits (reviewer approved)
+2026-10-05T16:58:03Z dev: copy edits committing (reviewer approved; team-lead says CEO asked for them incl. Home line)
