@@ -15,3 +15,10 @@
 2026-10-05T16:26:15Z dev -> reviewer: T-001 code for review (round 1)
 2026-10-05T16:26:38Z reviewer -> dev: T-001 code review round 1: approved (browser check still open for qa)
 2026-10-05T16:26:41Z dev: T-001 done, committing (reviewer approved code round 1)
+2026-10-05T16:26:46Z dev -> team-lead: M1 done (05a0e4b); browser check open; starting T-002
+2026-10-05T16:26:53Z team-lead -> qa: QA M1 (T-001 map fix, 05a0e4b) incl. browser tile check
+2026-10-05T16:27:13Z dev -> reviewer: T-002 plan for review (round 1)
+2026-10-05T16:27:34Z reviewer -> dev: T-002 plan review round 1: approved (2 nits)
+2026-10-05T16:28:34Z dev -> reviewer: T-002 code for review (round 1)
+2026-10-05T16:29:02Z reviewer -> dev: T-002 code review round 1: approved (2 nits)
+2026-10-05T16:29:12Z dev: T-002 done, committing (reviewer approved code round 1)
