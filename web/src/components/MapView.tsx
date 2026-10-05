@@ -14,8 +14,9 @@ interface MapViewProps {
 }
 
 // Pins are plain divs styled in index.css, so they use the palette and need no image files.
+// The icon box is 44px so the pin is an easy tap target; the visible dot is 20px (see .map-pin in index.css).
 const pin = (className: string) =>
-  new DivIcon({ className: `map-pin ${className}`, iconSize: [20, 20], iconAnchor: [10, 10], popupAnchor: [0, -10] });
+  new DivIcon({ className: `map-pin ${className}`, html: '<span></span>', iconSize: [44, 44], iconAnchor: [22, 22], popupAnchor: [0, -12] });
 const pin1 = pin('map-pin-1');
 const pin2 = pin('map-pin-2');
 
@@ -28,7 +29,7 @@ export function MapView({ city1, city2 }: MapViewProps) {
   const bounds = new LatLngBounds([position1, position2]);
 
   return (
-    <div className="h-36 w-full overflow-hidden rounded-control border border-line sm:h-48">
+    <div className="h-48 w-full overflow-hidden rounded-control border border-line sm:h-56">
       <MapContainer
         bounds={bounds}
         boundsOptions={{ padding: [50, 50] }}
@@ -45,7 +46,7 @@ export function MapView({ city1, city2 }: MapViewProps) {
         <Polyline positions={[position1, position2]} pathOptions={{ className: 'route-line' }} />
 
         <Marker position={position1} icon={pin1}>
-          <Popup>
+          <Popup closeButton={false}>
             <div className="text-center font-semibold">
               {city1.name}
             </div>
@@ -53,7 +54,7 @@ export function MapView({ city1, city2 }: MapViewProps) {
         </Marker>
 
         <Marker position={position2} icon={pin2}>
-          <Popup>
+          <Popup closeButton={false}>
             <div className="text-center font-semibold">
               {city2.name}
             </div>

@@ -73,27 +73,27 @@ export function AboutModal({ open, onClose }: AboutModalProps) {
 
         <div>
           <h3 className="text-sm font-bold text-ink-soft">Credits</h3>
-          <ul className="mt-2 space-y-1.5">
-            <li>
+          <ul className="mt-1">
+            <li className="flex flex-wrap items-center gap-x-1">
               City data:{' '}
-              <a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-teal underline">
+              <a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-teal underline">
                 GeoNames
               </a>{' '}
               (CC-BY-4.0)
             </li>
-            <li>
+            <li className="flex flex-wrap items-center gap-x-1">
               Map tiles:{' '}
-              <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" className="font-semibold text-teal underline">
+              <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-teal underline">
                 OpenStreetMap
               </a>
             </li>
-            <li>
+            <li className="flex flex-wrap items-center gap-x-1">
               Mapping library:{' '}
-              <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-teal underline">
+              <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-teal underline">
                 Leaflet
               </a>
             </li>
-            <li>Logo: generated with Google's Nano Banana AI</li>
+            <li className="flex flex-wrap items-center gap-x-1">Logo: generated with Google's Nano Banana AI</li>
           </ul>
         </div>
 

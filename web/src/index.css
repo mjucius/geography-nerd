@@ -9,8 +9,7 @@
   --color-teal: #1e6964;
   --color-teal-deep: #244a52;
   --color-amber: #c97938;
-  --color-clay: #b95f4a;
-  --color-sage: #a8c8b4;
+  --color-clay: #a9533f;
 
   --radius-card: 1.25rem;
   --radius-control: 0.75rem;
@@ -33,6 +32,11 @@ body {
 }
 
 @layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-teal);
+    outline-offset: 2px;
+  }
+
   h1,
   h2,
   h3 {
@@ -49,17 +53,31 @@ button {
   filter: sepia(0.25) saturate(0.85);
 }
 
-.map-pin {
+.map-pin span {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin: 12px;
   border: 2px solid var(--color-surface);
   border-radius: 9999px;
 }
 
-.map-pin-1 {
+.map-pin-1 span {
   background: var(--color-amber);
 }
 
-.map-pin-2 {
+.map-pin-2 span {
   background: var(--color-teal-deep);
+}
+
+.leaflet-container .leaflet-bar a[role="button"] {
+  width: 44px;
+  height: 44px;
+  line-height: 44px;
+}
+
+.leaflet-control-attribution a {
+  color: var(--color-teal);
 }
 
 .route-line {

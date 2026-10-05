@@ -14,7 +14,7 @@ export function Footer() {
             href={LICENSE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline transition hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+            className="inline-flex min-h-11 items-center underline transition hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
           >
             MIT License
           </a>
