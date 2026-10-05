@@ -39,4 +39,15 @@ describe('AboutModal', () => {
     await user.click(screen.getByRole('button', { name: /Close/i }));
     expect(screen.queryByText(/About Geography Nerd/i)).not.toBeVisible();
   });
+
+  it('is a native modal dialog named "About Geography Nerd" with no redundant ARIA', async () => {
+    const user = userEvent.setup();
+    render(<Footer />);
+    await user.click(screen.getByRole('button', { name: /Credits/i }));
+
+    const dialog = screen.getByRole('dialog', { name: 'About Geography Nerd' });
+    expect(dialog.tagName).toBe('DIALOG');
+    expect(dialog).not.toHaveAttribute('role');
+    expect(dialog).not.toHaveAttribute('aria-modal');
+  });
 });

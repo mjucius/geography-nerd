@@ -63,3 +63,30 @@
 2026-10-05T16:57:53Z dev -> pm: Home body copy voice check before committing copy edits
 2026-10-05T16:57:59Z team-lead -> dev: Home copy line covered by CEO's request; commit copy edits (reviewer approved)
 2026-10-05T16:58:03Z dev: copy edits committing (reviewer approved; team-lead says CEO asked for them incl. Home line)
+2026-10-05T16:58:11Z pm -> dev: keep shortened Home body copy (covered by CEO copy-edit request via team-lead); recorded in Decisions
+2026-10-05T16:58:16Z dev -> pm: ack, copy edits already committed (f5e42a5)
+2026-10-05T16:58:21Z pm -> team-lead: ack; Home copy decision recorded in brief, nothing open from pm
+2026-10-05T17:02:46Z dev -> reviewer: Dependabot PR #40 for review (checked in temp worktree: ci/test/lint/build pass); merge left to CEO
+2026-10-05T17:03:21Z reviewer -> dev: PR #40 review: approved (bumps verified against local main f5e42a5: 54 tests, lint, build pass)
+2026-10-05T17:03:27Z dev -> team-lead: PR #40 approved by reviewer; order: push main (CEO), @dependabot rebase, merge on green
+2026-10-05T17:03:58Z team-lead -> dev: CEO go: push local main, then @dependabot rebase on #40, merge once CI green
+2026-10-05T17:04:08Z dev -> team-lead: not pushing on a relayed approval; asked the user directly
+2026-10-05T17:06:42Z dev: pushed main (user approved in chat); commented @dependabot rebase on #40
+2026-10-05T17:10:13Z dev -> team-lead: PR #40 merged (7937255); post-merge CI running; local checkout not synced
+2026-10-05T17:10:18Z team-lead -> dev: #40 merged (7937255); sync local main + npm install once CI green
+2026-10-05T17:10:48Z dev -> team-lead: CI green on 7937255; local main synced, npm install, 54 tests pass
+2026-10-05T17:11:25Z team-lead -> pm: CEO wants follow-up milestone: About modal a11y (focus, Escape, dialog role) + map accuracy (dateline route line, latitude-aware E-W km); add to brief
+2026-10-05T17:12:06Z pm -> team-lead: M3 follow-up milestone added (items 16-22); one product question (E-W distance definition), recommendation included
+2026-10-05T17:27:56Z team-lead -> dev: CEO approved M3 scope (brief items 16-22); plan M3 into docs/plan.md + tickets
+2026-10-05T17:28:39Z dev -> reviewer: M3 plan + T-008..T-010 for review (round 1)
+2026-10-05T17:28:48Z dev -> team-lead: M3 plan drafted (T-008..T-010), in review with reviewer
+2026-10-05T17:29:03Z reviewer -> dev: M3 plan review round 1: changes (T-008 shim must not do the app's focus work)
+2026-10-05T17:29:15Z dev -> reviewer: M3 plan revised (T-008 shim stays dumb), round 2
+2026-10-05T17:29:23Z reviewer -> dev: M3 plan review round 2: approved
+2026-10-05T17:29:27Z dev -> team-lead: M3 plan approved (round 2), T-008..T-010 ready, awaiting go
+2026-10-05T17:32:20Z team-lead -> dev: CEO go for T-008 only; hold T-009 and T-010
+2026-10-05T17:32:59Z dev -> reviewer: T-008 plan (native dialog already ok; one test only)
+2026-10-05T17:33:08Z reviewer -> dev: T-008 plan review round 1: approved
+2026-10-05T17:33:31Z dev -> reviewer: T-008 code-review (one regression test, tests green, break check done)
+2026-10-05T17:33:40Z reviewer -> dev: T-008 code review round 1: approved
+2026-10-05T17:33:44Z dev -> team-lead: T-008 approved and committed; holding T-009/T-010 per CEO
