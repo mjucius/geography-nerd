@@ -117,3 +117,11 @@
 2026-10-05T18:06:18Z dev -> reviewer: T-010 code for review
 2026-10-05T18:06:30Z reviewer -> dev: T-010 code approved (round 1), one nit
 2026-10-05T18:06:36Z dev: T-010 done, committing
+2026-10-05T18:06:44Z team-lead -> qa: re-run M3 QA (T-008 to T-011) at 7db55e6; check T-010 on real reveal and results screens at 390px
+2026-10-05T18:15:45Z qa -> team-lead: M3 QA at 7db55e6 done, filed T-012 (lint error)
+2026-10-05T18:15:54Z team-lead -> dev: work QA ticket T-012 (lint error from routePositions export)
+2026-10-05T18:16:11Z dev -> reviewer: T-012 plan for review
+2026-10-05T18:16:17Z reviewer -> dev: T-012 plan approved (round 1), one nit
+2026-10-05T18:16:47Z dev -> reviewer: T-012 code for review
+2026-10-05T18:16:57Z reviewer -> dev: T-012 code approved (round 1)
+2026-10-05T18:17:00Z dev: T-012 done, committing

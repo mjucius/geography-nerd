@@ -1,7 +1,7 @@
 import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import { DivIcon, LatLngBounds } from 'leaflet';
 import 'leaflet/dist/leaflet.css';
-import { wrapLongitudeDiff } from '../services/distance';
+import { routePositions } from '../services/routePositions';
 
 interface City {
   name: string;
@@ -20,13 +20,6 @@ const pin = (className: string) =>
   new DivIcon({ className: `map-pin ${className}`, html: '<span></span>', iconSize: [44, 44], iconAnchor: [22, 22], popupAnchor: [0, -12] });
 const pin1 = pin('map-pin-1');
 const pin2 = pin('map-pin-2');
-
-// city2 is drawn at most 180 degrees from city1, so a pair across the date line gets the short line.
-// Leaflet shows longitudes past 180 on the repeated world copy. Same wrap as the East/West text.
-export function routePositions(city1: City, city2: City): [[number, number], [number, number]] {
-  const lon2 = city1.longitude - wrapLongitudeDiff(city1.longitude, city2.longitude);
-  return [[city1.latitude, city1.longitude], [city2.latitude, lon2]];
-}
 
 export function MapView({ city1, city2 }: MapViewProps) {
   const [position1, position2] = routePositions(city1, city2);
