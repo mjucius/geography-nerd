@@ -28,10 +28,10 @@ export function QuizContainer({ onComplete }: QuizContainerProps) {
     startQuiz();
   }, [startQuiz]);
 
-  // Open at the top, and reset after a long reveal when the next question appears.
+  // Open at the top, and reset after a long reveal when the next question or the results appear.
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [currentQuestionIndex]);
+  }, [currentQuestionIndex, quizCompleted]);
 
   if (loading && questions.length === 0) {
     return (

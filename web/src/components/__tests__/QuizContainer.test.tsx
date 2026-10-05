@@ -3,7 +3,7 @@ import { render } from '@testing-library/react';
 import { QuizContainer } from '../QuizContainer';
 import { question } from '../../test-fixtures';
 
-const quiz = vi.hoisted(() => ({ index: 0 }));
+const quiz = vi.hoisted(() => ({ index: 0, completed: false }));
 
 vi.mock('../../hooks/useQuiz', () => ({
   useQuiz: () => ({
@@ -14,7 +14,7 @@ vi.mock('../../hooks/useQuiz', () => ({
     nextLevelAvailable: false,
     loading: false,
     error: null,
-    quizCompleted: false,
+    quizCompleted: quiz.completed,
     startQuiz: vi.fn(),
     answerQuestion: vi.fn(),
     nextQuestion: vi.fn(),
@@ -34,6 +34,11 @@ describe('QuizContainer', () => {
     quiz.index = 1;
     rerender(<QuizContainer />);
     expect(scrollTo).toHaveBeenCalledTimes(2);
+
+    quiz.completed = true;
+    rerender(<QuizContainer />);
+    expect(scrollTo).toHaveBeenCalledTimes(3);
     scrollTo.mockRestore();
+    quiz.completed = false;
   });
 });

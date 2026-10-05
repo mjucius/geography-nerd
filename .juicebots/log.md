@@ -43,3 +43,8 @@
 2026-10-05T16:35:36Z dev -> reviewer: T-005 code for review (round 1)
 2026-10-05T16:36:02Z reviewer -> dev: T-005 code review round 1: approved
 2026-10-05T16:36:05Z dev: T-005 done, committing (reviewer approved code round 1)
+2026-10-05T16:36:29Z dev -> reviewer: T-005 committed (113f6a9); T-006 plan for review (round 1)
+2026-10-05T16:36:53Z reviewer -> dev: T-006 plan review round 1: approved (scroll-on-complete recommended)
+2026-10-05T16:37:42Z dev -> reviewer: T-006 code for review (round 1)
+2026-10-05T16:38:01Z reviewer -> dev: T-006 code review round 1: approved
+2026-10-05T16:38:05Z dev: T-006 done, committing (reviewer approved code round 1)

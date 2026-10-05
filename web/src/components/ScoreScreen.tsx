@@ -1,5 +1,65 @@
 import type { UserAnswer, Question, DifficultyLevel } from '../types';
+import { useState } from 'react';
 import { MapView } from './MapView';
+import { formatDistance, getDistanceInfo } from '../services/distance';
+
+const primaryButton =
+  'min-h-12 w-full rounded-control bg-teal px-4 text-sm font-bold text-surface transition hover:bg-teal-deep disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal';
+const secondaryButton =
+  'min-h-12 w-full rounded-control border border-line bg-surface px-4 text-sm font-bold text-ink transition hover:border-teal disabled:opacity-60 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal';
+
+interface RouteRowProps {
+  index: number;
+  answer: UserAnswer;
+  question?: Question;
+}
+
+function RouteRow({ index, answer, question }: RouteRowProps) {
+  const [open, setOpen] = useState(false);
+  const distance = question && getDistanceInfo(question.city1, question.city2);
+
+  return (
+    <li>
+      <details onToggle={(event) => setOpen(event.currentTarget.open)} className="group">
+        <summary className="flex min-h-14 cursor-pointer list-none items-center gap-3 py-3 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal [&::-webkit-details-marker]:hidden">
+          <span
+            role="img"
+            aria-label={answer.isCorrect ? 'Correct' : 'Incorrect'}
+            className={`grid h-8 w-8 shrink-0 place-items-center rounded-full text-base font-bold text-surface ${answer.isCorrect ? 'bg-teal' : 'bg-clay'}`}
+          >
+            {answer.isCorrect ? '✓' : '✕'}
+          </span>
+          <span className="min-w-0 flex-1 text-sm leading-6">
+            <span className="block font-semibold text-ink">
+              {index + 1}. {answer.questionText}
+            </span>
+            <span className="block text-ink-soft">
+              Your answer: <span className="font-bold text-ink">{answer.userAnswer}</span>
+              {!answer.isCorrect && (
+                <>
+                  {' · '}Correct: <span className="font-bold text-teal">{answer.correctAnswer}</span>
+                </>
+              )}
+            </span>
+          </span>
+          <svg viewBox="0 0 24 24" className="h-5 w-5 shrink-0 text-ink-soft transition group-open:rotate-180" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+            <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
+          </svg>
+        </summary>
+
+        {open && question && distance && (
+          <div className="pb-4 pl-11 text-sm text-ink-soft">
+            <p>{distance.ns.direction} by {formatDistance(distance.ns)}</p>
+            <p>{distance.ew.direction} by {formatDistance(distance.ew)}</p>
+            <div className="mt-3">
+              <MapView city1={question.city1} city2={question.city2} />
+            </div>
+          </div>
+        )}
+      </details>
+    </li>
+  );
+}
 
 interface ScoreScreenProps {
   score: number;
@@ -54,102 +114,73 @@ export function ScoreScreen({
   };
 
   return (
-    <div className="min-h-[calc(100vh-73px)] bg-[#f5efe2] px-3 py-4 sm:px-4 sm:py-10">
-      <div className="mx-auto w-full max-w-4xl">
-        <section className="rounded-[1.25rem] border border-[#d8cdb9] bg-[#fffaf0] p-4 shadow-[0_16px_42px_rgba(23,32,42,0.10)] sm:rounded-[1.75rem] sm:p-8 sm:shadow-[0_24px_70px_rgba(23,32,42,0.12)]">
-          <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center">
-            <div className="rounded-2xl border border-[#d8cdb9] bg-[#17202a] p-5 text-[#fffaf0] sm:rounded-3xl sm:p-6">
-              <p className="text-[0.68rem] font-black uppercase tracking-[0.22em] text-[#d8cdb9] sm:text-xs sm:tracking-[0.24em]">Route complete</p>
-              <div className="mt-5 flex items-end gap-3 sm:mt-6">
-                <span className="text-6xl font-black leading-none tracking-tight sm:text-7xl">{score}</span>
-                <span className="pb-2 text-xl font-black text-[#d8cdb9] sm:text-2xl">/ {totalQuestions}</span>
-              </div>
-              <p className="mt-2 text-2xl font-black text-[#d7a05f] sm:text-3xl">{percentage}%</p>
-              <div className="mt-6 h-3 overflow-hidden rounded-full bg-[#34424a]">
-                <div
-                  className="h-full rounded-full bg-[#d7a05f] transition-all duration-1000"
-                  style={{ width: `${percentage}%` }}
-                ></div>
-              </div>
-            </div>
-
-            <div>
-              <div className="mb-3 inline-flex items-center gap-2 rounded-full border border-[#d8cdb9] bg-[#f5efe2] px-3 py-1.5 text-[0.68rem] font-black uppercase tracking-[0.16em] text-[#55706f] sm:mb-4 sm:text-xs sm:tracking-[0.18em]">
-                Level {difficultyLevel}: {levelName}
-              </div>
-              <h2 className="text-3xl font-black leading-tight tracking-tight text-[#17202a] sm:text-5xl">
-                {getScoreMessage()}
-              </h2>
-              <p className="mt-3 max-w-2xl text-sm leading-6 text-[#66726d] sm:mt-4 sm:text-base sm:leading-7">
-                Review each route below, then choose whether to stay with this level or push into the next set of questions.
-              </p>
-            </div>
+    <div className="px-3 py-4 sm:px-4 sm:py-10">
+      <div className="mx-auto w-full max-w-3xl space-y-4 sm:space-y-6">
+        <section className="rounded-card border border-line bg-surface p-4 sm:p-8">
+          <p className="text-sm font-semibold text-ink-soft">
+            Level {difficultyLevel}: {levelName}
+          </p>
+          <div className="mt-2 flex items-baseline gap-2 font-display">
+            <span className="text-6xl font-bold leading-none text-ink sm:text-7xl">{score}</span>
+            <span className="text-2xl text-ink-soft">/ {totalQuestions}</span>
           </div>
+          <div
+            role="progressbar"
+            aria-label="Score"
+            aria-valuemin={0}
+            aria-valuemax={totalQuestions}
+            aria-valuenow={score}
+            className="mt-4 h-2 overflow-hidden rounded-full bg-line"
+          >
+            <div className="h-full rounded-full bg-teal" style={{ width: `${percentage}%` }}></div>
+          </div>
+          <h2 className="mt-5 text-2xl font-bold leading-tight tracking-tight text-ink sm:text-4xl">
+            {getScoreMessage()}
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-soft sm:text-base">
+            Review each route below, then choose whether to stay with this level or push into the next set of questions.
+          </p>
 
           {nextLevelAvailable && difficultyLevel! < 10 && (
-            <div className="mt-6 rounded-2xl border border-[#a8c8b4] bg-[#eef7ef] p-4">
-              <p className="text-lg font-black text-[#17202a]">Next level unlocked</p>
-              <p className="mt-1 text-sm font-medium text-[#53625d]">
+            <div className="mt-5 border-t border-line pt-4">
+              <p className="text-lg font-bold text-ink">Next level unlocked</p>
+              <p className="mt-1 text-sm text-ink-soft">
                 Level {difficultyLevel! + 1}: {getLevelName(difficultyLevel! + 1)} is available.
               </p>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <button
-                  onClick={() => onStartLevel?.(difficultyLevel!)}
-                  disabled={loading}
-                  className="min-h-12 rounded-xl border border-[#d8cdb9] bg-white px-4 text-sm font-black text-[#17202a] transition hover:border-[#1e6964] disabled:text-[#9b9f98]"
-                >
+                <button onClick={() => onStartLevel?.(difficultyLevel!)} disabled={loading} className={secondaryButton}>
                   {loading ? 'Starting...' : `Stay at Level ${difficultyLevel}`}
                 </button>
-                <button
-                  onClick={() => onStartLevel?.((difficultyLevel! + 1) as DifficultyLevel)}
-                  disabled={loading}
-                  className="min-h-12 rounded-xl bg-[#1e6964] px-4 text-sm font-black text-white transition hover:bg-[#244a52] disabled:bg-[#9b9f98]"
-                >
+                <button onClick={() => onStartLevel?.((difficultyLevel! + 1) as DifficultyLevel)} disabled={loading} className={primaryButton}>
                   {loading ? 'Starting...' : `Try Level ${difficultyLevel! + 1}`}
                 </button>
               </div>
             </div>
           )}
           {!nextLevelAvailable && score < 8 && difficultyLevel! < 10 && (
-            <div className="mt-6 rounded-2xl border border-[#d8cdb9] bg-[#f5efe2] p-4">
-              <p className="mb-3 text-sm font-bold text-[#53625d]">Get 8 or more correct to unlock the next level.</p>
+            <div className="mt-5 border-t border-line pt-4">
+              <p className="mb-3 text-sm font-semibold text-ink-soft">Get 8 or more correct to unlock the next level.</p>
               <div className="grid gap-3 sm:grid-cols-2">
                 {difficultyLevel! > 1 && (
-                  <button
-                    onClick={() => onStartLevel?.((difficultyLevel! - 1) as DifficultyLevel)}
-                    disabled={loading}
-                    className="min-h-12 rounded-xl border border-[#d8cdb9] bg-white px-4 text-sm font-black text-[#17202a] transition hover:border-[#1e6964] disabled:text-[#9b9f98]"
-                  >
+                  <button onClick={() => onStartLevel?.((difficultyLevel! - 1) as DifficultyLevel)} disabled={loading} className={secondaryButton}>
                     {loading ? 'Starting...' : `Go to Level ${difficultyLevel! - 1}`}
                   </button>
                 )}
-                <button
-                  onClick={() => onStartLevel?.(difficultyLevel!)}
-                  disabled={loading}
-                  className="min-h-12 rounded-xl bg-[#17202a] px-4 text-sm font-black text-[#fffaf0] transition hover:bg-[#244a52] disabled:bg-[#9b9f98]"
-                >
+                <button onClick={() => onStartLevel?.(difficultyLevel!)} disabled={loading} className={primaryButton}>
                   {loading ? 'Starting...' : `Try Level ${difficultyLevel} Again`}
                 </button>
               </div>
             </div>
           )}
           {difficultyLevel === 10 && (
-            <div className="mt-6 rounded-2xl border border-[#d7a05f] bg-[#fff5de] p-4">
-              <p className="text-lg font-black text-[#17202a]">Top route reached</p>
-              <p className="mt-1 text-sm font-medium text-[#53625d]">Level 10 is the full mixed-city challenge.</p>
+            <div className="mt-5 border-t border-line pt-4">
+              <p className="text-lg font-bold text-ink">Top route reached</p>
+              <p className="mt-1 text-sm text-ink-soft">Level 10 is the full mixed-city challenge.</p>
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <button
-                  onClick={() => onStartLevel?.((difficultyLevel! - 1) as DifficultyLevel)}
-                  disabled={loading}
-                  className="min-h-12 rounded-xl border border-[#d8cdb9] bg-white px-4 text-sm font-black text-[#17202a] transition hover:border-[#1e6964] disabled:text-[#9b9f98]"
-                >
+                <button onClick={() => onStartLevel?.((difficultyLevel! - 1) as DifficultyLevel)} disabled={loading} className={secondaryButton}>
                   {loading ? 'Starting...' : `Go to Level 9`}
                 </button>
-                <button
-                  onClick={() => onStartLevel?.(difficultyLevel!)}
-                  disabled={loading}
-                  className="min-h-12 rounded-xl bg-[#17202a] px-4 text-sm font-black text-[#fffaf0] transition hover:bg-[#244a52] disabled:bg-[#9b9f98]"
-                >
+                <button onClick={() => onStartLevel?.(difficultyLevel!)} disabled={loading} className={primaryButton}>
                   {loading ? 'Starting...' : `Try Level 10 Again`}
                 </button>
               </div>
@@ -157,124 +188,23 @@ export function ScoreScreen({
           )}
         </section>
 
-        <section className="mt-5 rounded-[1.25rem] border border-[#d8cdb9] bg-[#fffaf0] p-3.5 shadow-[0_14px_36px_rgba(23,32,42,0.07)] sm:mt-6 sm:rounded-[1.75rem] sm:p-6 sm:shadow-[0_18px_50px_rgba(23,32,42,0.08)]">
-          <div className="mb-4 flex flex-col gap-3 sm:mb-5 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <h3 className="text-2xl font-black tracking-tight text-[#17202a]">
-                Route Review
-              </h3>
-              <p className="mt-1 text-sm text-[#66726d]">Tap a route to show or hide its map.</p>
-            </div>
-            <div className="grid grid-cols-2 gap-2 text-center sm:w-48">
-              <div className="rounded-xl border border-[#a8c8b4] bg-[#f7fbf4] px-3 py-2">
-                <p className="text-xl font-black text-[#1e6964]">{score}</p>
-                <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-[#53625d]">Correct</p>
-              </div>
-              <div className="rounded-xl border border-[#d9afa3] bg-[#fff6f1] px-3 py-2">
-                <p className="text-xl font-black text-[#b95f4a]">{totalQuestions - score}</p>
-                <p className="text-[0.65rem] font-black uppercase tracking-[0.16em] text-[#53625d]">Missed</p>
-              </div>
-            </div>
-          </div>
-          <div className="space-y-4">
-            {answers.map((answer, index) => {
-              const question = questions[index];
-
-              const calculateDistance = () => {
-                if (!question) return null;
-                const latDiff = Math.abs(question.city1.latitude - question.city2.latitude);
-                const lonDiff = Math.abs(question.city1.longitude - question.city2.longitude);
-                const latDiffKm = latDiff * 111.32;
-                const lonDiffKm = lonDiff * 111.32;
-                const latDiffMiles = latDiffKm * 0.621371;
-                const lonDiffMiles = lonDiffKm * 0.621371;
-
-                const nsDirection = question.city1.latitude > question.city2.latitude ? 'North' : 'South';
-                const ewDirection = question.city1.longitude > question.city2.longitude ? 'East' : 'West';
-
-                return (
-                  <>
-                    <div>
-                      {latDiff.toFixed(2)}° ({latDiffKm.toFixed(1)} km / {latDiffMiles.toFixed(1)} mi) {nsDirection}
-                    </div>
-                    <div>
-                      {lonDiff.toFixed(2)}° ({lonDiffKm.toFixed(1)} km / {lonDiffMiles.toFixed(1)} mi) {ewDirection}
-                    </div>
-                  </>
-                );
-              };
-
-              return (
-                <details
-                  key={index}
-                  className={`group rounded-2xl border p-3 transition open:shadow-md sm:p-4 ${
-                    answer.isCorrect
-                      ? 'border-[#a8c8b4] bg-[#f7fbf4]'
-                      : 'border-[#d9afa3] bg-[#fff6f1]'
-                  }`}
-                >
-                  <summary className="list-none cursor-pointer [&::-webkit-details-marker]:hidden">
-                    <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-                    <div className="flex min-w-0 flex-1 items-start gap-3">
-                      <div className={`grid h-10 w-10 flex-shrink-0 place-items-center rounded-full text-xl font-black text-white ${answer.isCorrect ? 'bg-[#1e6964]' : 'bg-[#b95f4a]'}`}>
-                        {answer.isCorrect ? '✓' : '✕'}
-                      </div>
-                      <div className="min-w-0 flex-1">
-                        <h4 className="mb-1 text-base font-black text-[#17202a] sm:mb-2 sm:text-lg">
-                          Question {index + 1}: {answer.isCorrect ? 'Correct!' : 'Incorrect'}
-                        </h4>
-                        <div className="space-y-1 text-sm leading-6 text-[#53625d]">
-                          <p className="mb-1 font-semibold text-[#17202a] sm:mb-2">
-                            {answer.questionText}
-                          </p>
-                          <p>
-                            <span className="font-medium">Your answer:</span> <span className="font-black text-[#17202a]">{answer.userAnswer}</span>
-                          </p>
-                          {!answer.isCorrect && (
-                            <p>
-                              <span className="font-medium">Correct answer:</span> <span className="font-black text-[#1e6964]">{answer.correctAnswer}</span>
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="shrink-0 rounded-xl border border-[#d8cdb9] bg-white/75 p-2.5 text-left text-xs leading-5 text-[#53625d] lg:text-right">
-                      <div className="mb-1 font-black uppercase tracking-[0.14em] text-[#17202a]">Distance</div>
-                      {calculateDistance()}
-                    </div>
-                  </div>
-                    <div className="mt-3 text-xs font-black uppercase tracking-[0.16em] text-[#55706f]">
-                      <span className="group-open:hidden">Show map</span>
-                      <span className="hidden group-open:inline">Hide map</span>
-                    </div>
-                  </summary>
-
-                  {question && (
-                    <div className="mt-3">
-                      <MapView city1={question.city1} city2={question.city2} />
-                    </div>
-                  )}
-                </details>
-              );
-            })}
-          </div>
+        <section className="rounded-card border border-line bg-surface p-4 sm:p-6">
+          <h3 className="text-2xl font-bold tracking-tight text-ink">Route Review</h3>
+          <p className="mt-1 text-sm text-ink-soft">Tap a question to show its distance and map.</p>
+          <ul className="mt-2 divide-y divide-line">
+            {answers.map((answer, index) => (
+              <RouteRow key={index} index={index} answer={answer} question={questions[index]} />
+            ))}
+          </ul>
         </section>
 
         {onRetakeHome && (
-          <button
-            onClick={onRetakeHome}
-            disabled={loading}
-            className="mt-6 min-h-12 w-full rounded-xl bg-[#17202a] px-6 font-black text-[#fffaf0] transition hover:bg-[#244a52] disabled:bg-[#9b9f98]"
-          >
+          <button onClick={onRetakeHome} disabled={loading} className={primaryButton}>
             {loading ? 'Going home...' : 'Back to Home'}
           </button>
         )}
         {!onRetakeHome && onRetake && (
-          <button
-            onClick={onRetake}
-            disabled={loading}
-            className="mt-6 min-h-14 w-full rounded-xl bg-[#1e6964] px-6 text-lg font-black text-white transition hover:bg-[#244a52] disabled:bg-[#9b9f98]"
-          >
+          <button onClick={onRetake} disabled={loading} className={`${primaryButton} min-h-14 text-lg`}>
             {loading ? 'Starting new quiz...' : 'Take Another Quiz'}
           </button>
         )}
