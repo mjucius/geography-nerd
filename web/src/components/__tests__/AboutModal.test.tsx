@@ -13,7 +13,7 @@ describe('AboutModal', () => {
     expect(screen.getByText(/About Geography Nerd/i)).toBeVisible();
     expect(screen.getByText(/GeoNames/i)).toBeInTheDocument();
     expect(screen.getByText(/OpenStreetMap/i)).toBeInTheDocument();
-    expect(screen.getByText(/CARTO/i)).toBeInTheDocument();
+    expect(screen.queryByText(/CARTO/i)).not.toBeInTheDocument();
     expect(screen.getByText(/Leaflet/i)).toBeInTheDocument();
     expect(screen.getByText(/Nano Banana/i)).toBeInTheDocument();
   });

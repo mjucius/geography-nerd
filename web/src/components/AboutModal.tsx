@@ -85,10 +85,6 @@ export function AboutModal({ open, onClose }: AboutModalProps) {
               Map tiles:{' '}
               <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#c97938] underline">
                 OpenStreetMap
-              </a>{' '}
-              via{' '}
-              <a href="https://carto.com/attributions" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#c97938] underline">
-                CARTO
               </a>
             </li>
             <li>

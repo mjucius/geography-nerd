@@ -28,7 +28,7 @@ The app is intentionally simple:
 - React 19 + TypeScript
 - Vite
 - Tailwind CSS
-- React Leaflet + CARTO raster tiles
+- React Leaflet + OpenStreetMap raster tiles
 - Vitest for unit tests
 
 ## Quick Start
@@ -66,7 +66,7 @@ The application does not create user accounts, persist quiz state, store answers
 
 ## Attribution
 
-City data is derived from GeoNames. Maps use OpenStreetMap-derived tiles through CARTO. The logo was generated with Google's Nano Banana AI. See `ATTRIBUTION.md` for the full list of sources.
+City data is derived from GeoNames. Maps use OpenStreetMap tiles. The logo was generated with Google's Nano Banana AI. See `ATTRIBUTION.md` for the full list of sources.
 
 ## License
 
