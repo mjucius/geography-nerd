@@ -44,17 +44,17 @@ export function AboutModal({ open, onClose }: AboutModalProps) {
     <dialog
       ref={dialogRef}
       aria-labelledby="about-modal-title"
-      className="w-full max-w-lg rounded-2xl border border-[#d8cdb9] bg-[#fffaf0] p-0 text-[#17202a] shadow-2xl backdrop:bg-[#17202a]/40 backdrop:backdrop-blur-sm"
+      className="w-full max-w-lg rounded-card border border-line bg-surface p-0 text-ink shadow-2xl backdrop:bg-ink/40 backdrop:backdrop-blur-sm"
     >
-      <div className="flex items-center justify-between border-b border-[#d8cdb9] px-6 py-4">
-        <h2 id="about-modal-title" className="text-lg font-black tracking-tight">
+      <div className="flex items-center justify-between border-b border-line px-6 py-4">
+        <h2 id="about-modal-title" className="text-lg font-bold tracking-tight">
           About Geography Nerd
         </h2>
         <button
           type="button"
           onClick={onClose}
           aria-label="Close"
-          className="rounded-full p-1 text-[#55706f] transition hover:bg-[#f5efe2] hover:text-[#17202a]"
+          className="grid h-11 w-11 place-items-center rounded-full text-ink-soft transition hover:bg-paper hover:text-ink focus-visible:outline-2 focus-visible:outline-teal"
         >
           <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <path d="M6 6l12 12M6 18L18 6" strokeLinecap="round" />
@@ -62,34 +62,34 @@ export function AboutModal({ open, onClose }: AboutModalProps) {
         </button>
       </div>
 
-      <div className="space-y-4 px-6 py-5 text-sm leading-relaxed text-[#17202a]">
+      <div className="space-y-4 px-6 py-5 text-sm leading-relaxed text-ink">
         <p>
           Geography Nerd is an open-source browser game. The code is released under the{' '}
-          <a href={LICENSE_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-[#c97938] underline">
+          <a href={LICENSE_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-teal underline">
             MIT License
           </a>
           .
         </p>
 
         <div>
-          <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-[#55706f]">Credits</h3>
+          <h3 className="text-sm font-bold text-ink-soft">Credits</h3>
           <ul className="mt-2 space-y-1.5">
             <li>
               City data:{' '}
-              <a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#c97938] underline">
+              <a href="https://www.geonames.org/" target="_blank" rel="noopener noreferrer" className="font-semibold text-teal underline">
                 GeoNames
               </a>{' '}
               (CC-BY-4.0)
             </li>
             <li>
               Map tiles:{' '}
-              <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#c97938] underline">
+              <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" className="font-semibold text-teal underline">
                 OpenStreetMap
               </a>
             </li>
             <li>
               Mapping library:{' '}
-              <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-[#c97938] underline">
+              <a href="https://leafletjs.com/" target="_blank" rel="noopener noreferrer" className="font-semibold text-teal underline">
                 Leaflet
               </a>
             </li>
@@ -97,14 +97,14 @@ export function AboutModal({ open, onClose }: AboutModalProps) {
           </ul>
         </div>
 
-        <div className="flex flex-wrap gap-x-4 gap-y-1 border-t border-[#d8cdb9] pt-3 text-xs">
-          <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-[#55706f] underline hover:text-[#17202a]">
+        <div className="flex flex-wrap gap-x-4 gap-y-1 border-t border-line pt-3 text-sm">
+          <a href={REPO_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-ink-soft underline hover:text-ink">
             Source code
           </a>
-          <a href={PRIVACY_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-[#55706f] underline hover:text-[#17202a]">
+          <a href={PRIVACY_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-ink-soft underline hover:text-ink">
             Privacy
           </a>
-          <a href={ISSUES_URL} target="_blank" rel="noopener noreferrer" className="font-semibold text-[#55706f] underline hover:text-[#17202a]">
+          <a href={ISSUES_URL} target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-ink-soft underline hover:text-ink">
             Report an issue
           </a>
         </div>

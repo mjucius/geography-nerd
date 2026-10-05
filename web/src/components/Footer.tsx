@@ -1,20 +1,20 @@
 import { useState } from 'react';
-import { LICENSE_URL, REPO_URL } from '../config/links';
+import { LICENSE_URL, PRIVACY_URL, REPO_URL } from '../config/links';
 import { AboutModal } from './AboutModal';
 
 export function Footer() {
   const [aboutOpen, setAboutOpen] = useState(false);
 
   return (
-    <footer className="border-t border-[#d8cdb9] bg-[#f5efe2]">
-      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-2 px-4 py-4 text-xs font-semibold uppercase tracking-[0.18em] text-[#55706f] sm:flex-row sm:px-6">
-        <span>
+    <footer className="border-t border-line bg-paper">
+      <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-1 px-4 py-3 text-sm text-ink-soft sm:flex-row sm:px-6">
+        <span className="inline-flex min-h-11 items-center gap-2">
           Geography Nerd ·{' '}
           <a
             href={LICENSE_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="underline transition hover:text-[#17202a]"
+            className="underline transition hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
           >
             MIT License
           </a>
@@ -24,7 +24,7 @@ export function Footer() {
           href={REPO_URL}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center gap-2 underline transition hover:text-[#17202a]"
+          className="flex min-h-11 items-center gap-2 underline transition hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
           aria-label="Geography Nerd on GitHub"
         >
           <svg
@@ -38,10 +38,19 @@ export function Footer() {
           Source on GitHub
         </a>
 
+        <a
+          href={PRIVACY_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex min-h-11 items-center underline transition hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+        >
+          Privacy
+        </a>
+
         <button
           type="button"
           onClick={() => setAboutOpen(true)}
-          className="underline transition hover:text-[#17202a]"
+          className="min-h-11 underline transition hover:text-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
         >
           Credits
         </button>

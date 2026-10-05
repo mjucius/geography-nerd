@@ -10,7 +10,7 @@ function App() {
   const [currentPage, setCurrentPage] = useState<AppPage>('home');
 
   return (
-    <div className="flex min-h-screen flex-col bg-[#f5efe2] text-[#17202a]">
+    <div className="flex min-h-screen flex-col bg-paper text-ink">
       <Navigation onHomeClick={() => setCurrentPage('home')} />
 
       <main className="flex-1">

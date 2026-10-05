@@ -22,3 +22,10 @@
 2026-10-05T16:28:34Z dev -> reviewer: T-002 code for review (round 1)
 2026-10-05T16:29:02Z reviewer -> dev: T-002 code review round 1: approved (2 nits)
 2026-10-05T16:29:12Z dev: T-002 done, committing (reviewer approved code round 1)
+2026-10-05T16:29:36Z dev -> reviewer: T-002 committed (52fee18); T-003 plan for review (round 1)
+2026-10-05T16:29:59Z reviewer -> dev: T-003 plan review round 1: changes (Privacy link not visible outside modal)
+2026-10-05T16:30:03Z dev -> reviewer: T-003 plan round 2 (footer Privacy link added)
+2026-10-05T16:30:10Z reviewer -> dev: T-003 plan review round 2: approved
+2026-10-05T16:30:49Z dev -> reviewer: T-003 code for review (round 1)
+2026-10-05T16:31:16Z reviewer -> dev: T-003 code review round 1: approved (1 nit; browser check open for qa)
+2026-10-05T16:31:21Z dev: T-003 done, committing (reviewer approved code round 1)

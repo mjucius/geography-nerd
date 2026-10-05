@@ -15,6 +15,12 @@ describe('Footer', () => {
     expect(link).toHaveAttribute('href', 'https://github.com/mjucius/geography-nerd');
   });
 
+  it('renders the Privacy link to the repo PRIVACY file', () => {
+    render(<Footer />);
+    const link = screen.getByRole('link', { name: /Privacy/i });
+    expect(link).toHaveAttribute('href', 'https://github.com/mjucius/geography-nerd/blob/main/PRIVACY.md');
+  });
+
   it('renders a Credits button', () => {
     render(<Footer />);
     expect(screen.getByRole('button', { name: /Credits/i })).toBeInTheDocument();
