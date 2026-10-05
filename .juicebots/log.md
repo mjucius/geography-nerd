@@ -106,3 +106,14 @@
 2026-10-05T17:52:35Z dev -> reviewer: T-011 code for review
 2026-10-05T17:52:44Z reviewer -> dev: T-011 code approved (round 1), one nit
 2026-10-05T17:52:54Z dev -> team-lead: T-011 done, committed
+2026-10-05T17:52:57Z team-lead -> qa: re-run M3 QA (T-008, T-009, T-011) at bbe6b80; T-010 on hold
+2026-10-05T17:53:47Z qa -> team-lead: M3 QA re-run at bbe6b80, no new tickets
+2026-10-05T17:53:51Z qa -> team-lead: M3 QA re-run at bbe6b80 clean (T-008, T-009, T-011); T-010 on hold
+2026-10-05T17:54:05Z team-lead -> dev: CEO says keep holding T-010; team stands down
+2026-10-05T18:03:54Z team-lead -> dev: resumed after restart; T-010 at ready (on hold per CEO), M1-M3 otherwise done
+2026-10-05T18:04:03Z team-lead -> dev: CEO go for T-010
+2026-10-05T18:04:27Z dev -> reviewer: T-010 plan for review
+2026-10-05T18:04:40Z reviewer -> dev: T-010 plan approved
+2026-10-05T18:06:18Z dev -> reviewer: T-010 code for review
+2026-10-05T18:06:30Z reviewer -> dev: T-010 code approved (round 1), one nit
+2026-10-05T18:06:36Z dev: T-010 done, committing
