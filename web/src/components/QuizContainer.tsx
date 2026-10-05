@@ -28,12 +28,17 @@ export function QuizContainer({ onComplete }: QuizContainerProps) {
     startQuiz();
   }, [startQuiz]);
 
+  // Open at the top, and reset after a long reveal when the next question appears.
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [currentQuestionIndex]);
+
   if (loading && questions.length === 0) {
     return (
-      <div className="flex min-h-[calc(100vh-73px)] items-center justify-center bg-[#f5efe2]">
+      <div className="flex min-h-[60vh] items-center justify-center">
         <div className="text-center">
-          <div className="mx-auto mb-4 h-14 w-14 animate-spin rounded-full border-4 border-[#d8cdb9] border-t-[#1e6964]"></div>
-          <p className="text-lg font-bold text-[#17202a]">Plotting your route...</p>
+          <div className="mx-auto mb-4 h-14 w-14 animate-spin rounded-full border-4 border-line border-t-teal"></div>
+          <p className="text-lg font-bold text-ink">Plotting your route...</p>
         </div>
       </div>
     );
@@ -41,8 +46,8 @@ export function QuizContainer({ onComplete }: QuizContainerProps) {
 
   if (error) {
     return (
-      <div className="flex min-h-[calc(100vh-73px)] items-center justify-center bg-[#f5efe2] p-4">
-        <div className="max-w-md rounded-2xl border border-[#d7836a] bg-[#fffaf0] px-6 py-4 text-[#7a2f23] shadow-sm">
+      <div className="flex min-h-[60vh] items-center justify-center p-4">
+        <div className="max-w-md rounded-card border border-clay bg-surface px-6 py-4 text-ink">
           <p className="font-bold text-lg mb-2">Error</p>
           <p>{error}</p>
         </div>
@@ -71,9 +76,9 @@ export function QuizContainer({ onComplete }: QuizContainerProps) {
 
   if (questions.length === 0 || currentQuestionIndex >= questions.length) {
     return (
-      <div className="flex min-h-[calc(100vh-73px)] items-center justify-center bg-[#f5efe2]">
+      <div className="flex min-h-[60vh] items-center justify-center">
         <div className="text-center">
-          <p className="text-lg font-bold text-[#17202a]">No questions available</p>
+          <p className="text-lg font-bold text-ink">No questions available</p>
         </div>
       </div>
     );
@@ -85,7 +90,7 @@ export function QuizContainer({ onComplete }: QuizContainerProps) {
   const hasAnsweredCurrent = lastAnswer !== undefined;
 
   return (
-    <div className="min-h-[calc(100vh-73px)] bg-[#f5efe2]">
+    <div>
       <div className="flex justify-center px-3 py-4 sm:px-4 sm:py-10">
         <div className="w-full max-w-3xl">
           <QuestionCard

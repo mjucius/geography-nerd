@@ -28,39 +28,13 @@ export function QuestionCard({
   userDifficultyLevel = 1,
 }: QuestionCardProps) {
   const getOptionConfig = (option: string) => {
-    if (question.type === 'latitudinal') {
-      if (option === 'North') {
-        return {
-          label: 'North',
-          marker: 'N',
-          direction: 'Top of the map',
-          accent: 'border-[#244a52] text-[#244a52]',
-        };
-      } else {
-        return {
-          label: 'South',
-          marker: 'S',
-          direction: 'Bottom of the map',
-          accent: 'border-[#8a4f2b] text-[#8a4f2b]',
-        };
-      }
-    } else {
-      if (option === 'East') {
-        return {
-          label: 'East',
-          marker: 'E',
-          direction: 'Right on the map',
-          accent: 'border-[#1e6964] text-[#1e6964]',
-        };
-      } else {
-        return {
-          label: 'West',
-          marker: 'W',
-          direction: 'Left on the map',
-          accent: 'border-[#7a5a8a] text-[#7a5a8a]',
-        };
-      }
-    }
+    const configs: Record<string, { marker: string; direction: string }> = {
+      North: { marker: 'N', direction: 'Top of the map' },
+      South: { marker: 'S', direction: 'Bottom of the map' },
+      East: { marker: 'E', direction: 'Right on the map' },
+      West: { marker: 'W', direction: 'Left on the map' },
+    };
+    return { label: option, ...configs[option] };
   };
 
   const calculateDistance = () => {
@@ -104,43 +78,39 @@ export function QuestionCard({
   };
 
   const isEastWest = question.type === 'longitudinal';
-  const progress = Math.round(((questionNumber - 1) / totalQuestions) * 100);
 
   return (
-    <div className="w-full rounded-[1.25rem] border border-[#d8cdb9] bg-[#fffaf0] shadow-[0_16px_42px_rgba(23,32,42,0.10)] sm:rounded-[1.75rem] sm:shadow-[0_24px_70px_rgba(23,32,42,0.12)]">
-      <div className="p-3.5 sm:p-7">
-        <div className="mb-4">
-          <div className="mb-3 flex items-start justify-between gap-3 sm:items-end sm:gap-4">
-            <div>
-              <p className="text-[0.68rem] font-black uppercase tracking-[0.18em] text-[#55706f] sm:text-xs sm:tracking-[0.22em]">Question {questionNumber} of {totalQuestions}</p>
-              <p className="mt-1 text-2xl font-black tracking-tight text-[#17202a] sm:text-3xl">{progress}%</p>
-            </div>
-            <div className="flex flex-wrap justify-end gap-2">
-              <span className="rounded-full border border-[#d8cdb9] bg-[#f5efe2] px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.12em] text-[#55706f] sm:px-3 sm:text-xs sm:tracking-[0.16em]">
-                Level {userDifficultyLevel}
-              </span>
+    <div className="w-full rounded-card border border-line bg-surface">
+      <div className="p-4 sm:p-7">
+        <div className="mb-5">
+          <div className="mb-3 flex items-baseline justify-between gap-3">
+            <p className="text-sm font-semibold text-ink">Question {questionNumber} of {totalQuestions}</p>
+            <p className="flex items-center gap-2 text-sm text-ink-soft">
+              Level {userDifficultyLevel}
               {question.difficultyLevel > userDifficultyLevel && (
-                <span className="rounded-full bg-[#c97938] px-2.5 py-1 text-[0.68rem] font-black uppercase tracking-[0.12em] text-white sm:px-3 sm:text-xs sm:tracking-[0.16em]">
+                <span className="rounded-full bg-amber px-2.5 py-0.5 text-xs font-semibold text-ink">
                   Challenge
                 </span>
               )}
-              <span className="rounded-full border border-[#d8cdb9] px-2.5 py-1 font-mono text-[0.68rem] font-bold text-[#55706f] sm:px-3 sm:text-xs">
-                {questionNumber}/{totalQuestions}
-              </span>
-            </div>
+            </p>
           </div>
-          <div className="h-2 w-full overflow-hidden rounded-full bg-[#e2d6c2]">
+          <div
+            role="progressbar"
+            aria-label="Quiz progress"
+            aria-valuemin={0}
+            aria-valuemax={totalQuestions}
+            aria-valuenow={questionNumber}
+            className="h-2 w-full overflow-hidden rounded-full bg-line"
+          >
             <div
-              className="h-2 rounded-full bg-[#1e6964] transition-all duration-500"
-              style={{ width: `${((questionNumber - 1) / totalQuestions) * 100}%` }}
+              className="h-2 rounded-full bg-teal transition-all duration-500"
+              style={{ width: `${(questionNumber / totalQuestions) * 100}%` }}
             ></div>
           </div>
         </div>
 
-        <div className="mb-4 rounded-2xl border border-[#d8cdb9] bg-[#f5efe2] p-3.5 sm:mb-6 sm:p-5">
-          <div className="text-center text-lg font-bold leading-relaxed text-[#17202a] min-[390px]:text-xl sm:text-2xl">
-            <QuestionText parts={question.questionTextParts} />
-          </div>
+        <div className="mb-5 text-center font-display text-xl font-semibold leading-relaxed text-ink sm:mb-6 sm:text-2xl">
+          <QuestionText parts={question.questionTextParts} />
         </div>
 
         <div className="mb-4 flex justify-center">
@@ -156,21 +126,21 @@ export function QuestionCard({
                   key={option}
                   onClick={() => !loading && !lastAnswer && onAnswer(option)}
                   disabled={loading || !!lastAnswer}
-                  className={`group min-h-[4.5rem] rounded-2xl border bg-white p-3 text-left transition sm:min-h-24 sm:p-4 ${
+                  className={`min-h-[4.5rem] rounded-card border-2 bg-paper p-3 text-left transition focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal sm:min-h-24 sm:p-4 ${
                     selected
                       ? lastAnswer?.isCorrect
-                        ? 'border-[#1e6964] ring-4 ring-[#1e6964]/15'
-                        : 'border-[#b95f4a] ring-4 ring-[#b95f4a]/15'
-                      : 'border-[#d8cdb9] hover:-translate-y-0.5 hover:border-[#1e6964] hover:shadow-md'
+                        ? 'border-teal'
+                        : 'border-clay'
+                      : 'border-line enabled:hover:border-teal'
                   } disabled:cursor-default`}
                 >
                   <div className="flex items-center gap-3 sm:gap-4">
-                    <span className={`grid h-11 w-11 shrink-0 place-items-center rounded-xl border-2 bg-[#f5efe2] font-mono text-lg font-black sm:h-12 sm:w-12 sm:text-xl ${config.accent}`}>
+                    <span className="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-surface font-mono text-lg font-bold text-teal-deep">
                       {config.marker}
                     </span>
                     <span>
-                      <span className="block text-base font-black text-[#17202a] sm:text-lg">{config.label}</span>
-                      <span className="mt-0.5 block text-xs font-medium text-[#66726d] sm:text-sm">{config.direction}</span>
+                      <span className="block text-base font-bold text-ink sm:text-lg">{config.label}</span>
+                      <span className="mt-0.5 block text-sm text-ink-soft">{config.direction}</span>
                     </span>
                   </div>
                 </button>

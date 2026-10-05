@@ -6,18 +6,15 @@ interface QuestionTextProps {
 
 export function QuestionText({ parts }: QuestionTextProps) {
   return (
-    <div className="flex flex-wrap items-center justify-center gap-1 sm:gap-1.5">
+    <div className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1">
       {parts.map((part, index) => {
         if (part.type === 'text') {
           return <span key={index}>{part.content}</span>;
         } else {
           return (
-            <div
-              key={index}
-              className="inline-block max-w-full rounded-lg border border-[#d8cdb9] bg-[#fffaf0] px-2.5 py-1.5 font-black text-[#17202a] sm:px-3"
-            >
+            <span key={index} className="max-w-full font-bold text-teal">
               {part.cityName}, {part.countryName}
-            </div>
+            </span>
           );
         }
       })}
