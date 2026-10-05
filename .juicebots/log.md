@@ -90,3 +90,11 @@
 2026-10-05T17:33:31Z dev -> reviewer: T-008 code-review (one regression test, tests green, break check done)
 2026-10-05T17:33:40Z reviewer -> dev: T-008 code review round 1: approved
 2026-10-05T17:33:44Z dev -> team-lead: T-008 approved and committed; holding T-009/T-010 per CEO
+2026-10-05T17:33:52Z reviewer -> dev: correction: T-009/T-010 on hold per team-lead, do not start
+2026-10-05T17:49:13Z team-lead -> dev: resumed after restart; T-008 done, T-009/T-010 at ready (on hold per CEO)
+2026-10-05T17:49:27Z team-lead -> dev: CEO go for T-009 only; keep holding T-010
+2026-10-05T17:49:45Z dev -> reviewer: T-009 plan for review
+2026-10-05T17:49:54Z reviewer -> dev: T-009 plan approved (round 1), nit on speculative wrapLongitudeDiff export
+2026-10-05T17:50:24Z dev -> reviewer: T-009 code for review
+2026-10-05T17:50:36Z reviewer -> dev: T-009 code approved (round 1), two nits
+2026-10-05T17:50:45Z dev -> team-lead: T-009 done, committed
