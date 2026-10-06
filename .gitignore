@@ -23,7 +23,7 @@ build/
 # Runtime
 .netlify/
 .cache/
-.claude/
+.claude/settings.local.json
 
 # Logs
 npm-debug.log*

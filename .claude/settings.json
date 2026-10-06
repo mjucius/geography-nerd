@@ -1,0 +1,23 @@
+{
+  "env": {
+    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
+  },
+  "permissions": {
+    "allow": [
+      "Edit",
+      "Write",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)",
+      "Bash(git show:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git worktree:*)",
+      "Bash(date:*)",
+      "Bash(cat:*)",
+      "Bash(ls:*)",
+      "Bash(npm test:*)",
+      "Bash(juicebots-review:*)"
+    ]
+  }
+}
