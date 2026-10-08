@@ -11,7 +11,7 @@ const allLevels: DifficultyLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 describe('getCitiesByDifficulty', () => {
   it.each(allLevels)('level %i returns the pool size from the level table, most familiar first', async (level) => {
     const cities = await getCitiesByDifficulty(level);
-    expect(cities).toHaveLength(LEVELS[level - 1].pool);
+    expect(cities).toHaveLength(Math.min(LEVELS[level - 1].pool, LOCAL_CITIES.length));
     const chosen = new Set(cities.map((c) => c.id));
     const leastKnownIn = Math.min(...cities.map((c) => c.sitelinks));
     for (const c of LOCAL_CITIES) {
@@ -38,23 +38,51 @@ describe('getCitiesByDifficulty', () => {
 
 describe('LOCAL_CITIES', () => {
   const root = new URL('../../../../', import.meta.url);
-  const sitelinks: Record<string, { sitelinks: number }> = JSON.parse(
+  const sitelinks: Record<string, { qid: string; sitelinks: number }> = JSON.parse(
     readFileSync(new URL('data/city-sitelinks.json', root), 'utf8')
   );
 
-  it('has 1,000 cities with unique ids and the sitelink count from the data file', () => {
-    expect(LOCAL_CITIES).toHaveLength(1000);
-    expect(new Set(LOCAL_CITIES.map((c) => c.id)).size).toBe(1000);
+  const sql = readFileSync(new URL('data/cities-import.sql', root), 'utf8');
+  const sqlKeys = [...sql.matchAll(/\('((?:[^']|'')+)', '([^']+)', [0-9]+, -?[0-9.]+, -?[0-9.]+\)/g)].map(
+    (m) => `${m[1].replace(/''/g, "'")}|${m[2]}`
+  );
+  const excluded: Record<string, string> = JSON.parse(readFileSync(new URL('data/excluded-cities.json', root), 'utf8'));
+  const keyOf = (c: (typeof LOCAL_CITIES)[number]) => `${c.name}|${c.country_code}`;
+  const shipped = (name: string, cc: string) => LOCAL_CITIES.filter((c) => keyOf(c) === `${name}|${cc}`);
+
+  it('ships the SQL cities minus the excluded ones, with ids 1..n and the sitelink count from the data file', () => {
+    expect(LOCAL_CITIES).toHaveLength(sqlKeys.length - Object.keys(excluded).length);
+    expect(LOCAL_CITIES.map((c) => c.id)).toEqual(LOCAL_CITIES.map((_, i) => i + 1));
     for (const c of LOCAL_CITIES) {
-      expect(c.sitelinks).toBe(sitelinks[`${c.name}|${c.country_code}`].sitelinks);
+      expect(c.sitelinks).toBe(sitelinks[keyOf(c)].sitelinks);
     }
+  });
+
+  it('lists only real SQL rows in excluded-cities.json, each with a reason, and ships none of them', () => {
+    for (const [key, reason] of Object.entries(excluded)) {
+      expect(sqlKeys).toContain(key);
+      expect(reason).toMatch(/^(duplicate of|part of) \S/);
+      expect(LOCAL_CITIES.some((c) => keyOf(c) === key)).toBe(false);
+    }
+  });
+
+  it('ships no two cities with the same Wikidata ID', () => {
+    const qids = LOCAL_CITIES.map((c) => sitelinks[keyOf(c)].qid);
+    expect(new Set(qids).size).toBe(qids.length);
+  });
+
+  it('drops both Benito Juárez rows and both Fuencarral rows, and keeps Lexington and Jaboatão dos Guararapes once', () => {
+    for (const [name, cc] of [['Benito Juárez', 'MX'], ['Benito Juarez', 'MX'], ['Fuencarral', 'ES'], ['Fuencarral-El Pardo', 'ES'], ['Jaboatão', 'BR'], ['Lexington-Fayette', 'US']]) {
+      expect(shipped(name, cc)).toHaveLength(0);
+    }
+    expect(shipped('Lexington', 'US')).toHaveLength(1);
+    expect(shipped('Jaboatão dos Guararapes', 'BR')).toHaveLength(1);
   });
 
   it('has no capital flag anywhere', () => {
     for (const c of LOCAL_CITIES) expect(c).not.toHaveProperty('is_capital');
     const rows: unknown[][] = JSON.parse(readFileSync(new URL('../../data/cities.json', import.meta.url), 'utf8')).cities;
     for (const row of rows) expect(row).toHaveLength(6);
-    const sql = readFileSync(new URL('data/cities-import.sql', root), 'utf8');
     expect(sql).not.toMatch(/is_capital/);
   });
 

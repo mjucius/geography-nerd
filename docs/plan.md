@@ -20,10 +20,18 @@ React 19 + Vite + TypeScript, vitest (`npm test`), `npm run lint`. No new runtim
 4. T-017 Trickiness in km: band columns in the level table, pair enumeration, no repeats, question axis chosen in km, old ratio code deleted, monotonic and 200-pair tests.
 5. T-018 Ladder verification: tests for the ends of the ladder and for the unchanged behaviour, a no-network-at-runtime check, size check.
 
+## M3. Cleaner data and questions (added after the brief grew: Decisions 8 to 10, acceptance 10 and 11)
+Nothing new for the CEO to supply: the sub-city script reads the public Wikidata API once, like `fetch:sitelinks`, and commits its output.
+- **T-019 Duplicate places** (filed by QA). `data/excluded-cities.json` (`{ "Name|CC": "reason" }`) is the one removal mechanism: the generator drops every key on it, and the sitelinks file and the SQL stay untouched. T-019 builds the mechanism and its first six entries (Benito Juárez, Benito Juarez, Fuencarral and Fuencarral-El Pardo as sub-city entries with no row kept; Jaboatão and Lexington-Fayette as "duplicate of ..." with Lexington and Jaboatão dos Guararapes kept once), per pm. Tests: no two cities share a QID, every excluded key is a real SQL row with a reason, the shipped count is the SQL count minus the exclusions.
+- **T-020 No same-name pairs** (acceptance 10). `validPairs` skips a pair whose displayed names match ignoring case and accents (the display includes the Washington D.C. rule). In the data this affects London (GB, CA), Cordoba (AR, ES), Cartagena (CO, ES), Hamilton (CA, NZ) and Newcastle (AU, ZA). Test over all pools and levels, plus quizzes.
+- **T-021 Sub-city flag script** (acceptance 11, how the list is built). `scripts/flag-subcity.mjs` reads the instance-of (P31) classes of every committed QID and the class labels from Wikidata, flags a city when all its classes are on a sub-city/admin-area class list in the script, and writes the report `data/subcity-flags.json` (committed, so the review needs no network). No app change.
+- **T-022 Reviewed exclusion list** (acceptance 11, done when). I review the flagged cities and the unflagged ones whose names look like districts by hand, add each real sub-city entry to `data/excluded-cities.json` with reason `part of <city>`, and regenerate. Tests: every example from the brief is gone (Eixample, Hamburg-Nord, Sector 1 to 6 of Bucharest, Gustavo A. Madero, South Boston, Tuggeranong Administrative District) and separate municipalities stay (Brampton, Yokohama, Giza, Quezon City); every excluded entry has a reason; every level still has 200+ valid pairs. The count then falls below 1,000, which pm confirmed (Decision 10).
+Order: T-018, T-019, T-020, T-021, T-022. Tickets T-019 and T-020 to T-022 are in `.juicebots/tickets/`.
+
 ## Testing
 - `npm test` and `npm run lint` in the foreground, exit status read directly.
 - Every new test is proven able to fail by breaking the code on a copy outside the repo (for example loosening a level's band, shrinking a pool, dropping the repeat check).
-- Data tests run against the committed data: 1,000 cities, every one with a sitelink count, no `is_capital`.
+- Data tests run against the committed data: the shipped count is the SQL row count minus the entries in `data/excluded-cities.json` (1,000 before M3), every city has a sitelink count, no `is_capital`.
 - The level table tests (monotonic, 200+ pairs per level, ends of the ladder) read the real table and the real cities, so a tuning change that breaks the ladder goes red.
 - The fetch script is checked by running it: a coverage report lists unmatched cities, which are fixed through a small `data/wikidata-overrides.json` (name|country to QID). It needs network, so it runs by hand and is not part of `npm test`.
 - The reveal and results screens are not changed, so no browser pass is needed. I play levels 1, 5 and 10 in the browser once in T-018 as a sanity check.
@@ -34,4 +42,12 @@ React 19 + Vite + TypeScript, vitest (`npm test`), `npm run lint`. No new runtim
 - by codex:gpt-6.1-sol
 
 ### project plan review, round 2: approved
+- by codex:gpt-6.1-sol
+
+### project plan review (M3 additions), round 1: changes
+- [blocking] .juicebots/tickets/T-019.md:26 Acceptance requires all four duplicate pairs present once, but Decision 10 and the ticket's plan require both Benito Juarez rows and both Fuencarral rows absent: require zero shipped rows for the Benito Juarez and Fuencarral pairs, and exactly one retained row each for Lexington and Jaboatao dos Guararapes.
+- [nit] docs/plan.md:25 The plan says T-019 creates four exclusion entries but lists six, and the Testing section still specifies exactly 1,000 shipped cities: say six initial exclusions and change the shipped-count requirement to SQL row count minus exclusions.
+- by codex:gpt-6.1-sol
+
+### project plan review (M3 additions), round 2: approved
 - by codex:gpt-6.1-sol

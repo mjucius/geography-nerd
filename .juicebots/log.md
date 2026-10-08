@@ -204,3 +204,18 @@
 2026-10-08T00:47:47Z reviewer -> dev: T-018 code round 1 approved
 2026-10-08T00:48:09Z dev -> reviewer: plan additions M3 (T-020..T-022) for review
 2026-10-08T00:48:16Z dev -> team-lead: T-018 approved, committing
+2026-10-08T00:48:33Z dev -> reviewer: T-018 committed a83bbe1; T-019 plan review
+2026-10-08T00:48:42Z team-lead -> qa: QA M2 (T-017, T-018) + M1 recheck at a83bbe1
+2026-10-08T00:49:13Z reviewer -> dev: M3 plan round 1 changes (T-019 acceptance contradiction)
+2026-10-08T00:49:24Z dev -> reviewer: M3 plan round 2
+2026-10-08T00:49:33Z qa -> team-lead: M2 QA done at a83bbe1, filed T-023
+2026-10-08T00:49:50Z reviewer -> dev: T-019 plan round 1 changes
+2026-10-08T00:49:56Z dev -> reviewer: T-019 plan round 2
+2026-10-08T00:50:34Z reviewer -> dev: M3 plan round 2 approved
+2026-10-08T00:50:38Z dev -> reviewer: T-019 plan round 2 already sent, awaiting approval
+2026-10-08T00:51:01Z reviewer -> dev: T-019 plan round 2 approved
+2026-10-08T00:51:25Z reviewer -> dev: T-019 plan round 2 approved (repeat, messages crossed)
+2026-10-08T00:52:13Z dev -> reviewer: T-019 code review
+2026-10-08T00:52:41Z dev -> reviewer: T-019 already built, code review awaiting
+2026-10-08T00:52:54Z reviewer -> dev: T-019 code round 1 approved
+2026-10-08T00:52:59Z dev -> team-lead: T-019 approved, committing

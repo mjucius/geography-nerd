@@ -52,7 +52,7 @@ npm run import-cities          # refresh data/cities-import.sql from GeoNames
 
 ## City Data
 
-The bundled city list lives in `web/src/data/cities.json`. It is generated from `data/cities-import.sql` (top ~1000 cities from GeoNames with regional weighting), the country lookup in `data/countries.sql` and the Wikidata sitelink counts in `data/city-sitelinks.json` (made once by `npm run fetch:sitelinks`). See `CONTRIBUTING.md` for how to refresh it.
+The bundled city list lives in `web/src/data/cities.json`. It is generated from `data/cities-import.sql` (top ~1000 cities from GeoNames with regional weighting), the country lookup in `data/countries.sql` and the Wikidata sitelink counts in `data/city-sitelinks.json` (made once by `npm run fetch:sitelinks`), minus the duplicate and sub-city places in `data/excluded-cities.json`. See `CONTRIBUTING.md` for how to refresh it.
 
 ## Privacy
 
