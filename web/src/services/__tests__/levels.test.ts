@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { LEVELS } from '../levels';
+import { LEVELS, MIN_ASKED_KM } from '../levels';
 import { getCitiesByDifficulty } from '../cityDataService';
 import { LOCAL_CITIES } from '../../data/localCities';
 import { validPairs } from '../quizService';
+import { getDistanceInfo } from '../distance';
 import type { City, DifficultyLevel } from '../../types';
 
 const allLevels: DifficultyLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -16,11 +17,14 @@ describe('level table', () => {
     const prev = LEVELS[level - 2];
     const cur = LEVELS[level - 1];
     expect(cur.pool).toBeGreaterThanOrEqual(prev.pool);
-    expect(cur.askedMin).toBeLessThanOrEqual(prev.askedMin);
+    // Levels at the floor are tied on the asked minimum, which is allowed.
+    const curMin = Math.max(cur.askedMin, MIN_ASKED_KM);
+    const prevMin = Math.max(prev.askedMin, MIN_ASKED_KM);
+    expect(curMin).toBeLessThanOrEqual(prevMin);
     expect(cur.askedMax).toBeLessThanOrEqual(prev.askedMax);
     expect(cur.otherMin).toBeGreaterThanOrEqual(prev.otherMin);
     expect(
-      cur.pool > prev.pool || cur.askedMin < prev.askedMin || cur.askedMax < prev.askedMax || cur.otherMin > prev.otherMin
+      cur.pool > prev.pool || curMin < prevMin || cur.askedMax < prev.askedMax || cur.otherMin > prev.otherMin
     ).toBe(true);
   });
 
@@ -40,7 +44,19 @@ describe('level table', () => {
     expect(validPairs(pool, 10).length).toBeGreaterThan(0);
   });
 
-  it('leaves out a pair that shares a latitude exactly (Medan and Buenaventura), but not one a hair off', async () => {
+  it.each(allLevels)('level %i has no valid pair with an asked gap under the 25 km floor', async (level) => {
+    expect(MIN_ASKED_KM).toBe(25);
+    const pairs = validPairs(await getCitiesByDifficulty(level), level);
+    const smallest = Math.min(
+      ...pairs.map(([a, b]) => {
+        const { ns, ew } = getDistanceInfo(a, b);
+        return Math.min(ns.km, ew.km);
+      })
+    );
+    expect(smallest).toBeGreaterThanOrEqual(MIN_ASKED_KM);
+  });
+
+  it('pins the floor on both sides, and rejects an exactly shared latitude (Medan and Buenaventura)', async () => {
     const pool = await getCitiesByDifficulty(10);
     const medan = LOCAL_CITIES.find((c) => c.name === 'Medan')!;
     const buenaventura = LOCAL_CITIES.find((c) => c.name === 'Buenaventura')!;
@@ -48,8 +64,14 @@ describe('level table', () => {
     const has = (list: [typeof medan, typeof medan][], a: typeof medan, b: typeof medan) =>
       list.some(([x, y]) => (x.id === a.id && y.id === b.id) || (x.id === b.id && y.id === a.id));
     expect(has(validPairs(pool, 10), medan, buenaventura)).toBe(false);
-    const nudged = [{ ...medan, latitude: medan.latitude + 0.001 }, buenaventura];
-    expect(has(validPairs(nudged, 10), nudged[0], buenaventura)).toBe(true);
+    const nudgedBy = (degrees: number) => [{ ...medan, latitude: medan.latitude + degrees }, buenaventura];
+    // About 100 m: far under the floor. About 55 km: above it. Both are far apart east-west.
+    expect(validPairs(nudgedBy(0.001), 10)).toEqual([]);
+    expect(validPairs(nudgedBy(0.5), 10)).toHaveLength(1);
+    // Either side of 25 km (0.2245 degrees of latitude).
+    expect(validPairs(nudgedBy(0.2), 10)).toEqual([]);
+    expect(validPairs(nudgedBy(0.25), 10)).toHaveLength(1);
+    expect(has(validPairs(nudgedBy(0.5), 10), nudgedBy(0.5)[0], buenaventura)).toBe(true);
   });
 });
 

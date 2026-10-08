@@ -3,7 +3,7 @@ import type { City, DifficultyLevel } from '../../types';
 import { buildQuestion, generateQuestions } from '../quizService';
 import { getCitiesByDifficulty } from '../cityDataService';
 import { getDistanceInfo } from '../distance';
-import { LEVELS } from '../levels';
+import { LEVELS, MIN_ASKED_KM } from '../levels';
 
 const city = (id: number, latitude: number, longitude: number): City => ({
   id,
@@ -57,7 +57,7 @@ describe('generateQuestions', () => {
           const shown = q.questionTextParts.flatMap((p) => (p.type === 'city' ? [p.cityName.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()] : []));
           expect(shown).toHaveLength(2);
           expect(shown[0]).not.toBe(shown[1]);
-          expect(asked).toBeGreaterThan(0);
+          expect(asked).toBeGreaterThanOrEqual(MIN_ASKED_KM);
           expect(asked).toBeGreaterThanOrEqual(band.askedMin);
           expect(asked).toBeLessThanOrEqual(band.askedMax);
           expect(other).toBeGreaterThanOrEqual(band.otherMin);

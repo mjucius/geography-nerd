@@ -1,7 +1,7 @@
 import type { City, Question, DifficultyLevel, QuestionTextPart } from '../types';
 import { getCitiesByDifficulty } from './cityDataService';
 import { getDistanceInfo } from './distance';
-import { LEVELS } from './levels';
+import { LEVELS, MIN_ASKED_KM } from './levels';
 
 type Pair = [City, City];
 
@@ -17,21 +17,22 @@ const nameKey = (c: City) => formatCityName(c.name, c.country_code).normalize('N
 const pairCache = new WeakMap<City[], Pair[]>();
 
 /**
- * Every pair of the pool that fits the level's band. An asked gap of exactly zero is out:
- * the cities share that axis, which a North/South or East/West answer cannot express.
+ * Every pair of the pool that fits the level's band. The asked gap is at least MIN_ASKED_KM at every level,
+ * which also rules out an exactly zero gap (the cities share that axis, which a North/South or East/West answer cannot express).
  * Two cities with the same displayed name (ignoring case and accents) never pair.
  */
 export function validPairs(pool: City[], level: DifficultyLevel): Pair[] {
   const cached = pairCache.get(pool);
   if (cached) return cached;
-  const { askedMin, askedMax, otherMin } = LEVELS[level - 1];
+  const { askedMin: tableMin, askedMax, otherMin } = LEVELS[level - 1];
+  const askedMin = Math.max(tableMin, MIN_ASKED_KM);
   const keys = pool.map(nameKey);
   const pairs: Pair[] = [];
   for (let i = 0; i < pool.length; i++) {
     for (let j = i + 1; j < pool.length; j++) {
       if (keys[i] === keys[j]) continue;
       const { asked, other } = gaps(pool[i], pool[j]);
-      if (asked > 0 && asked >= askedMin && asked <= askedMax && other >= otherMin) pairs.push([pool[i], pool[j]]);
+      if (asked >= askedMin && asked <= askedMax && other >= otherMin) pairs.push([pool[i], pool[j]]);
     }
   }
   pairCache.set(pool, pairs);
