@@ -50,19 +50,6 @@ const COUNTRY_REGION_MAP = {
   AU: 'Oceania', NZ: 'Oceania',
 };
 
-const CAPITAL_CITY_KEYS = new Set([
-  'Beijing|CN', 'Shanghai|CN', 'Delhi|IN', 'Mumbai|IN', 'Dhaka|BD',
-  'Tokyo|JP', 'Jakarta|ID', 'Manila|PH', 'Bangkok|TH', 'Ho Chi Minh City|VN',
-  'Istanbul|TR', 'Moscow|RU', 'Cairo|EG', 'Lagos|NG', 'Mexico City|MX',
-  'Sao Paulo|BR', 'São Paulo|BR', 'Buenos Aires|AR', 'Lima|PE',
-  'Bogota|CO', 'Bogotá|CO', 'Caracas|VE', 'Washington|US', 'London|GB',
-  'Paris|FR', 'Berlin|DE', 'Madrid|ES', 'Rome|IT', 'Amsterdam|NL',
-  'Brussels|BE', 'Vienna|AT', 'Prague|CZ', 'Warsaw|PL', 'Budapest|HU',
-  'Bucharest|RO', 'Sofia|BG', 'Athens|GR', 'Baghdad|IQ', 'Tehran|IR',
-  'Dubai|AE', 'Seoul|KR', 'Singapore|SG', 'Hong Kong|HK', 'Taipei|TW',
-  'Karachi|PK', 'Lahore|PK', 'Kolkata|IN', 'Bengaluru|IN',
-]);
-
 function getRegion(countryCode) {
   return COUNTRY_REGION_MAP[countryCode] || 'Asia';
 }
@@ -246,7 +233,7 @@ function generateSQL(cities) {
   for (let i = 0; i < cities.length; i += batchSize) {
     const batch = cities.slice(i, i + batchSize);
 
-    sql += 'INSERT INTO cities (name, country, country_code, population, latitude, longitude, region, is_capital) VALUES\n';
+    sql += 'INSERT INTO cities (name, country, country_code, population, latitude, longitude, region) VALUES\n';
 
     const values = batch.map((city) => {
       const name = city.name.replace(/'/g, "''");
@@ -255,9 +242,8 @@ function generateSQL(cities) {
       const lat = city.latitude;
       const lon = city.longitude;
       const region = getRegion(country);
-      const isCapital = CAPITAL_CITY_KEYS.has(`${city.name}|${country}`);
 
-      return `('${name}', '${country}', '${country}', ${population}, ${lat}, ${lon}, '${region}', ${isCapital})`;
+      return `('${name}', '${country}', '${country}', ${population}, ${lat}, ${lon}, '${region}')`;
     });
 
     sql += values.join(',\n') + ';\n\n';

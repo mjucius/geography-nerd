@@ -59,8 +59,7 @@ function formatCityName(cityName: string, countryCode?: string): string {
  */
 export async function generateQuestions(cities: City[], difficultyLevel: DifficultyLevel = 1): Promise<Question[]> {
   const questions: Question[] = [];
-  const selectedCities = cities.slice(0, 100);
-  const shuffledCities = shuffleArray([...selectedCities]);
+  const shuffledCities = shuffleArray([...cities]);
 
   // Determine how many questions from current tier vs next tier
   const isMaxTier = difficultyLevel === 10;
@@ -132,7 +131,8 @@ function generateSingleQuestion(
     const ratio = getDistanceRatio(latDiff, lonDiffAbs);
 
     // Check if ratio matches tier requirements
-    if (!enforceRatio || isValidRatioForTier(ratio, tier)) {
+    // ponytail: the last attempt is accepted even if it fails the gate, so the question keeps its tier and pool; T-017 enumerates valid pairs instead.
+    if (!enforceRatio || isValidRatioForTier(ratio, tier) || attempts === maxAttempts) {
       isValidPair = true;
     }
   }

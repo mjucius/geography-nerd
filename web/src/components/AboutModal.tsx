@@ -82,6 +82,13 @@ export function AboutModal({ open, onClose }: AboutModalProps) {
               (CC-BY-4.0)
             </li>
             <li className="flex flex-wrap items-center gap-x-1">
+              City familiarity:{' '}
+              <a href="https://www.wikidata.org/" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-teal underline">
+                Wikidata
+              </a>{' '}
+              (CC0)
+            </li>
+            <li className="flex flex-wrap items-center gap-x-1">
               Map tiles:{' '}
               <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer" className="inline-flex min-h-11 items-center font-semibold text-teal underline">
                 OpenStreetMap

@@ -12,6 +12,8 @@ describe('AboutModal', () => {
 
     expect(screen.getByText(/About Geography Nerd/i)).toBeVisible();
     expect(screen.getByText(/GeoNames/i)).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Wikidata' })).toHaveAttribute('href', 'https://www.wikidata.org/');
+    expect(screen.getByText(/CC0/)).toBeInTheDocument();
     expect(screen.getByText(/OpenStreetMap/i)).toBeInTheDocument();
     expect(screen.queryByText(/CARTO/i)).not.toBeInTheDocument();
     expect(screen.getByText(/Leaflet/i)).toBeInTheDocument();

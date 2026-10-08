@@ -7,6 +7,14 @@ Geography Nerd uses city data derived from GeoNames.
 - Source: https://www.geonames.org/
 - License: Creative Commons Attribution 4.0
 
+## City Familiarity
+
+Each city's familiarity score is the number of Wikipedia language editions with an article on it, taken from Wikidata sitelink counts.
+
+- Source: https://www.wikidata.org/
+- License: CC0 (public domain dedication)
+- The counts are fetched once by `npm run fetch:sitelinks` and committed in `data/city-sitelinks.json`; the game makes no Wikidata requests at runtime.
+
 ## Maps
 
 The game displays maps with React Leaflet and OpenStreetMap raster tiles.

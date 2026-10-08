@@ -9,17 +9,11 @@ for (const match of schemaSql.matchAll(/\('([^']+)', '((?:[^']|'')+)', '([^']+)'
   countries[match[1]] = [match[2].replace(/''/g, "'"), match[3]];
 }
 
-const capitals = new Set(
-  [...importSql.matchAll(/\('((?:[^']|'')+)', '([^']+)'\)/g)].map((match) => {
-    return `${match[1].replace(/''/g, "'")}|${match[2]}`;
-  })
-);
-
-// One row per city: name, country code, population, lat, lon, sitelinks, capital (0/1).
+// One row per city: name, country code, population, lat, lon, sitelinks.
 const rows = [...importSql.matchAll(/\('((?:[^']|'')+)', '([^']+)', ([0-9]+), (-?[0-9.]+), (-?[0-9.]+)\)/g)].map((match) => {
   const key = `${match[1].replace(/''/g, "'")}|${match[2]}`;
   if (!sitelinks[key]) throw new Error(`No sitelink count for ${key}; run npm run fetch:sitelinks`);
-  return [key.split('|')[0], match[2], Number(match[3]), Number(match[4]), Number(match[5]), sitelinks[key].sitelinks, capitals.has(key) ? 1 : 0];
+  return [key.split('|')[0], match[2], Number(match[3]), Number(match[4]), Number(match[5]), sitelinks[key].sitelinks];
 });
 
 const usedCodes = [...new Set(rows.map((r) => r[1]))].sort();

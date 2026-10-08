@@ -30,7 +30,6 @@ export interface City {
     coordinates: [number, number];
   };
   sitelinks: number;
-  is_capital?: boolean;
   region?: string;
 }
 

@@ -1,32 +1,12 @@
 import { LOCAL_CITIES } from '../data/localCities';
 import type { City, DifficultyLevel } from '../types';
+import { LEVELS } from './levels';
 
-function filterCitiesByDifficulty(cities: City[], difficultyLevel: DifficultyLevel): City[] {
-  switch (difficultyLevel) {
-    case 1:
-    case 2:
-      return cities.filter((city) => city.is_capital && city.population > 500000);
-    case 3:
-      return cities.filter((city) => city.is_capital && city.population > 200000);
-    case 4:
-    case 5:
-      return cities.filter((city) => city.is_capital);
-    case 6:
-      return cities.filter((city) => city.population > 1000000);
-    case 7:
-      return cities.filter((city) => city.population > 500000);
-    case 8:
-      return cities.filter((city) => city.population > 250000);
-    case 9:
-      return cities.filter((city) => city.population > 100000);
-    case 10:
-      return cities.filter((city) => city.population > 50000);
-  }
-}
+// Most familiar first: sitelinks, then population, then id.
+const BY_FAMILIARITY = [...LOCAL_CITIES].sort(
+  (a, b) => b.sitelinks - a.sitelinks || b.population - a.population || a.id - b.id
+);
 
 export async function getCitiesByDifficulty(difficultyLevel: DifficultyLevel): Promise<City[]> {
-  // Temporary: the original 100 cities, until the level table (T-016) replaces these filters.
-  return filterCitiesByDifficulty(LOCAL_CITIES.slice(0, 100), difficultyLevel)
-    .sort((a, b) => b.population - a.population)
-    .slice(0, 100);
+  return BY_FAMILIARITY.slice(0, LEVELS[difficultyLevel - 1].pool);
 }
