@@ -29,6 +29,6 @@ npm run fetch:sitelinks
 npm run generate:local-cities
 ```
 
-`import-cities` downloads `cities1000.zip` from GeoNames and writes `data/cities-import.sql`. `fetch:sitelinks` looks up Wikidata sitelink counts for those cities and writes `data/city-sitelinks.json`; run it after `import-cities` and fix any unmatched city in `data/wikidata-overrides.json`. `generate:local-cities` rebuilds the bundled `web/src/data/cities.json` that ships with the app, leaving out the places listed in `data/excluded-cities.json` (`{ "Name|CC": "duplicate of X" }` or `"part of X"`).
+`import-cities` downloads `cities1000.zip` from GeoNames and writes `data/cities-import.sql`. `fetch:sitelinks` looks up Wikidata sitelink counts for those cities and writes `data/city-sitelinks.json`; run it after `import-cities` and fix any unmatched city in `data/wikidata-overrides.json`. `flag:subcity` reads each shipped city's Wikidata classes and writes `data/subcity-flags.json`, a report for reviewing sub-city entries (the game does not read it). `generate:local-cities` rebuilds the bundled `web/src/data/cities.json` that ships with the app, leaving out the places listed in `data/excluded-cities.json` (`{ "Name|CC": "duplicate of X" }` or `"part of X"`).
 
 Keep gameplay changes free of account, analytics, advertising, and answer-tracking behavior unless the project explicitly reconsiders that policy.

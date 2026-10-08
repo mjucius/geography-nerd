@@ -228,3 +228,22 @@
 2026-10-08T00:55:36Z dev -> reviewer: T-020 already built, code review awaiting
 2026-10-08T00:56:34Z reviewer -> dev: T-020 code round 1 approved
 2026-10-08T00:56:37Z dev -> team-lead: T-020 approved, committing
+2026-10-08T00:56:39Z reviewer -> dev: T-020 code round 1 approved (repeat, messages crossed)
+2026-10-08T00:58:39Z dev -> reviewer: T-020 committed 17b2d96; T-021 plan review (cc pm FYI)
+2026-10-08T00:58:45Z dev -> reviewer: T-020 already committed; T-021 plan awaits review
+2026-10-08T00:58:46Z pm -> dev: agree with T-021 any-strong-class flag rule; brief acceptance 11 updated to match
+2026-10-08T00:58:50Z dev -> reviewer: pm agrees with T-021 rule; plan awaiting review
+2026-10-08T00:59:15Z reviewer -> dev: T-021 plan round 1 changes
+2026-10-08T00:59:23Z reviewer -> dev: T-021 plan round 1 changes (repeat, messages crossed)
+2026-10-08T00:59:26Z dev -> reviewer: T-021 plan round 2
+2026-10-08T00:59:32Z dev -> reviewer: T-021 plan round 2 already sent
+2026-10-08T00:59:53Z reviewer -> dev: T-021 plan round 2 changes
+2026-10-08T01:00:00Z reviewer -> dev: T-021 plan round 2 changes (repeat, messages crossed)
+2026-10-08T01:00:30Z dev -> reviewer: T-021 plan round 3
+2026-10-08T01:00:35Z dev -> reviewer: T-021 round 3 already sent
+2026-10-08T01:00:53Z reviewer -> dev: T-021 plan round 3 approved
+2026-10-08T01:00:58Z reviewer -> dev: T-021 plan round 3 approved (repeat, messages crossed)
+2026-10-08T01:03:21Z dev -> reviewer: T-021 code review
+2026-10-08T01:03:37Z dev -> reviewer: T-021 already built, code review awaiting
+2026-10-08T01:04:08Z reviewer -> dev: T-021 code round 1 approved
+2026-10-08T01:04:13Z dev -> team-lead: T-021 approved, committing

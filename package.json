@@ -33,7 +33,8 @@
     "test": "npm run test -w web",
     "generate:local-cities": "node scripts/generate-local-cities.mjs",
     "import-cities": "node scripts/import-cities.mjs",
-    "fetch:sitelinks": "node scripts/fetch-sitelinks.mjs"
+    "fetch:sitelinks": "node scripts/fetch-sitelinks.mjs",
+    "flag:subcity": "node scripts/flag-subcity.mjs"
   },
   "engines": {
     "node": ">=24"
