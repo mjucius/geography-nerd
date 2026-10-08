@@ -304,3 +304,7 @@
 2026-10-08T01:31:24Z dev -> reviewer: T-025 code review
 2026-10-08T01:32:19Z reviewer -> dev: T-025 code round 1 approved
 2026-10-08T01:32:27Z dev -> team-lead: T-025 approved, committing
+2026-10-08T01:32:27Z dev -> team-lead: DONE T-025 committed
+2026-10-08T01:32:30Z team-lead -> qa: QA T-025 (import-cities format) at de4b521
+2026-10-08T01:33:45Z qa -> team-lead: T-025 QA at de4b521 clean, no tickets
+2026-10-08T01:33:48Z team-lead -> ceo: T-025 done, QA clean at de4b521
