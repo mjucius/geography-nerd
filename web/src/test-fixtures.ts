@@ -5,6 +5,7 @@ const city = (name: string, latitude: number, longitude: number): City => ({
   name,
   country: 'X',
   population: 1,
+  sitelinks: 1,
   latitude,
   longitude,
   location: { type: 'Point', coordinates: [longitude, latitude] },

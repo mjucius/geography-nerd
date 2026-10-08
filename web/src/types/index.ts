@@ -29,6 +29,7 @@ export interface City {
     type: string;
     coordinates: [number, number];
   };
+  sitelinks: number;
   is_capital?: boolean;
   region?: string;
 }

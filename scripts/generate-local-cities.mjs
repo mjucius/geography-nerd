@@ -2,53 +2,30 @@ import fs from 'node:fs';
 
 const importSql = fs.readFileSync('data/cities-import.sql', 'utf8');
 const schemaSql = fs.readFileSync('data/countries.sql', 'utf8');
+const sitelinks = JSON.parse(fs.readFileSync('data/city-sitelinks.json', 'utf8'));
 
-const countries = new Map();
+const countries = {};
 for (const match of schemaSql.matchAll(/\('([^']+)', '((?:[^']|'')+)', '([^']+)'\)/g)) {
-  countries.set(match[1], {
-    name: match[2].replace(/''/g, "'"),
-    region: match[3],
-  });
+  countries[match[1]] = [match[2].replace(/''/g, "'"), match[3]];
 }
 
 const capitals = new Set(
   [...importSql.matchAll(/\('((?:[^']|'')+)', '([^']+)'\)/g)].map((match) => {
-    return `${match[1].replace(/''/g, "'")}\u0000${match[2]}`;
+    return `${match[1].replace(/''/g, "'")}|${match[2]}`;
   })
 );
 
-const rows = [...importSql.matchAll(/\('((?:[^']|'')+)', '([^']+)', ([0-9]+), (-?[0-9.]+), (-?[0-9.]+)\)/g)]
-  .slice(0, 100)
-  .map((match, index) => {
-    const name = match[1].replace(/''/g, "'");
-    const code = match[2];
-    const country = countries.get(code) ?? { name: code, region: undefined };
-    const latitude = Number(match[4]);
-    const longitude = Number(match[5]);
+// One row per city: name, country code, population, lat, lon, sitelinks, capital (0/1).
+const rows = [...importSql.matchAll(/\('((?:[^']|'')+)', '([^']+)', ([0-9]+), (-?[0-9.]+), (-?[0-9.]+)\)/g)].map((match) => {
+  const key = `${match[1].replace(/''/g, "'")}|${match[2]}`;
+  if (!sitelinks[key]) throw new Error(`No sitelink count for ${key}; run npm run fetch:sitelinks`);
+  return [key.split('|')[0], match[2], Number(match[3]), Number(match[4]), Number(match[5]), sitelinks[key].sitelinks, capitals.has(key) ? 1 : 0];
+});
 
-    return {
-      id: index + 1,
-      name,
-      country: code,
-      country_code: code,
-      countries: {
-        code,
-        name: country.name,
-        region: country.region,
-      },
-      population: Number(match[3]),
-      latitude,
-      longitude,
-      location: {
-        type: 'Point',
-        coordinates: [longitude, latitude],
-      },
-      is_capital: capitals.has(`${name}\u0000${code}`),
-      region: country.region,
-    };
-  });
+const usedCodes = [...new Set(rows.map((r) => r[1]))].sort();
+const usedCountries = Object.fromEntries(usedCodes.map((c) => [c, countries[c] ?? [c, '']]));
 
-const output = `import type { City } from '../types';\n\nexport const LOCAL_CITIES: City[] = ${JSON.stringify(rows, null, 2)};\n`;
+const output =
+  '{"countries":' + JSON.stringify(usedCountries) + ',\n"cities":[\n' + rows.map((r) => JSON.stringify(r)).join(',\n') + '\n]}\n';
 
-fs.mkdirSync('web/src/data', { recursive: true });
-fs.writeFileSync('web/src/data/localCities.ts', output);
+fs.writeFileSync('web/src/data/cities.json', output);

@@ -25,7 +25,8 @@ function filterCitiesByDifficulty(cities: City[], difficultyLevel: DifficultyLev
 }
 
 export async function getCitiesByDifficulty(difficultyLevel: DifficultyLevel): Promise<City[]> {
-  return filterCitiesByDifficulty(LOCAL_CITIES, difficultyLevel)
+  // Temporary: the original 100 cities, until the level table (T-016) replaces these filters.
+  return filterCitiesByDifficulty(LOCAL_CITIES.slice(0, 100), difficultyLevel)
     .sort((a, b) => b.population - a.population)
     .slice(0, 100);
 }

@@ -1,5 +1,9 @@
+// @vitest-environment node
 import { describe, expect, it } from 'vitest';
+import { readFileSync, statSync } from 'node:fs';
 import { getCitiesByDifficulty } from '../cityDataService';
+import { LOCAL_CITIES } from '../../data/localCities';
+import { FROZEN_LEVEL_IDS } from './frozenLevelIds';
 import type { City, DifficultyLevel } from '../../types';
 
 const allLevels: DifficultyLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -89,5 +93,45 @@ describe('getCitiesByDifficulty', () => {
     for (const city of cities) {
       expect(city.population).toBeGreaterThan(50000);
     }
+  });
+});
+
+describe('level pools stay as before the 1,000-city data', () => {
+  it.each(allLevels)('level %i returns the same cities as before', async (level) => {
+    const ids = (await getCitiesByDifficulty(level)).map((c) => c.id);
+    expect(ids).toEqual(FROZEN_LEVEL_IDS[level]);
+  });
+});
+
+describe('LOCAL_CITIES', () => {
+  const root = new URL('../../../../', import.meta.url);
+  const sitelinks: Record<string, { sitelinks: number }> = JSON.parse(
+    readFileSync(new URL('data/city-sitelinks.json', root), 'utf8')
+  );
+
+  it('has 1,000 cities with unique ids and the sitelink count from the data file', () => {
+    expect(LOCAL_CITIES).toHaveLength(1000);
+    expect(new Set(LOCAL_CITIES.map((c) => c.id)).size).toBe(1000);
+    for (const c of LOCAL_CITIES) {
+      expect(c.sitelinks).toBe(sitelinks[`${c.name}|${c.country_code}`].sitelinks);
+    }
+  });
+
+  it('expands Paris into the City shape', () => {
+    const paris = LOCAL_CITIES.find((c) => c.name === 'Paris' && c.country_code === 'FR');
+    expect(paris).toMatchObject({
+      country: 'FR',
+      countries: { code: 'FR', name: 'France', region: 'Europe' },
+      region: 'Europe',
+    });
+    expect(paris?.location.coordinates).toEqual([paris?.longitude, paris?.latitude]);
+    expect(paris?.sitelinks).toBeGreaterThan(100);
+    expect(paris?.latitude).toBeCloseTo(48.85, 1);
+    expect(paris?.longitude).toBeCloseTo(2.35, 1);
+  });
+
+  it('stays under the old 430 bytes per city', () => {
+    const bytes = statSync(new URL('../../data/cities.json', import.meta.url)).size;
+    expect(bytes / LOCAL_CITIES.length).toBeLessThanOrEqual(430);
   });
 });

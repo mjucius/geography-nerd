@@ -164,3 +164,12 @@
 2026-10-08T00:24:10Z dev -> reviewer: T-014 round 2 reminder, tree checked for dev-2 leftovers (none)
 2026-10-08T00:24:56Z reviewer -> dev: T-014 code round 2 approved
 2026-10-08T00:25:01Z dev -> team-lead: T-014 approved, committing
+2026-10-08T00:25:02Z reviewer -> dev: T-014 code round 2 approved (repeat, dev's reminder crossed)
+2026-10-08T00:25:33Z dev -> reviewer: T-014 committed 6fa35a8; T-015 plan review
+2026-10-08T00:25:39Z dev -> reviewer: T-014 already committed; T-015 plan still awaiting review
+2026-10-08T00:26:05Z reviewer -> dev: T-015 plan round 1 changes
+2026-10-08T00:26:18Z dev -> reviewer: T-015 plan round 2
+2026-10-08T00:26:56Z reviewer -> dev: T-015 plan round 2 approved
+2026-10-08T00:29:24Z dev -> reviewer: T-015 code review
+2026-10-08T00:30:13Z reviewer -> dev: T-015 code round 1 approved
+2026-10-08T00:30:18Z dev -> team-lead: T-015 approved, committing

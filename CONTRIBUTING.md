@@ -25,9 +25,10 @@ To refresh the city dataset from GeoNames:
 
 ```bash
 npm run import-cities
+npm run fetch:sitelinks
 npm run generate:local-cities
 ```
 
-`import-cities` downloads `cities1000.zip` from GeoNames and writes `data/cities-import.sql`. `generate:local-cities` rebuilds the bundled `web/src/data/localCities.ts` that ships with the app.
+`import-cities` downloads `cities1000.zip` from GeoNames and writes `data/cities-import.sql`. `fetch:sitelinks` looks up Wikidata sitelink counts for those cities and writes `data/city-sitelinks.json`; run it after `import-cities` and fix any unmatched city in `data/wikidata-overrides.json`. `generate:local-cities` rebuilds the bundled `web/src/data/cities.json` that ships with the app.
 
 Keep gameplay changes free of account, analytics, advertising, and answer-tracking behavior unless the project explicitly reconsiders that policy.

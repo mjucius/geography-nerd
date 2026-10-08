@@ -9,7 +9,7 @@
  * Usage: npm run import-cities
  *
  * After running, also run `npm run generate:local-cities` to rebuild the
- * bundled web/src/data/localCities.ts that ships with the app.
+ * bundled web/src/data/cities.json that ships with the app (run `npm run fetch:sitelinks` first for new cities).
  */
 
 import fs from 'node:fs';
@@ -305,7 +305,7 @@ async function main() {
 
     console.log('\n--- NEXT STEPS ---');
     console.log('Run `npm run generate:local-cities` to rebuild the bundled');
-    console.log('web/src/data/localCities.ts from the new SQL.');
+    console.log('web/src/data/cities.json from the new SQL.');
   } catch (error) {
     console.error('Error:', error.message);
     process.exit(1);

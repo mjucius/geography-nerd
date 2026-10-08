@@ -9,4 +9,4 @@ npm run lint -w web
 npm run test -w web
 ```
 
-The app loads cities from `web/src/data/localCities.ts`. That file is generated from the SQL files under `../data/` by `npm run generate:local-cities`, and it is committed, so builds do not regenerate it. See the root `README.md` for the full setup.
+The app loads cities from `web/src/data/cities.json` through `web/src/data/localCities.ts`. The JSON is generated from the files under `../data/` by `npm run generate:local-cities`, and it is committed, so builds do not regenerate it. See the root `README.md` for the full setup.
