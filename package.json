@@ -32,7 +32,8 @@
     "lint": "npm run lint -w web",
     "test": "npm run test -w web",
     "generate:local-cities": "node scripts/generate-local-cities.mjs",
-    "import-cities": "node scripts/import-cities.mjs"
+    "import-cities": "node scripts/import-cities.mjs",
+    "fetch:sitelinks": "node scripts/fetch-sitelinks.mjs"
   },
   "engines": {
     "node": ">=24"

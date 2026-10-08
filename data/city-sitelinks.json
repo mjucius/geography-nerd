@@ -1,0 +1,4002 @@
+{
+ "A Coruña|ES": {
+  "qid": "Q8757",
+  "sitelinks": 113
+ },
+ "Aachen|DE": {
+  "qid": "Q1017",
+  "sitelinks": 143
+ },
+ "Aba|NG": {
+  "qid": "Q202162",
+  "sitelinks": 58
+ },
+ "Abeokuta|NG": {
+  "qid": "Q206484",
+  "sitelinks": 61
+ },
+ "Abidjan|CI": {
+  "qid": "Q1515",
+  "sitelinks": 158
+ },
+ "Abuja|NG": {
+  "qid": "Q3787",
+  "sitelinks": 199
+ },
+ "Acapulco de Juárez|MX": {
+  "qid": "Q81398",
+  "sitelinks": 110
+ },
+ "Accra|GH": {
+  "qid": "Q3761",
+  "sitelinks": 200
+ },
+ "Adana|TR": {
+  "qid": "Q38545",
+  "sitelinks": 130
+ },
+ "Adapazarı|TR": {
+  "qid": "Q175323",
+  "sitelinks": 82
+ },
+ "Addis Ababa|ET": {
+  "qid": "Q3624",
+  "sitelinks": 200
+ },
+ "Adelaide Hills|AU": {
+  "qid": "Q353997",
+  "sitelinks": 10
+ },
+ "Adelaide|AU": {
+  "qid": "Q5112",
+  "sitelinks": 161
+ },
+ "Adıyaman|TR": {
+  "qid": "Q43924",
+  "sitelinks": 91
+ },
+ "Ado-Ekiti|NG": {
+  "qid": "Q359955",
+  "sitelinks": 45
+ },
+ "Afyonkarahisar|TR": {
+  "qid": "Q45220",
+  "sitelinks": 90
+ },
+ "Agadir|MA": {
+  "qid": "Q170525",
+  "sitelinks": 106
+ },
+ "Aguascalientes|MX": {
+  "qid": "Q79952",
+  "sitelinks": 108
+ },
+ "Ahmedabad|IN": {
+  "qid": "Q1070",
+  "sitelinks": 144
+ },
+ "Ajegunle|NG": {
+  "qid": "Q4699703",
+  "sitelinks": 8
+ },
+ "Aksaray|TR": {
+  "qid": "Q83073",
+  "sitelinks": 83
+ },
+ "Akure|NG": {
+  "qid": "Q423831",
+  "sitelinks": 48
+ },
+ "Al Başrah al Qadīmah|IQ": {
+  "qid": "Q26841364",
+  "sitelinks": 1
+ },
+ "Al Fayyum|EG": {
+  "qid": "Q203299",
+  "sitelinks": 64
+ },
+ "Al Hoceïma|MA": {
+  "qid": "Q310350",
+  "sitelinks": 47
+ },
+ "Al Khuşūş|EG": {
+  "qid": "Q5351485",
+  "sitelinks": 12
+ },
+ "Al Maḩallah al Kubrá|EG": {
+  "qid": "Q312723",
+  "sitelinks": 50
+ },
+ "Al Mansurah|EG": {
+  "qid": "Q223587",
+  "sitelinks": 62
+ },
+ "Al Mawşil al Jadīdah|IQ": {
+  "qid": "Q26840649",
+  "sitelinks": 1
+ },
+ "Alanya|TR": {
+  "qid": "Q171810",
+  "sitelinks": 87
+ },
+ "Albuquerque|US": {
+  "qid": "Q34804",
+  "sitelinks": 138
+ },
+ "Aleppo|SY": {
+  "qid": "Q41183",
+  "sitelinks": 148
+ },
+ "Alexandria|EG": {
+  "qid": "Q87",
+  "sitelinks": 176
+ },
+ "Algiers|DZ": {
+  "qid": "Q3561",
+  "sitelinks": 213
+ },
+ "Alicante|ES": {
+  "qid": "Q11959",
+  "sitelinks": 111
+ },
+ "Almaty|KZ": {
+  "qid": "Q35493",
+  "sitelinks": 155
+ },
+ "Altona|DE": {
+  "qid": "Q1630",
+  "sitelinks": 43
+ },
+ "Álvaro Obregón|MX": {
+  "qid": "Q20276179",
+  "sitelinks": 7
+ },
+ "Amsterdam|NL": {
+  "qid": "Q727",
+  "sitelinks": 283
+ },
+ "Anaheim|US": {
+  "qid": "Q49247",
+  "sitelinks": 112
+ },
+ "Ananindeua|BR": {
+  "qid": "Q485887",
+  "sitelinks": 51
+ },
+ "Anápolis|BR": {
+  "qid": "Q223422",
+  "sitelinks": 59
+ },
+ "Angarsk|RU": {
+  "qid": "Q103565",
+  "sitelinks": 72
+ },
+ "Ankara|TR": {
+  "qid": "Q3640",
+  "sitelinks": 241
+ },
+ "Antalya|TR": {
+  "qid": "Q6487",
+  "sitelinks": 136
+ },
+ "Antofagasta|CL": {
+  "qid": "Q3612",
+  "sitelinks": 121
+ },
+ "Antwerpen|BE": {
+  "qid": "Q12892",
+  "sitelinks": 162
+ },
+ "Aparecida de Goiânia|BR": {
+  "qid": "Q459711",
+  "sitelinks": 50
+ },
+ "Aracaju|BR": {
+  "qid": "Q170578",
+  "sitelinks": 82
+ },
+ "Archway|GB": {
+  "qid": "Q636351",
+  "sitelinks": 21
+ },
+ "Arequipa|PE": {
+  "qid": "Q159273",
+  "sitelinks": 105
+ },
+ "Århus|DK": {
+  "qid": "Q25319",
+  "sitelinks": 127
+ },
+ "Arkhangel’sk|RU": {
+  "qid": "Q1851",
+  "sitelinks": 109
+ },
+ "Arlington|US": {
+  "qid": "Q17943",
+  "sitelinks": 98
+ },
+ "Assiut|EG": {
+  "qid": "Q2107478",
+  "sitelinks": 22
+ },
+ "Astrakhan|RU": {
+  "qid": "Q3927",
+  "sitelinks": 129
+ },
+ "Ataşehir|TR": {
+  "qid": "Q753882",
+  "sitelinks": 42
+ },
+ "Athens|GR": {
+  "qid": "Q1524",
+  "sitelinks": 289
+ },
+ "Atlanta|US": {
+  "qid": "Q23556",
+  "sitelinks": 209
+ },
+ "Auckland|NZ": {
+  "qid": "Q37100",
+  "sitelinks": 160
+ },
+ "Augsburg|DE": {
+  "qid": "Q2749",
+  "sitelinks": 124
+ },
+ "Aurora|US": {
+  "qid": "Q49246",
+  "sitelinks": 84
+ },
+ "Austin|US": {
+  "qid": "Q16559",
+  "sitelinks": 169
+ },
+ "Awasa|ET": {
+  "qid": "Q755765",
+  "sitelinks": 51
+ },
+ "Azcapotzalco|MX": {
+  "qid": "Q994867",
+  "sitelinks": 32
+ },
+ "Badalona|ES": {
+  "qid": "Q15468",
+  "sitelinks": 91
+ },
+ "Bağcılar|TR": {
+  "qid": "Q746516",
+  "sitelinks": 34
+ },
+ "Baghdad|IQ": {
+  "qid": "Q1530",
+  "sitelinks": 251
+ },
+ "Bahçelievler|TR": {
+  "qid": "Q788634",
+  "sitelinks": 36
+ },
+ "Bakersfield|US": {
+  "qid": "Q49256",
+  "sitelinks": 102
+ },
+ "Balıkesir|TR": {
+  "qid": "Q47117",
+  "sitelinks": 92
+ },
+ "Ballarat|AU": {
+  "qid": "Q17856",
+  "sitelinks": 67
+ },
+ "Baltimore|US": {
+  "qid": "Q5092",
+  "sitelinks": 159
+ },
+ "Bamako|ML": {
+  "qid": "Q3703",
+  "sitelinks": 177
+ },
+ "Bandung|ID": {
+  "qid": "Q10389",
+  "sitelinks": 114
+ },
+ "Bangkok|TH": {
+  "qid": "Q1861",
+  "sitelinks": 262
+ },
+ "Bao'an|CN": {
+  "qid": "Q807049",
+  "sitelinks": 26
+ },
+ "Baoding|CN": {
+  "qid": "Q58584",
+  "sitelinks": 60
+ },
+ "Baotou|CN": {
+  "qid": "Q569907",
+  "sitelinks": 66
+ },
+ "Barcelona|ES": {
+  "qid": "Q1492",
+  "sitelinks": 246
+ },
+ "Bari|IT": {
+  "qid": "Q3519",
+  "sitelinks": 148
+ },
+ "Barnaul|RU": {
+  "qid": "Q6014",
+  "sitelinks": 105
+ },
+ "Barranquilla|CO": {
+  "qid": "Q62823",
+  "sitelinks": 103
+ },
+ "Barueri|BR": {
+  "qid": "Q461773",
+  "sitelinks": 50
+ },
+ "Batikent|TR": {
+  "qid": "Q4873407",
+  "sitelinks": 5
+ },
+ "Batman|TR": {
+  "qid": "Q159835",
+  "sitelinks": 89
+ },
+ "Bauchi|NG": {
+  "qid": "Q503936",
+  "sitelinks": 65
+ },
+ "Bauru|BR": {
+  "qid": "Q241645",
+  "sitelinks": 56
+ },
+ "Beijing|CN": {
+  "qid": "Q956",
+  "sitelinks": 305
+ },
+ "Bekasi|ID": {
+  "qid": "Q10392",
+  "sitelinks": 81
+ },
+ "Belém|BR": {
+  "qid": "Q12829733",
+  "sitelinks": 110
+ },
+ "Belfast|GB": {
+  "qid": "Q10686",
+  "sitelinks": 162
+ },
+ "Belford Roxo|BR": {
+  "qid": "Q737636",
+  "sitelinks": 45
+ },
+ "Belgorod|RU": {
+  "qid": "Q3323",
+  "sitelinks": 106
+ },
+ "Bello|CO": {
+  "qid": "Q816024",
+  "sitelinks": 43
+ },
+ "Belo Horizonte|BR": {
+  "qid": "Q42800",
+  "sitelinks": 138
+ },
+ "Bendigo|AU": {
+  "qid": "Q497793",
+  "sitelinks": 65
+ },
+ "Bengaluru|IN": {
+  "qid": "Q1355",
+  "sitelinks": 165
+ },
+ "Benin City|NG": {
+  "qid": "Q320704",
+  "sitelinks": 70
+ },
+ "Benito Juarez|MX": {
+  "qid": "Q2356998",
+  "sitelinks": 28
+ },
+ "Benito Juárez|MX": {
+  "qid": "Q2356998",
+  "sitelinks": 28
+ },
+ "Benoni|ZA": {
+  "qid": "Q818106",
+  "sitelinks": 39
+ },
+ "Bergen|NO": {
+  "qid": "Q26793",
+  "sitelinks": 149
+ },
+ "Berlin|DE": {
+  "qid": "Q64",
+  "sitelinks": 334
+ },
+ "Betim|BR": {
+  "qid": "Q737644",
+  "sitelinks": 45
+ },
+ "Bexley|GB": {
+  "qid": "Q207208",
+  "sitelinks": 49
+ },
+ "Białystok|PL": {
+  "qid": "Q761",
+  "sitelinks": 109
+ },
+ "Bida|NG": {
+  "qid": "Q3320844",
+  "sitelinks": 27
+ },
+ "Bielefeld|DE": {
+  "qid": "Q2112",
+  "sitelinks": 118
+ },
+ "Bilbao|ES": {
+  "qid": "Q8692",
+  "sitelinks": 149
+ },
+ "Birkenhead|GB": {
+  "qid": "Q746718",
+  "sitelinks": 50
+ },
+ "Birmingham|GB": {
+  "qid": "Q2256",
+  "sitelinks": 164
+ },
+ "Biysk|RU": {
+  "qid": "Q102667",
+  "sitelinks": 77
+ },
+ "Blagoveshchensk|RU": {
+  "qid": "Q6934",
+  "sitelinks": 96
+ },
+ "Bloemfontein|ZA": {
+  "qid": "Q37701",
+  "sitelinks": 143
+ },
+ "Blumenau|BR": {
+  "qid": "Q155557",
+  "sitelinks": 62
+ },
+ "Boa Vista|BR": {
+  "qid": "Q181056",
+  "sitelinks": 75
+ },
+ "Bochum|DE": {
+  "qid": "Q2103",
+  "sitelinks": 110
+ },
+ "Bogotá|CO": {
+  "qid": "Q2841",
+  "sitelinks": 279
+ },
+ "Boksburg|ZA": {
+  "qid": "Q891229",
+  "sitelinks": 31
+ },
+ "Bologna|IT": {
+  "qid": "Q1891",
+  "sitelinks": 161
+ },
+ "Bonn|DE": {
+  "qid": "Q586",
+  "sitelinks": 163
+ },
+ "Bordeaux|FR": {
+  "qid": "Q1479",
+  "sitelinks": 184
+ },
+ "Boston|US": {
+  "qid": "Q100",
+  "sitelinks": 216
+ },
+ "Bradford|GB": {
+  "qid": "Q22905",
+  "sitelinks": 91
+ },
+ "Brampton|CA": {
+  "qid": "Q44198",
+  "sitelinks": 74
+ },
+ "Brasília|BR": {
+  "qid": "Q2844",
+  "sitelinks": 226
+ },
+ "Braşov|RO": {
+  "qid": "Q82174",
+  "sitelinks": 102
+ },
+ "Bratsk|RU": {
+  "qid": "Q132732",
+  "sitelinks": 79
+ },
+ "Braunschweig|DE": {
+  "qid": "Q2773",
+  "sitelinks": 117
+ },
+ "Brazzaville|CG": {
+  "qid": "Q3844",
+  "sitelinks": 173
+ },
+ "Bremen|DE": {
+  "qid": "Q24879",
+  "sitelinks": 164
+ },
+ "Brent|GB": {
+  "qid": "Q207201",
+  "sitelinks": 49
+ },
+ "Brighton|GB": {
+  "qid": "Q131491",
+  "sitelinks": 99
+ },
+ "Brisbane|AU": {
+  "qid": "Q34932",
+  "sitelinks": 167
+ },
+ "Bristol|GB": {
+  "qid": "Q23154",
+  "sitelinks": 144
+ },
+ "Brno|CZ": {
+  "qid": "Q14960",
+  "sitelinks": 147
+ },
+ "Brooklyn|US": {
+  "qid": "Q18419",
+  "sitelinks": 128
+ },
+ "Brussels|BE": {
+  "qid": "Q239",
+  "sitelinks": 240
+ },
+ "Bryansk|RU": {
+  "qid": "Q2801",
+  "sitelinks": 96
+ },
+ "Bucaramanga|CO": {
+  "qid": "Q243766",
+  "sitelinks": 75
+ },
+ "Bucharest|RO": {
+  "qid": "Q19660",
+  "sitelinks": 237
+ },
+ "Budapest|HU": {
+  "qid": "Q1781",
+  "sitelinks": 259
+ },
+ "Buenaventura|CO": {
+  "qid": "Q996581",
+  "sitelinks": 47
+ },
+ "Buenos Aires|AR": {
+  "qid": "Q1486",
+  "sitelinks": 276
+ },
+ "Bunbury|AU": {
+  "qid": "Q256711",
+  "sitelinks": 46
+ },
+ "Bundaberg|AU": {
+  "qid": "Q185404",
+  "sitelinks": 44
+ },
+ "Bursa|TR": {
+  "qid": "Q40738",
+  "sitelinks": 136
+ },
+ "Busan|KR": {
+  "qid": "Q16520",
+  "sitelinks": 145
+ },
+ "Bydgoszcz|PL": {
+  "qid": "Q41252",
+  "sitelinks": 111
+ },
+ "Cairns|AU": {
+  "qid": "Q189133",
+  "sitelinks": 82
+ },
+ "Cairo|EG": {
+  "qid": "Q85",
+  "sitelinks": 261
+ },
+ "Calabar|NG": {
+  "qid": "Q844091",
+  "sitelinks": 49
+ },
+ "Calgary|CA": {
+  "qid": "Q36312",
+  "sitelinks": 146
+ },
+ "Cali|CO": {
+  "qid": "Q51103",
+  "sitelinks": 114
+ },
+ "Callao|PE": {
+  "qid": "Q105037",
+  "sitelinks": 77
+ },
+ "Caloundra|AU": {
+  "qid": "Q536567",
+  "sitelinks": 26
+ },
+ "Camagüey|CU": {
+  "qid": "Q115329",
+  "sitelinks": 76
+ },
+ "Campina Grande|BR": {
+  "qid": "Q193016",
+  "sitelinks": 52
+ },
+ "Campinas|BR": {
+  "qid": "Q171617",
+  "sitelinks": 83
+ },
+ "Campo Grande|BR": {
+  "qid": "Q168929",
+  "sitelinks": 85
+ },
+ "Campos dos Goytacazes|BR": {
+  "qid": "Q689868",
+  "sitelinks": 49
+ },
+ "Canberra|AU": {
+  "qid": "Q3114",
+  "sitelinks": 213
+ },
+ "Cancún|MX": {
+  "qid": "Q8969",
+  "sitelinks": 105
+ },
+ "Çankaya|TR": {
+  "qid": "Q1020646",
+  "sitelinks": 35
+ },
+ "Canoas|BR": {
+  "qid": "Q194325",
+  "sitelinks": 53
+ },
+ "Cape Town|ZA": {
+  "qid": "Q5465",
+  "sitelinks": 217
+ },
+ "Carabanchel|ES": {
+  "qid": "Q1001991",
+  "sitelinks": 24
+ },
+ "Caracas|VE": {
+  "qid": "Q1533",
+  "sitelinks": 216
+ },
+ "Carapicuíba|BR": {
+  "qid": "Q176891",
+  "sitelinks": 43
+ },
+ "Cardiff|GB": {
+  "qid": "Q10690",
+  "sitelinks": 161
+ },
+ "Cariacica|BR": {
+  "qid": "Q841222",
+  "sitelinks": 38
+ },
+ "Cartagena|CO": {
+  "qid": "Q657461",
+  "sitelinks": 117
+ },
+ "Cartagena|ES": {
+  "qid": "Q162615",
+  "sitelinks": 99
+ },
+ "Caruaru|BR": {
+  "qid": "Q622830",
+  "sitelinks": 49
+ },
+ "Casablanca|MA": {
+  "qid": "Q7903",
+  "sitelinks": 153
+ },
+ "Catania|IT": {
+  "qid": "Q1903",
+  "sitelinks": 139
+ },
+ "Caucaia|BR": {
+  "qid": "Q817233",
+  "sitelinks": 41
+ },
+ "Caxias do Sul|BR": {
+  "qid": "Q110017",
+  "sitelinks": 62
+ },
+ "Celaya|MX": {
+  "qid": "Q580649",
+  "sitelinks": 40
+ },
+ "Centralniy|RU": {
+  "qid": "Q271014",
+  "sitelinks": 21
+ },
+ "Changchun|CN": {
+  "qid": "Q92161",
+  "sitelinks": 106
+ },
+ "Changsha|CN": {
+  "qid": "Q174091",
+  "sitelinks": 105
+ },
+ "Changzhou|CN": {
+  "qid": "Q57970",
+  "sitelinks": 65
+ },
+ "Charlotte|US": {
+  "qid": "Q16565",
+  "sitelinks": 127
+ },
+ "Chattogram|BD": {
+  "qid": "Q376749",
+  "sitelinks": 143
+ },
+ "Cheboksary|RU": {
+  "qid": "Q5470",
+  "sitelinks": 105
+ },
+ "Chelyabinsk|RU": {
+  "qid": "Q906",
+  "sitelinks": 130
+ },
+ "Chemnitz|DE": {
+  "qid": "Q2795",
+  "sitelinks": 121
+ },
+ "Chengdu|CN": {
+  "qid": "Q30002",
+  "sitelinks": 133
+ },
+ "Chennai|IN": {
+  "qid": "Q1352",
+  "sitelinks": 161
+ },
+ "Cherepovets|RU": {
+  "qid": "Q2144",
+  "sitelinks": 79
+ },
+ "Cherkasy|UA": {
+  "qid": "Q161808",
+  "sitelinks": 104
+ },
+ "Chernihiv|UA": {
+  "qid": "Q157053",
+  "sitelinks": 116
+ },
+ "Chernivtsi|UA": {
+  "qid": "Q157725",
+  "sitelinks": 106
+ },
+ "Chicago|US": {
+  "qid": "Q1297",
+  "sitelinks": 278
+ },
+ "Chiclayo|PE": {
+  "qid": "Q260911",
+  "sitelinks": 69
+ },
+ "Chihuahua|MX": {
+  "qid": "Q655",
+  "sitelinks": 110
+ },
+ "Chimbote|PE": {
+  "qid": "Q518431",
+  "sitelinks": 47
+ },
+ "Chita|RU": {
+  "qid": "Q53139",
+  "sitelinks": 93
+ },
+ "Chongqing|CN": {
+  "qid": "Q11725",
+  "sitelinks": 153
+ },
+ "Christchurch|NZ": {
+  "qid": "Q79990",
+  "sitelinks": 128
+ },
+ "City of Port Phillip|AU": {
+  "qid": "Q747477",
+  "sitelinks": 12
+ },
+ "City of Westminster|GB": {
+  "qid": "Q179351",
+  "sitelinks": 93
+ },
+ "Ciudad Apodaca|MX": {
+  "qid": "Q1782406",
+  "sitelinks": 37
+ },
+ "Ciudad General Escobedo|MX": {
+  "qid": "Q778941",
+  "sitelinks": 28
+ },
+ "Ciudad Juárez|MX": {
+  "qid": "Q26590",
+  "sitelinks": 90
+ },
+ "Ciudad Lineal|ES": {
+  "qid": "Q1763694",
+  "sitelinks": 24
+ },
+ "Ciudad López Mateos|MX": {
+  "qid": "Q1963483",
+  "sitelinks": 28
+ },
+ "Ciudad Nezahualcoyotl|MX": {
+  "qid": "Q210307",
+  "sitelinks": 57
+ },
+ "Ciudad Obregón|MX": {
+  "qid": "Q681340",
+  "sitelinks": 42
+ },
+ "Ciudad Victoria|MX": {
+  "qid": "Q331661",
+  "sitelinks": 58
+ },
+ "Cleveland|US": {
+  "qid": "Q37320",
+  "sitelinks": 139
+ },
+ "Cluj-Napoca|RO": {
+  "qid": "Q100188",
+  "sitelinks": 123
+ },
+ "Coffs Harbour|AU": {
+  "qid": "Q604283",
+  "sitelinks": 49
+ },
+ "Coimbatore|IN": {
+  "qid": "Q9885",
+  "sitelinks": 89
+ },
+ "Colorado Springs|US": {
+  "qid": "Q49258",
+  "sitelinks": 116
+ },
+ "Columbus|US": {
+  "qid": "Q16567",
+  "sitelinks": 157
+ },
+ "Constanţa|RO": {
+  "qid": "Q79808",
+  "sitelinks": 109
+ },
+ "Contagem|BR": {
+  "qid": "Q271333",
+  "sitelinks": 49
+ },
+ "Copenhagen|DK": {
+  "qid": "Q1748",
+  "sitelinks": 246
+ },
+ "Córdoba|AR": {
+  "qid": "Q44210",
+  "sitelinks": 108
+ },
+ "Córdoba|ES": {
+  "qid": "Q5818",
+  "sitelinks": 140
+ },
+ "Corpus Christi|US": {
+  "qid": "Q49242",
+  "sitelinks": 94
+ },
+ "Corrientes|AR": {
+  "qid": "Q44211",
+  "sitelinks": 65
+ },
+ "Çorum|TR": {
+  "qid": "Q272947",
+  "sitelinks": 81
+ },
+ "Coventry|GB": {
+  "qid": "Q6225",
+  "sitelinks": 105
+ },
+ "Coyoacán|MX": {
+  "qid": "Q661315",
+  "sitelinks": 48
+ },
+ "Craigieburn|AU": {
+  "qid": "Q5181698",
+  "sitelinks": 10
+ },
+ "Craiova|RO": {
+  "qid": "Q168057",
+  "sitelinks": 95
+ },
+ "Cuauhtémoc|MX": {
+  "qid": "Q645293",
+  "sitelinks": 24
+ },
+ "Cuautitlán Izcalli|MX": {
+  "qid": "Q1321216",
+  "sitelinks": 30
+ },
+ "Cúcuta|CO": {
+  "qid": "Q216847",
+  "sitelinks": 76
+ },
+ "Cuernavaca|MX": {
+  "qid": "Q204245",
+  "sitelinks": 78
+ },
+ "Cuiabá|BR": {
+  "qid": "Q170762",
+  "sitelinks": 88
+ },
+ "Culiacán|MX": {
+  "qid": "Q211760",
+  "sitelinks": 74
+ },
+ "Curitiba|BR": {
+  "qid": "Q4361",
+  "sitelinks": 260
+ },
+ "Cusco|PE": {
+  "qid": "Q5582862",
+  "sitelinks": 115
+ },
+ "Częstochowa|PL": {
+  "qid": "Q103217",
+  "sitelinks": 95
+ },
+ "Daegu|KR": {
+  "qid": "Q20927",
+  "sitelinks": 107
+ },
+ "Dakar|SN": {
+  "qid": "Q3718",
+  "sitelinks": 177
+ },
+ "Dalian|CN": {
+  "qid": "Q74881",
+  "sitelinks": 104
+ },
+ "Dallas|US": {
+  "qid": "Q16557",
+  "sitelinks": 177
+ },
+ "Dar es Salaam|TZ": {
+  "qid": "Q1960",
+  "sitelinks": 142
+ },
+ "Darwin|AU": {
+  "qid": "Q11568",
+  "sitelinks": 135
+ },
+ "Delhi|IN": {
+  "qid": "Q1353",
+  "sitelinks": 204
+ },
+ "Denizli|TR": {
+  "qid": "Q170967",
+  "sitelinks": 92
+ },
+ "Denver|US": {
+  "qid": "Q16554",
+  "sitelinks": 185
+ },
+ "Depok|ID": {
+  "qid": "Q10396",
+  "sitelinks": 71
+ },
+ "Derby|GB": {
+  "qid": "Q43475",
+  "sitelinks": 98
+ },
+ "Detroit|US": {
+  "qid": "Q12439",
+  "sitelinks": 175
+ },
+ "Dhaka|BD": {
+  "qid": "Q1354",
+  "sitelinks": 222
+ },
+ "Diadema|BR": {
+  "qid": "Q651891",
+  "sitelinks": 46
+ },
+ "Diyarbakır|TR": {
+  "qid": "Q83387",
+  "sitelinks": 101
+ },
+ "Dnipro|UA": {
+  "qid": "Q48256",
+  "sitelinks": 145
+ },
+ "Donetsk|UA": {
+  "qid": "Q43070",
+  "sitelinks": 149
+ },
+ "Dongguan|CN": {
+  "qid": "Q59218",
+  "sitelinks": 85
+ },
+ "Dortmund|DE": {
+  "qid": "Q1295",
+  "sitelinks": 153
+ },
+ "Dresden|DE": {
+  "qid": "Q1731",
+  "sitelinks": 183
+ },
+ "Dubai|AE": {
+  "qid": "Q612",
+  "sitelinks": 219
+ },
+ "Dublin|IE": {
+  "qid": "Q1761",
+  "sitelinks": 238
+ },
+ "Duisburg|DE": {
+  "qid": "Q2100",
+  "sitelinks": 127
+ },
+ "Dunedin|NZ": {
+  "qid": "Q133073",
+  "sitelinks": 86
+ },
+ "Duque de Caxias|BR": {
+  "qid": "Q193021",
+  "sitelinks": 56
+ },
+ "Durban|ZA": {
+  "qid": "Q5468",
+  "sitelinks": 135
+ },
+ "Düsseldorf|DE": {
+  "qid": "Q1718",
+  "sitelinks": 174
+ },
+ "Dzerzhinsk|RU": {
+  "qid": "Q76493",
+  "sitelinks": 68
+ },
+ "East London|ZA": {
+  "qid": "Q209537",
+  "sitelinks": 66
+ },
+ "Ebute Ikorodu|NG": {
+  "qid": "Q33434476",
+  "sitelinks": 2
+ },
+ "Ecatepec de Morelos|MX": {
+  "qid": "Q15121208",
+  "sitelinks": 67
+ },
+ "Edinburgh|GB": {
+  "qid": "Q23436",
+  "sitelinks": 192
+ },
+ "Edmonton|CA": {
+  "qid": "Q2096",
+  "sitelinks": 137
+ },
+ "Eimsbüttel|DE": {
+  "qid": "Q1632",
+  "sitelinks": 29
+ },
+ "Eindhoven|NL": {
+  "qid": "Q9832",
+  "sitelinks": 116
+ },
+ "Eixample|ES": {
+  "qid": "Q64124",
+  "sitelinks": 39
+ },
+ "El Paso|US": {
+  "qid": "Q16562",
+  "sitelinks": 122
+ },
+ "Elazığ|TR": {
+  "qid": "Q174060",
+  "sitelinks": 82
+ },
+ "Elche|ES": {
+  "qid": "Q10509",
+  "sitelinks": 90
+ },
+ "Eldoret|KE": {
+  "qid": "Q322149",
+  "sitelinks": 53
+ },
+ "Ensenada|MX": {
+  "qid": "Q656189",
+  "sitelinks": 52
+ },
+ "Enugu|NG": {
+  "qid": "Q3817714",
+  "sitelinks": 62
+ },
+ "Erfurt|DE": {
+  "qid": "Q1729",
+  "sitelinks": 144
+ },
+ "Erzurum|TR": {
+  "qid": "Q122803",
+  "sitelinks": 94
+ },
+ "Esenler|TR": {
+  "qid": "Q378714",
+  "sitelinks": 41
+ },
+ "Esenyurt|TR": {
+  "qid": "Q268983",
+  "sitelinks": 42
+ },
+ "Eskişehir|TR": {
+  "qid": "Q168866",
+  "sitelinks": 95
+ },
+ "Esna|EG": {
+  "qid": "Q626031",
+  "sitelinks": 48
+ },
+ "Espoo|FI": {
+  "qid": "Q47034",
+  "sitelinks": 108
+ },
+ "Essen|DE": {
+  "qid": "Q2066",
+  "sitelinks": 134
+ },
+ "Etobicoke|CA": {
+  "qid": "Q1020159",
+  "sitelinks": 25
+ },
+ "Evaton|ZA": {
+  "qid": "Q4860484",
+  "sitelinks": 13
+ },
+ "Faisalabad|PK": {
+  "qid": "Q173985",
+  "sitelinks": 98
+ },
+ "Feira de Santana|BR": {
+  "qid": "Q156406",
+  "sitelinks": 103
+ },
+ "Fes|MA": {
+  "qid": "Q80985",
+  "sitelinks": 124
+ },
+ "Florence|IT": {
+  "qid": "Q2044",
+  "sitelinks": 214
+ },
+ "Florianópolis|BR": {
+  "qid": "Q132997",
+  "sitelinks": 93
+ },
+ "Fort Worth|US": {
+  "qid": "Q16558",
+  "sitelinks": 130
+ },
+ "Fortaleza|BR": {
+  "qid": "Q43463",
+  "sitelinks": 125
+ },
+ "Foshan|CN": {
+  "qid": "Q34412",
+  "sitelinks": 81
+ },
+ "Franca|BR": {
+  "qid": "Q504587",
+  "sitelinks": 49
+ },
+ "Frankfurt am Main|DE": {
+  "qid": "Q1794",
+  "sitelinks": 212
+ },
+ "Freiburg|DE": {
+  "qid": "Q2833",
+  "sitelinks": 127
+ },
+ "Fresno|US": {
+  "qid": "Q43301",
+  "sitelinks": 120
+ },
+ "Fuencarral-El Pardo|ES": {
+  "qid": "Q656196",
+  "sitelinks": 21
+ },
+ "Fuencarral|ES": {
+  "qid": "Q656196",
+  "sitelinks": 21
+ },
+ "Fuzhou|CN": {
+  "qid": "Q68481",
+  "sitelinks": 103
+ },
+ "Galaţi|RO": {
+  "qid": "Q170996",
+  "sitelinks": 89
+ },
+ "Ganzhou|CN": {
+  "qid": "Q363166",
+  "sitelinks": 53
+ },
+ "Gasteiz / Vitoria|ES": {
+  "qid": "Q14318",
+  "sitelinks": 114
+ },
+ "Gaziantep|TR": {
+  "qid": "Q93338",
+  "sitelinks": 120
+ },
+ "Gazipur|BD": {
+  "qid": "Q2460416",
+  "sitelinks": 36
+ },
+ "Gdańsk|PL": {
+  "qid": "Q1792",
+  "sitelinks": 172
+ },
+ "Gdynia|PL": {
+  "qid": "Q385",
+  "sitelinks": 106
+ },
+ "Gebze|TR": {
+  "qid": "Q206116",
+  "sitelinks": 67
+ },
+ "Geelong|AU": {
+  "qid": "Q231765",
+  "sitelinks": 76
+ },
+ "Gelsenkirchen|DE": {
+  "qid": "Q2765",
+  "sitelinks": 110
+ },
+ "Genoa|IT": {
+  "qid": "Q1449",
+  "sitelinks": 179
+ },
+ "Gent|BE": {
+  "qid": "Q1296",
+  "sitelinks": 146
+ },
+ "Gijón|ES": {
+  "qid": "Q12273",
+  "sitelinks": 100
+ },
+ "Giza|EG": {
+  "qid": "Q81788",
+  "sitelinks": 115
+ },
+ "Glasgow|GB": {
+  "qid": "Q4093",
+  "sitelinks": 174
+ },
+ "Goiânia|BR": {
+  "qid": "Q83189",
+  "sitelinks": 97
+ },
+ "Gold Coast|AU": {
+  "qid": "Q140075",
+  "sitelinks": 93
+ },
+ "Gombe|NG": {
+  "qid": "Q376241",
+  "sitelinks": 63
+ },
+ "Gonder|ET": {
+  "qid": "Q218861",
+  "sitelinks": 68
+ },
+ "Göteborg|SE": {
+  "qid": "Q25287",
+  "sitelinks": 160
+ },
+ "Gqeberha|ZA": {
+  "qid": "Q125434",
+  "sitelinks": 99
+ },
+ "Grajaú|BR": {
+  "qid": "Q10290864",
+  "sitelinks": 5
+ },
+ "Granada|ES": {
+  "qid": "Q8810",
+  "sitelinks": 151
+ },
+ "Graz|AT": {
+  "qid": "Q13298",
+  "sitelinks": 155
+ },
+ "Groningen|NL": {
+  "qid": "Q749",
+  "sitelinks": 115
+ },
+ "Grozny|RU": {
+  "qid": "Q5196",
+  "sitelinks": 127
+ },
+ "Guadalajara|MX": {
+  "qid": "Q9022",
+  "sitelinks": 183
+ },
+ "Guadalupe|MX": {
+  "qid": "Q938835",
+  "sitelinks": 50
+ },
+ "Guangzhou|CN": {
+  "qid": "Q16572",
+  "sitelinks": 171
+ },
+ "Guarujá|BR": {
+  "qid": "Q271374",
+  "sitelinks": 54
+ },
+ "Guarulhos|BR": {
+  "qid": "Q184409",
+  "sitelinks": 70
+ },
+ "Guayaquil|EC": {
+  "qid": "Q43509",
+  "sitelinks": 116
+ },
+ "Guiyang|CN": {
+  "qid": "Q192271",
+  "sitelinks": 91
+ },
+ "Gujranwala|PK": {
+  "qid": "Q243322",
+  "sitelinks": 68
+ },
+ "Gustavo Adolfo Madero|MX": {
+  "qid": "Q2027082",
+  "sitelinks": 25
+ },
+ "Haikou|CN": {
+  "qid": "Q189823",
+  "sitelinks": 90
+ },
+ "Haiphong|VN": {
+  "qid": "Q72818",
+  "sitelinks": 91
+ },
+ "Halifax|CA": {
+  "qid": "Q2141",
+  "sitelinks": 125
+ },
+ "Halle (Saale)|DE": {
+  "qid": "Q2814",
+  "sitelinks": 122
+ },
+ "Hamburg-Mitte|DE": {
+  "qid": "Q1626",
+  "sitelinks": 28
+ },
+ "Hamburg-Nord|DE": {
+  "qid": "Q1627",
+  "sitelinks": 26
+ },
+ "Hamburg|DE": {
+  "qid": "Q1055",
+  "sitelinks": 230
+ },
+ "Hamilton|CA": {
+  "qid": "Q133116",
+  "sitelinks": 95
+ },
+ "Hamilton|NZ": {
+  "qid": "Q200028",
+  "sitelinks": 79
+ },
+ "Hangzhou|CN": {
+  "qid": "Q4970",
+  "sitelinks": 131
+ },
+ "Hannover|DE": {
+  "qid": "Q1715",
+  "sitelinks": 172
+ },
+ "Hanoi|VN": {
+  "qid": "Q1858",
+  "sitelinks": 202
+ },
+ "Harbin|CN": {
+  "qid": "Q42956",
+  "sitelinks": 134
+ },
+ "Hastings|NZ": {
+  "qid": "Q1015690",
+  "sitelinks": 36
+ },
+ "Havana|CU": {
+  "qid": "Q1563",
+  "sitelinks": 199
+ },
+ "Hefei|CN": {
+  "qid": "Q185684",
+  "sitelinks": 96
+ },
+ "Helsinki|FI": {
+  "qid": "Q1757",
+  "sitelinks": 293
+ },
+ "Hermosillo|MX": {
+  "qid": "Q189138",
+  "sitelinks": 78
+ },
+ "Heroica Matamoros|MX": {
+  "qid": "Q738353",
+  "sitelinks": 43
+ },
+ "Ho Chi Minh City|VN": {
+  "qid": "Q1854",
+  "sitelinks": 257
+ },
+ "Hobart|AU": {
+  "qid": "Q40191",
+  "sitelinks": 135
+ },
+ "Hohhot|CN": {
+  "qid": "Q535534",
+  "sitelinks": 83
+ },
+ "Holguín|CU": {
+  "qid": "Q244154",
+  "sitelinks": 63
+ },
+ "Holosiyiv|UA": {
+  "qid": "Q2248375",
+  "sitelinks": 23
+ },
+ "Hong Kong|HK": {
+  "qid": "Q8646",
+  "sitelinks": 303
+ },
+ "Honolulu|US": {
+  "qid": "Q18094",
+  "sitelinks": 191
+ },
+ "Horlivka|UA": {
+  "qid": "Q157260",
+  "sitelinks": 73
+ },
+ "Houston|US": {
+  "qid": "Q16555",
+  "sitelinks": 192
+ },
+ "Huai'an|CN": {
+  "qid": "Q57818",
+  "sitelinks": 47
+ },
+ "Huancayo|PE": {
+  "qid": "Q468782",
+  "sitelinks": 59
+ },
+ "Huizhou|CN": {
+  "qid": "Q59173",
+  "sitelinks": 60
+ },
+ "Hyderabad|IN": {
+  "qid": "Q1361",
+  "sitelinks": 147
+ },
+ "Iaşi|RO": {
+  "qid": "Q46852",
+  "sitelinks": 108
+ },
+ "Ibadan|NG": {
+  "qid": "Q183298",
+  "sitelinks": 79
+ },
+ "Ibagué|CO": {
+  "qid": "Q222755",
+  "sitelinks": 65
+ },
+ "Ikare|NG": {
+  "qid": "Q3320803",
+  "sitelinks": 11
+ },
+ "Ile-Ife|NG": {
+  "qid": "Q180084",
+  "sitelinks": 44
+ },
+ "Ilorin|NG": {
+  "qid": "Q587085",
+  "sitelinks": 55
+ },
+ "Incheon|KR": {
+  "qid": "Q20934",
+  "sitelinks": 121
+ },
+ "Indianapolis|US": {
+  "qid": "Q6346",
+  "sitelinks": 163
+ },
+ "Indore|IN": {
+  "qid": "Q66616",
+  "sitelinks": 101
+ },
+ "Invercargill|NZ": {
+  "qid": "Q31805",
+  "sitelinks": 61
+ },
+ "Iquitos|PE": {
+  "qid": "Q193289",
+  "sitelinks": 74
+ },
+ "Irapuato|MX": {
+  "qid": "Q816845",
+  "sitelinks": 47
+ },
+ "Irkutsk|RU": {
+  "qid": "Q6576",
+  "sitelinks": 131
+ },
+ "İskenderun|TR": {
+  "qid": "Q174341",
+  "sitelinks": 80
+ },
+ "Islington|GB": {
+  "qid": "Q205817",
+  "sitelinks": 50
+ },
+ "Ismailia|EG": {
+  "qid": "Q217156",
+  "sitelinks": 70
+ },
+ "Istanbul|TR": {
+  "qid": "Q406",
+  "sitelinks": 290
+ },
+ "Itaquaquecetuba|BR": {
+  "qid": "Q330202",
+  "sitelinks": 47
+ },
+ "Ivano-Frankivsk|UA": {
+  "qid": "Q178269",
+  "sitelinks": 99
+ },
+ "Ivanovo|RU": {
+  "qid": "Q2654",
+  "sitelinks": 122
+ },
+ "Ixtapaluca|MX": {
+  "qid": "Q1130484",
+  "sitelinks": 36
+ },
+ "Izhevsk|RU": {
+  "qid": "Q5426",
+  "sitelinks": 106
+ },
+ "İzmir|TR": {
+  "qid": "Q35997",
+  "sitelinks": 165
+ },
+ "Iztacalco|MX": {
+  "qid": "Q953866",
+  "sitelinks": 26
+ },
+ "Iztapalapa|MX": {
+  "qid": "Q741771",
+  "sitelinks": 35
+ },
+ "Jaboatão dos Guararapes|BR": {
+  "qid": "Q271393",
+  "sitelinks": 52
+ },
+ "Jaboatão|BR": {
+  "qid": "Q271393",
+  "sitelinks": 52
+ },
+ "Jacksonville|US": {
+  "qid": "Q16568",
+  "sitelinks": 139
+ },
+ "Jaipur|IN": {
+  "qid": "Q66485",
+  "sitelinks": 145
+ },
+ "Jakarta|ID": {
+  "qid": "Q3630",
+  "sitelinks": 251
+ },
+ "Jardim Angela|BR": {
+  "qid": "Q10306374",
+  "sitelinks": 7
+ },
+ "Jeddah|SA": {
+  "qid": "Q374365",
+  "sitelinks": 162
+ },
+ "Jerez de la Frontera|ES": {
+  "qid": "Q12303",
+  "sitelinks": 96
+ },
+ "Jijiga|ET": {
+  "qid": "Q755763",
+  "sitelinks": 50
+ },
+ "Jinan|CN": {
+  "qid": "Q170247",
+  "sitelinks": 105
+ },
+ "João Pessoa|BR": {
+  "qid": "Q167436",
+  "sitelinks": 79
+ },
+ "Johannesburg|ZA": {
+  "qid": "Q34647",
+  "sitelinks": 187
+ },
+ "Joinville|BR": {
+  "qid": "Q156819",
+  "sitelinks": 61
+ },
+ "Jos|NG": {
+  "qid": "Q321079",
+  "sitelinks": 61
+ },
+ "Juiz de Fora|BR": {
+  "qid": "Q193019",
+  "sitelinks": 60
+ },
+ "Jundiaí|BR": {
+  "qid": "Q275109",
+  "sitelinks": 54
+ },
+ "Kabul|AF": {
+  "qid": "Q5838",
+  "sitelinks": 223
+ },
+ "Kaduna|NG": {
+  "qid": "Q208318",
+  "sitelinks": 61
+ },
+ "Kahramanmaraş|TR": {
+  "qid": "Q134703",
+  "sitelinks": 89
+ },
+ "Kakamega|KE": {
+  "qid": "Q302912",
+  "sitelinks": 38
+ },
+ "Kaliningrad|RU": {
+  "qid": "Q1829",
+  "sitelinks": 157
+ },
+ "Kalininskiy|RU": {
+  "qid": "Q1267403",
+  "sitelinks": 20
+ },
+ "Kaluga|RU": {
+  "qid": "Q2837",
+  "sitelinks": 103
+ },
+ "Kamyanske|UA": {
+  "qid": "Q156719",
+  "sitelinks": 68
+ },
+ "Kano|NG": {
+  "qid": "Q182984",
+  "sitelinks": 87
+ },
+ "Kanpur|IN": {
+  "qid": "Q66568",
+  "sitelinks": 109
+ },
+ "Kansas City|US": {
+  "qid": "Q41819",
+  "sitelinks": 123
+ },
+ "Kaohsiung|TW": {
+  "qid": "Q181557",
+  "sitelinks": 103
+ },
+ "Karabağlar|TR": {
+  "qid": "Q3123584",
+  "sitelinks": 19
+ },
+ "Karachi|PK": {
+  "qid": "Q8660",
+  "sitelinks": 205
+ },
+ "Karlsruhe|DE": {
+  "qid": "Q1040",
+  "sitelinks": 133
+ },
+ "Katowice|PL": {
+  "qid": "Q588",
+  "sitelinks": 163
+ },
+ "Katsina|NG": {
+  "qid": "Q937487",
+  "sitelinks": 45
+ },
+ "Kayseri|TR": {
+  "qid": "Q48338",
+  "sitelinks": 117
+ },
+ "Kazan|RU": {
+  "qid": "Q900",
+  "sitelinks": 164
+ },
+ "Kemerovo|RU": {
+  "qid": "Q6076",
+  "sitelinks": 119
+ },
+ "Kenitra|MA": {
+  "qid": "Q478207",
+  "sitelinks": 62
+ },
+ "Khabarovsk Vtoroy|RU": {
+  "qid": "Q4494333",
+  "sitelinks": 5
+ },
+ "Khabarovsk|RU": {
+  "qid": "Q4454",
+  "sitelinks": 122
+ },
+ "Kharkiv|UA": {
+  "qid": "Q42308",
+  "sitelinks": 171
+ },
+ "Khartoum|SD": {
+  "qid": "Q1963",
+  "sitelinks": 183
+ },
+ "Kherson|UA": {
+  "qid": "Q156732",
+  "sitelinks": 121
+ },
+ "Khimki|RU": {
+  "qid": "Q197582",
+  "sitelinks": 76
+ },
+ "Khmelnytskyi|UA": {
+  "qid": "Q171331",
+  "sitelinks": 100
+ },
+ "Kiel|DE": {
+  "qid": "Q1707",
+  "sitelinks": 142
+ },
+ "Kingston upon Hull|GB": {
+  "qid": "Q128147",
+  "sitelinks": 90
+ },
+ "Kingston|JM": {
+  "qid": "Q34692",
+  "sitelinks": 159
+ },
+ "Kinshasa|CD": {
+  "qid": "Q3838",
+  "sitelinks": 207
+ },
+ "Kirov|RU": {
+  "qid": "Q5387",
+  "sitelinks": 121
+ },
+ "Kisumu|KE": {
+  "qid": "Q214485",
+  "sitelinks": 68
+ },
+ "Kolkata|IN": {
+  "qid": "Q1348",
+  "sitelinks": 205
+ },
+ "Köln|DE": {
+  "qid": "Q365",
+  "sitelinks": 190
+ },
+ "Kom Ombo|EG": {
+  "qid": "Q138833",
+  "sitelinks": 42
+ },
+ "Komsomolsk-on-Amur|RU": {
+  "qid": "Q154801",
+  "sitelinks": 82
+ },
+ "Konya|TR": {
+  "qid": "Q79857",
+  "sitelinks": 115
+ },
+ "Kostroma|RU": {
+  "qid": "Q2592",
+  "sitelinks": 97
+ },
+ "Kowloon|HK": {
+  "qid": "Q239143",
+  "sitelinks": 68
+ },
+ "Kraków|PL": {
+  "qid": "Q31487",
+  "sitelinks": 185
+ },
+ "Krasnodar|RU": {
+  "qid": "Q3646",
+  "sitelinks": 226
+ },
+ "Krasnogvargeisky|RU": {
+  "qid": "Q1142579",
+  "sitelinks": 17
+ },
+ "Krasnoyarsk|RU": {
+  "qid": "Q919",
+  "sitelinks": 123
+ },
+ "Krefeld|DE": {
+  "qid": "Q2805",
+  "sitelinks": 101
+ },
+ "Kremenchuk|UA": {
+  "qid": "Q156724",
+  "sitelinks": 81
+ },
+ "Kropyvnytskyy|UA": {
+  "qid": "Q158292",
+  "sitelinks": 97
+ },
+ "Kryvyy Rih|UA": {
+  "qid": "Q157137",
+  "sitelinks": 98
+ },
+ "Kumasi|GH": {
+  "qid": "Q182059",
+  "sitelinks": 95
+ },
+ "Kunming|CN": {
+  "qid": "Q182852",
+  "sitelinks": 110
+ },
+ "Kunshan|CN": {
+  "qid": "Q42773",
+  "sitelinks": 39
+ },
+ "Kurgan|RU": {
+  "qid": "Q5741",
+  "sitelinks": 119
+ },
+ "Kursk|RU": {
+  "qid": "Q3178",
+  "sitelinks": 123
+ },
+ "Kyiv|UA": {
+  "qid": "Q1899",
+  "sitelinks": 277
+ },
+ "L'Hospitalet de Llobregat|ES": {
+  "qid": "Q15470",
+  "sitelinks": 90
+ },
+ "La Paz|BO": {
+  "qid": "Q1491",
+  "sitelinks": 158
+ },
+ "Lagos|NG": {
+  "qid": "Q8673",
+  "sitelinks": 189
+ },
+ "Lahore|PK": {
+  "qid": "Q11739",
+  "sitelinks": 142
+ },
+ "Lanzhou|CN": {
+  "qid": "Q183584",
+  "sitelinks": 98
+ },
+ "Las Palmas de Gran Canaria|ES": {
+  "qid": "Q11974",
+  "sitelinks": 116
+ },
+ "Las Vegas|US": {
+  "qid": "Q23768",
+  "sitelinks": 197
+ },
+ "Latina|ES": {
+  "qid": "Q794954",
+  "sitelinks": 21
+ },
+ "Launceston|AU": {
+  "qid": "Q339527",
+  "sitelinks": 61
+ },
+ "Laval|CA": {
+  "qid": "Q141810",
+  "sitelinks": 67
+ },
+ "Leeds|GB": {
+  "qid": "Q39121",
+  "sitelinks": 136
+ },
+ "Leicester|GB": {
+  "qid": "Q83065",
+  "sitelinks": 114
+ },
+ "Leipzig|DE": {
+  "qid": "Q2079",
+  "sitelinks": 170
+ },
+ "Lekki|NG": {
+  "qid": "Q1816531",
+  "sitelinks": 10
+ },
+ "León de los Aldama|MX": {
+  "qid": "Q189128",
+  "sitelinks": 80
+ },
+ "Lexington-Fayette|US": {
+  "qid": "Q49241",
+  "sitelinks": 101
+ },
+ "Lexington|US": {
+  "qid": "Q49241",
+  "sitelinks": 101
+ },
+ "Lianyungang|CN": {
+  "qid": "Q57756",
+  "sitelinks": 49
+ },
+ "Lille|FR": {
+  "qid": "Q648",
+  "sitelinks": 161
+ },
+ "Lima|PE": {
+  "qid": "Q2868",
+  "sitelinks": 219
+ },
+ "Linyi|CN": {
+  "qid": "Q373346",
+  "sitelinks": 51
+ },
+ "Lipetsk|RU": {
+  "qid": "Q3510",
+  "sitelinks": 123
+ },
+ "Lisbon|PT": {
+  "qid": "Q597",
+  "sitelinks": 267
+ },
+ "Liverpool|GB": {
+  "qid": "Q24826",
+  "sitelinks": 183
+ },
+ "Łódź|PL": {
+  "qid": "Q580",
+  "sitelinks": 138
+ },
+ "Logan City|AU": {
+  "qid": "Q1782552",
+  "sitelinks": 22
+ },
+ "Lomé|TG": {
+  "qid": "Q3792",
+  "sitelinks": 163
+ },
+ "London|CA": {
+  "qid": "Q92561",
+  "sitelinks": 86
+ },
+ "London|GB": {
+  "qid": "Q84",
+  "sitelinks": 356
+ },
+ "Londrina|BR": {
+  "qid": "Q192387",
+  "sitelinks": 60
+ },
+ "Long Beach|US": {
+  "qid": "Q16739",
+  "sitelinks": 113
+ },
+ "Los Angeles|US": {
+  "qid": "Q65",
+  "sitelinks": 280
+ },
+ "Louisville|US": {
+  "qid": "Q43668",
+  "sitelinks": 117
+ },
+ "Lower Hutt|NZ": {
+  "qid": "Q1015681",
+  "sitelinks": 43
+ },
+ "Luanda|AO": {
+  "qid": "Q3897",
+  "sitelinks": 186
+ },
+ "Lübeck|DE": {
+  "qid": "Q2843",
+  "sitelinks": 135
+ },
+ "Lublin|PL": {
+  "qid": "Q37333",
+  "sitelinks": 124
+ },
+ "Lubumbashi|CD": {
+  "qid": "Q187593",
+  "sitelinks": 78
+ },
+ "Lucknow|IN": {
+  "qid": "Q47916",
+  "sitelinks": 125
+ },
+ "Luhansk|UA": {
+  "qid": "Q134279",
+  "sitelinks": 126
+ },
+ "Lüliang|CN": {
+  "qid": "Q73186",
+  "sitelinks": 38
+ },
+ "Lusaka|ZM": {
+  "qid": "Q3881",
+  "sitelinks": 165
+ },
+ "Luton|GB": {
+  "qid": "Q203889",
+  "sitelinks": 79
+ },
+ "Lutsk|UA": {
+  "qid": "Q7550",
+  "sitelinks": 97
+ },
+ "Luxor|EG": {
+  "qid": "Q130514",
+  "sitelinks": 105
+ },
+ "Lviv|UA": {
+  "qid": "Q36036",
+  "sitelinks": 177
+ },
+ "Lyon|FR": {
+  "qid": "Q456",
+  "sitelinks": 197
+ },
+ "Macapá|BR": {
+  "qid": "Q180215",
+  "sitelinks": 74
+ },
+ "Maceió|BR": {
+  "qid": "Q168888",
+  "sitelinks": 89
+ },
+ "Mackay|AU": {
+  "qid": "Q704371",
+  "sitelinks": 50
+ },
+ "Madīnat an Naşr|EG": {
+  "qid": "Q1309979",
+  "sitelinks": 16
+ },
+ "Madrid|ES": {
+  "qid": "Q2807",
+  "sitelinks": 305
+ },
+ "Magdeburg|DE": {
+  "qid": "Q1733",
+  "sitelinks": 141
+ },
+ "Magnitogorsk|RU": {
+  "qid": "Q95449",
+  "sitelinks": 81
+ },
+ "Maiduguri|NG": {
+  "qid": "Q221436",
+  "sitelinks": 69
+ },
+ "Mainz|DE": {
+  "qid": "Q1720",
+  "sitelinks": 150
+ },
+ "Maipú|CL": {
+  "qid": "Q16918",
+  "sitelinks": 28
+ },
+ "Maitland|AU": {
+  "qid": "Q606900",
+  "sitelinks": 37
+ },
+ "Makhachkala|RU": {
+  "qid": "Q5168",
+  "sitelinks": 118
+ },
+ "Makiivka|UA": {
+  "qid": "Q157134",
+  "sitelinks": 72
+ },
+ "Málaga|ES": {
+  "qid": "Q8851",
+  "sitelinks": 148
+ },
+ "Malatya|TR": {
+  "qid": "Q165995",
+  "sitelinks": 85
+ },
+ "Malmö|SE": {
+  "qid": "Q2211",
+  "sitelinks": 149
+ },
+ "Maltepe|TR": {
+  "qid": "Q739547",
+  "sitelinks": 35
+ },
+ "Manaus|BR": {
+  "qid": "Q40236",
+  "sitelinks": 129
+ },
+ "Manchester|GB": {
+  "qid": "Q18125",
+  "sitelinks": 185
+ },
+ "Mandurah|AU": {
+  "qid": "Q595542",
+  "sitelinks": 45
+ },
+ "Manhattan|US": {
+  "qid": "Q11299",
+  "sitelinks": 139
+ },
+ "Manisa|TR": {
+  "qid": "Q147089",
+  "sitelinks": 88
+ },
+ "Manizales|CO": {
+  "qid": "Q235190",
+  "sitelinks": 66
+ },
+ "Mannheim|DE": {
+  "qid": "Q2119",
+  "sitelinks": 128
+ },
+ "Manukau City|NZ": {
+  "qid": "Q986198",
+  "sitelinks": 24
+ },
+ "Mar del Plata|AR": {
+  "qid": "Q52607",
+  "sitelinks": 87
+ },
+ "Mar’ino|RU": {
+  "qid": "Q971065",
+  "sitelinks": 19
+ },
+ "Marienthal|DE": {
+  "qid": "Q1816",
+  "sitelinks": 9
+ },
+ "Maringá|BR": {
+  "qid": "Q208669",
+  "sitelinks": 56
+ },
+ "Markham|CA": {
+  "qid": "Q44016",
+  "sitelinks": 51
+ },
+ "Marne La Vallée|FR": {
+  "qid": "Q1061527",
+  "sitelinks": 25
+ },
+ "Marrakesh|MA": {
+  "qid": "Q101625",
+  "sitelinks": 142
+ },
+ "Marseille|FR": {
+  "qid": "Q23482",
+  "sitelinks": 192
+ },
+ "Mashhad|IR": {
+  "qid": "Q121157",
+  "sitelinks": 121
+ },
+ "Mauá|BR": {
+  "qid": "Q331300",
+  "sitelinks": 45
+ },
+ "Mazatlán|MX": {
+  "qid": "Q40194",
+  "sitelinks": 54
+ },
+ "Mbuji-Mayi|CD": {
+  "qid": "Q319660",
+  "sitelinks": 63
+ },
+ "Medan|ID": {
+  "qid": "Q5972",
+  "sitelinks": 109
+ },
+ "Medellín|CO": {
+  "qid": "Q48278",
+  "sitelinks": 151
+ },
+ "Mek'ele|ET": {
+  "qid": "Q332319",
+  "sitelinks": 69
+ },
+ "Meknes|MA": {
+  "qid": "Q178663",
+  "sitelinks": 95
+ },
+ "Melbourne City Centre|AU": {
+  "qid": "Q6811747",
+  "sitelinks": 12
+ },
+ "Melbourne|AU": {
+  "qid": "Q3141",
+  "sitelinks": 210
+ },
+ "Memphis|US": {
+  "qid": "Q16563",
+  "sitelinks": 139
+ },
+ "Mérida|MX": {
+  "qid": "Q165204",
+  "sitelinks": 85
+ },
+ "Merkezefendi|TR": {
+  "qid": "Q16895027",
+  "sitelinks": 11
+ },
+ "Mersin|TR": {
+  "qid": "Q134291",
+  "sitelinks": 96
+ },
+ "Mesa|US": {
+  "qid": "Q49261",
+  "sitelinks": 97
+ },
+ "Messina|IT": {
+  "qid": "Q13666",
+  "sitelinks": 140
+ },
+ "Mexicali|MX": {
+  "qid": "Q199440",
+  "sitelinks": 89
+ },
+ "Mexico City|MX": {
+  "qid": "Q1489",
+  "sitelinks": 260
+ },
+ "Miami|US": {
+  "qid": "Q8652",
+  "sitelinks": 203
+ },
+ "Miguel Hidalgo|MX": {
+  "qid": "Q1832732",
+  "sitelinks": 28
+ },
+ "Milan|IT": {
+  "qid": "Q490",
+  "sitelinks": 226
+ },
+ "Milton Keynes|GB": {
+  "qid": "Q204234",
+  "sitelinks": 69
+ },
+ "Milwaukee|US": {
+  "qid": "Q37836",
+  "sitelinks": 141
+ },
+ "Minna|NG": {
+  "qid": "Q994105",
+  "sitelinks": 37
+ },
+ "Minneapolis|US": {
+  "qid": "Q36091",
+  "sitelinks": 146
+ },
+ "Mississauga|CA": {
+  "qid": "Q50816",
+  "sitelinks": 83
+ },
+ "Mogadishu|SO": {
+  "qid": "Q2449",
+  "sitelinks": 170
+ },
+ "Mogi das Cruzes|BR": {
+  "qid": "Q194332",
+  "sitelinks": 61
+ },
+ "Mokotów|PL": {
+  "qid": "Q1634585",
+  "sitelinks": 26
+ },
+ "Mombasa|KE": {
+  "qid": "Q225641",
+  "sitelinks": 118
+ },
+ "Mönchengladbach|DE": {
+  "qid": "Q2758",
+  "sitelinks": 103
+ },
+ "Montería|CO": {
+  "qid": "Q852725",
+  "sitelinks": 57
+ },
+ "Monterrey|MX": {
+  "qid": "Q81033",
+  "sitelinks": 122
+ },
+ "Montes Claros|BR": {
+  "qid": "Q651906",
+  "sitelinks": 42
+ },
+ "Montpellier|FR": {
+  "qid": "Q6441",
+  "sitelinks": 147
+ },
+ "Montréal|CA": {
+  "qid": "Q340",
+  "sitelinks": 193
+ },
+ "Morelia|MX": {
+  "qid": "Q200252",
+  "sitelinks": 83
+ },
+ "Moscow|RU": {
+  "qid": "Q649",
+  "sitelinks": 337
+ },
+ "Multan|PK": {
+  "qid": "Q185453",
+  "sitelinks": 80
+ },
+ "Mumbai|IN": {
+  "qid": "Q1156",
+  "sitelinks": 230
+ },
+ "Munich|DE": {
+  "qid": "Q1726",
+  "sitelinks": 241
+ },
+ "Münster|DE": {
+  "qid": "Q2742",
+  "sitelinks": 125
+ },
+ "Muratpaşa|TR": {
+  "qid": "Q1503514",
+  "sitelinks": 16
+ },
+ "Murcia|ES": {
+  "qid": "Q12225",
+  "sitelinks": 115
+ },
+ "Murmansk|RU": {
+  "qid": "Q1763",
+  "sitelinks": 120
+ },
+ "Mykolayiv|UA": {
+  "qid": "Q41572",
+  "sitelinks": 101
+ },
+ "Naberezhnyye Chelny|RU": {
+  "qid": "Q95041",
+  "sitelinks": 77
+ },
+ "Nagoya|JP": {
+  "qid": "Q11751",
+  "sitelinks": 160
+ },
+ "Nagpur|IN": {
+  "qid": "Q1513",
+  "sitelinks": 102
+ },
+ "Nairobi|KE": {
+  "qid": "Q3870",
+  "sitelinks": 238
+ },
+ "Nakuru|KE": {
+  "qid": "Q239421",
+  "sitelinks": 62
+ },
+ "Nalchik|RU": {
+  "qid": "Q5265",
+  "sitelinks": 95
+ },
+ "Nanchang|CN": {
+  "qid": "Q171943",
+  "sitelinks": 96
+ },
+ "Nanjing|CN": {
+  "qid": "Q16666",
+  "sitelinks": 142
+ },
+ "Nanning|CN": {
+  "qid": "Q179608",
+  "sitelinks": 92
+ },
+ "Nantes|FR": {
+  "qid": "Q12191",
+  "sitelinks": 154
+ },
+ "Nantong|CN": {
+  "qid": "Q57947",
+  "sitelinks": 56
+ },
+ "Napier|NZ": {
+  "qid": "Q203380",
+  "sitelinks": 63
+ },
+ "Naples|IT": {
+  "qid": "Q2634",
+  "sitelinks": 207
+ },
+ "Nashville|US": {
+  "qid": "Q23197",
+  "sitelinks": 154
+ },
+ "Natal|BR": {
+  "qid": "Q131620",
+  "sitelinks": 98
+ },
+ "Naucalpan de Juárez|MX": {
+  "qid": "Q219574",
+  "sitelinks": 63
+ },
+ "Navi Mumbai|IN": {
+  "qid": "Q61445",
+  "sitelinks": 73
+ },
+ "Nazrēt|ET": {
+  "qid": "Q351427",
+  "sitelinks": 52
+ },
+ "Neiva|CO": {
+  "qid": "Q638260",
+  "sitelinks": 55
+ },
+ "Neue Neustadt|DE": {
+  "qid": "Q1979660",
+  "sitelinks": 4
+ },
+ "New Kingston|JM": {
+  "qid": "Q3338970",
+  "sitelinks": 3
+ },
+ "New Orleans|US": {
+  "qid": "Q34404",
+  "sitelinks": 175
+ },
+ "New Plymouth|NZ": {
+  "qid": "Q212984",
+  "sitelinks": 53
+ },
+ "New South Memphis|US": {
+  "qid": "Q49005943",
+  "sitelinks": 1
+ },
+ "New Taipei City|TW": {
+  "qid": "Q244898",
+  "sitelinks": 76
+ },
+ "New Territories|HK": {
+  "qid": "Q596660",
+  "sitelinks": 48
+ },
+ "New York City|US": {
+  "qid": "Q60",
+  "sitelinks": 325
+ },
+ "Newcastle upon Tyne|GB": {
+  "qid": "Q1425428",
+  "sitelinks": 119
+ },
+ "Newcastle|AU": {
+  "qid": "Q57278",
+  "sitelinks": 99
+ },
+ "Newcastle|ZA": {
+  "qid": "Q1027294",
+  "sitelinks": 29
+ },
+ "Nice|FR": {
+  "qid": "Q33959",
+  "sitelinks": 175
+ },
+ "Ningbo|CN": {
+  "qid": "Q42780",
+  "sitelinks": 79
+ },
+ "Niterói|BR": {
+  "qid": "Q178725",
+  "sitelinks": 69
+ },
+ "Nizhnekamsk|RU": {
+  "qid": "Q172657",
+  "sitelinks": 65
+ },
+ "Nizhnevartovsk|RU": {
+  "qid": "Q172637",
+  "sitelinks": 68
+ },
+ "Nizhniy Novgorod|RU": {
+  "qid": "Q891",
+  "sitelinks": 147
+ },
+ "Nizhny Tagil|RU": {
+  "qid": "Q98967",
+  "sitelinks": 78
+ },
+ "North Shore|NZ": {
+  "qid": "Q868671",
+  "sitelinks": 22
+ },
+ "Northampton|GB": {
+  "qid": "Q23115",
+  "sitelinks": 88
+ },
+ "Nottingham|GB": {
+  "qid": "Q41262",
+  "sitelinks": 122
+ },
+ "Nova Iguaçu|BR": {
+  "qid": "Q188897",
+  "sitelinks": 59
+ },
+ "Novokuznetsk|RU": {
+  "qid": "Q93910",
+  "sitelinks": 83
+ },
+ "Novorossiysk|RU": {
+  "qid": "Q15760",
+  "sitelinks": 95
+ },
+ "Novosibirsk|RU": {
+  "qid": "Q883",
+  "sitelinks": 159
+ },
+ "Nuevo Laredo|MX": {
+  "qid": "Q328846",
+  "sitelinks": 48
+ },
+ "Nürnberg|DE": {
+  "qid": "Q2090",
+  "sitelinks": 156
+ },
+ "Oakland|US": {
+  "qid": "Q17042",
+  "sitelinks": 131
+ },
+ "Oberhausen|DE": {
+  "qid": "Q2838",
+  "sitelinks": 101
+ },
+ "Obolon|UA": {
+  "qid": "Q2367180",
+  "sitelinks": 27
+ },
+ "Odesa|UA": {
+  "qid": "Q1874",
+  "sitelinks": 178
+ },
+ "Ogbomoso|NG": {
+  "qid": "Q500366",
+  "sitelinks": 39
+ },
+ "Ojo de Agua|MX": {
+  "qid": "Q1030019",
+  "sitelinks": 17
+ },
+ "Okene|NG": {
+  "qid": "Q2017187",
+  "sitelinks": 34
+ },
+ "Oklahoma City|US": {
+  "qid": "Q34863",
+  "sitelinks": 154
+ },
+ "Oldham|GB": {
+  "qid": "Q202628",
+  "sitelinks": 59
+ },
+ "Olinda|BR": {
+  "qid": "Q28301",
+  "sitelinks": 75
+ },
+ "Omaha|US": {
+  "qid": "Q43199",
+  "sitelinks": 126
+ },
+ "Omsk|RU": {
+  "qid": "Q898",
+  "sitelinks": 138
+ },
+ "Onitsha|NG": {
+  "qid": "Q852238",
+  "sitelinks": 47
+ },
+ "Ordu|TR": {
+  "qid": "Q483180",
+  "sitelinks": 80
+ },
+ "Orël|RU": {
+  "qid": "Q3129",
+  "sitelinks": 119
+ },
+ "Orenburg|RU": {
+  "qid": "Q5337",
+  "sitelinks": 105
+ },
+ "Orlando|US": {
+  "qid": "Q49233",
+  "sitelinks": 133
+ },
+ "Orsk|RU": {
+  "qid": "Q47166",
+  "sitelinks": 72
+ },
+ "Osaka|JP": {
+  "qid": "Q35765",
+  "sitelinks": 197
+ },
+ "Osasco|BR": {
+  "qid": "Q4035",
+  "sitelinks": 215
+ },
+ "Oslo|NO": {
+  "qid": "Q585",
+  "sitelinks": 245
+ },
+ "Osogbo|NG": {
+  "qid": "Q868203",
+  "sitelinks": 52
+ },
+ "Ostrava|CZ": {
+  "qid": "Q8385",
+  "sitelinks": 116
+ },
+ "Ottawa|CA": {
+  "qid": "Q1930",
+  "sitelinks": 231
+ },
+ "Ouagadougou|BF": {
+  "qid": "Q3777",
+  "sitelinks": 169
+ },
+ "Oujda|MA": {
+  "qid": "Q193802",
+  "sitelinks": 74
+ },
+ "Oulu|FI": {
+  "qid": "Q47048",
+  "sitelinks": 119
+ },
+ "Oviedo|ES": {
+  "qid": "Q14317",
+  "sitelinks": 119
+ },
+ "Owerri|NG": {
+  "qid": "Q583619",
+  "sitelinks": 43
+ },
+ "Oyo|NG": {
+  "qid": "Q503905",
+  "sitelinks": 60
+ },
+ "Palermo|IT": {
+  "qid": "Q2656",
+  "sitelinks": 175
+ },
+ "Palma|ES": {
+  "qid": "Q8826",
+  "sitelinks": 119
+ },
+ "Palmerston North|NZ": {
+  "qid": "Q212289",
+  "sitelinks": 56
+ },
+ "Palmira|CO": {
+  "qid": "Q989858",
+  "sitelinks": 36
+ },
+ "Paris|FR": {
+  "qid": "Q90",
+  "sitelinks": 366
+ },
+ "Pasto|CO": {
+  "qid": "Q320015",
+  "sitelinks": 61
+ },
+ "Paulista|BR": {
+  "qid": "Q949833",
+  "sitelinks": 41
+ },
+ "Pelotas|BR": {
+  "qid": "Q109188",
+  "sitelinks": 59
+ },
+ "Penza|RU": {
+  "qid": "Q5545",
+  "sitelinks": 117
+ },
+ "Pereira|CO": {
+  "qid": "Q51111",
+  "sitelinks": 69
+ },
+ "Perm|RU": {
+  "qid": "Q915",
+  "sitelinks": 135
+ },
+ "Perth|AU": {
+  "qid": "Q3183",
+  "sitelinks": 177
+ },
+ "Peshawar|PK": {
+  "qid": "Q1113311",
+  "sitelinks": 108
+ },
+ "Petrolina|BR": {
+  "qid": "Q842143",
+  "sitelinks": 47
+ },
+ "Petrozavodsk|RU": {
+  "qid": "Q1895",
+  "sitelinks": 105
+ },
+ "Philadelphia|US": {
+  "qid": "Q1345",
+  "sitelinks": 205
+ },
+ "Phoenix|US": {
+  "qid": "Q16556",
+  "sitelinks": 180
+ },
+ "Pietermaritzburg|ZA": {
+  "qid": "Q185591",
+  "sitelinks": 82
+ },
+ "Piracicaba|BR": {
+  "qid": "Q330175",
+  "sitelinks": 52
+ },
+ "Piura|PE": {
+  "qid": "Q223966",
+  "sitelinks": 63
+ },
+ "Plovdiv|BG": {
+  "qid": "Q459",
+  "sitelinks": 119
+ },
+ "Plymouth|GB": {
+  "qid": "Q43382",
+  "sitelinks": 109
+ },
+ "Point Cook|AU": {
+  "qid": "Q7207994",
+  "sitelinks": 10
+ },
+ "Poltava|UA": {
+  "qid": "Q156747",
+  "sitelinks": 105
+ },
+ "Popayán|CO": {
+  "qid": "Q335135",
+  "sitelinks": 63
+ },
+ "Porirua|NZ": {
+  "qid": "Q1015773",
+  "sitelinks": 37
+ },
+ "Port Harcourt|NG": {
+  "qid": "Q217432",
+  "sitelinks": 74
+ },
+ "Port Said|EG": {
+  "qid": "Q134509",
+  "sitelinks": 91
+ },
+ "Portland|US": {
+  "qid": "Q6106",
+  "sitelinks": 141
+ },
+ "Porto Alegre|BR": {
+  "qid": "Q40269",
+  "sitelinks": 126
+ },
+ "Porto Velho|BR": {
+  "qid": "Q172512",
+  "sitelinks": 77
+ },
+ "Porto|PT": {
+  "qid": "Q36433",
+  "sitelinks": 139
+ },
+ "Poznań|PL": {
+  "qid": "Q268",
+  "sitelinks": 141
+ },
+ "Prague|CZ": {
+  "qid": "Q1085",
+  "sitelinks": 268
+ },
+ "Praia Grande|BR": {
+  "qid": "Q851292",
+  "sitelinks": 42
+ },
+ "Preston|GB": {
+  "qid": "Q184090",
+  "sitelinks": 73
+ },
+ "Pretoria|ZA": {
+  "qid": "Q3926",
+  "sitelinks": 192
+ },
+ "Prokop’yevsk|RU": {
+  "qid": "Q184147",
+  "sitelinks": 52
+ },
+ "Pucallpa|PE": {
+  "qid": "Q217071",
+  "sitelinks": 53
+ },
+ "Puebla|MX": {
+  "qid": "Q79923",
+  "sitelinks": 109
+ },
+ "Puente Alto|CL": {
+  "qid": "Q51594",
+  "sitelinks": 40
+ },
+ "Puente de Vallecas|ES": {
+  "qid": "Q2003054",
+  "sitelinks": 20
+ },
+ "Pune|IN": {
+  "qid": "Q1538",
+  "sitelinks": 128
+ },
+ "Puyang|CN": {
+  "qid": "Q14267291",
+  "sitelinks": 2
+ },
+ "Pyongyang|KP": {
+  "qid": "Q18808",
+  "sitelinks": 200
+ },
+ "Qingdao|CN": {
+  "qid": "Q170322",
+  "sitelinks": 109
+ },
+ "Qingyang|CN": {
+  "qid": "Q533764",
+  "sitelinks": 41
+ },
+ "Québec|CA": {
+  "qid": "Q2145",
+  "sitelinks": 149
+ },
+ "Queens|US": {
+  "qid": "Q18424",
+  "sitelinks": 106
+ },
+ "Quezon City|PH": {
+  "qid": "Q1475",
+  "sitelinks": 97
+ },
+ "Quito|EC": {
+  "qid": "Q2900",
+  "sitelinks": 180
+ },
+ "Rabat|MA": {
+  "qid": "Q3551",
+  "sitelinks": 189
+ },
+ "Radom|PL": {
+  "qid": "Q104740",
+  "sitelinks": 81
+ },
+ "Raleigh|US": {
+  "qid": "Q41087",
+  "sitelinks": 134
+ },
+ "Rawalpindi|PK": {
+  "qid": "Q93230",
+  "sitelinks": 99
+ },
+ "Reading|GB": {
+  "qid": "Q161491",
+  "sitelinks": 91
+ },
+ "Recife|BR": {
+  "qid": "Q48344",
+  "sitelinks": 130
+ },
+ "Rennes|FR": {
+  "qid": "Q647",
+  "sitelinks": 141
+ },
+ "Reynosa|MX": {
+  "qid": "Q738303",
+  "sitelinks": 51
+ },
+ "Ribeirão das Neves|BR": {
+  "qid": "Q737689",
+  "sitelinks": 42
+ },
+ "Ribeirão Preto|BR": {
+  "qid": "Q188892",
+  "sitelinks": 61
+ },
+ "Rio Branco|BR": {
+  "qid": "Q171612",
+  "sitelinks": 85
+ },
+ "Rio de Janeiro|BR": {
+  "qid": "Q8678",
+  "sitelinks": 303
+ },
+ "Riverside|US": {
+  "qid": "Q49243",
+  "sitelinks": 92
+ },
+ "Rivne|UA": {
+  "qid": "Q174187",
+  "sitelinks": 101
+ },
+ "Riyadh|SA": {
+  "qid": "Q3692",
+  "sitelinks": 195
+ },
+ "Rockhampton|AU": {
+  "qid": "Q606162",
+  "sitelinks": 48
+ },
+ "Rome|IT": {
+  "qid": "Q220",
+  "sitelinks": 344
+ },
+ "Rosario|AR": {
+  "qid": "Q52535",
+  "sitelinks": 115
+ },
+ "Rostov-na-Donu|RU": {
+  "qid": "Q908",
+  "sitelinks": 143
+ },
+ "Rotorua|NZ": {
+  "qid": "Q208948",
+  "sitelinks": 63
+ },
+ "Rotterdam|NL": {
+  "qid": "Q34370",
+  "sitelinks": 170
+ },
+ "Rouen|FR": {
+  "qid": "Q30974",
+  "sitelinks": 156
+ },
+ "Ruiru|KE": {
+  "qid": "Q302246",
+  "sitelinks": 32
+ },
+ "Ryazan’|RU": {
+  "qid": "Q2746",
+  "sitelinks": 106
+ },
+ "Rybinsk|RU": {
+  "qid": "Q193413",
+  "sitelinks": 75
+ },
+ "Sabadell|ES": {
+  "qid": "Q12258",
+  "sitelinks": 83
+ },
+ "Sacramento|US": {
+  "qid": "Q18013",
+  "sitelinks": 174
+ },
+ "Saint Petersburg|RU": {
+  "qid": "Q656",
+  "sitelinks": 273
+ },
+ "Salé|MA": {
+  "qid": "Q466046",
+  "sitelinks": 69
+ },
+ "Salta|AR": {
+  "qid": "Q44803",
+  "sitelinks": 92
+ },
+ "Saltillo|MX": {
+  "qid": "Q53077",
+  "sitelinks": 76
+ },
+ "Saltivka|UA": {
+  "qid": "Q7406153",
+  "sitelinks": 6
+ },
+ "Salvador|BR": {
+  "qid": "Q36947",
+  "sitelinks": 138
+ },
+ "Samara|RU": {
+  "qid": "Q894",
+  "sitelinks": 137
+ },
+ "Samsun|TR": {
+  "qid": "Q160450",
+  "sitelinks": 92
+ },
+ "San Antonio|US": {
+  "qid": "Q975",
+  "sitelinks": 151
+ },
+ "San Diego|US": {
+  "qid": "Q16552",
+  "sitelinks": 164
+ },
+ "San Francisco|US": {
+  "qid": "Q62",
+  "sitelinks": 238
+ },
+ "San Jose|US": {
+  "qid": "Q16553",
+  "sitelinks": 151
+ },
+ "San Luis Potosí|MX": {
+  "qid": "Q204271",
+  "sitelinks": 71
+ },
+ "San Miguel de Tucumán|AR": {
+  "qid": "Q44255",
+  "sitelinks": 76
+ },
+ "San Nicolás de los Garza|MX": {
+  "qid": "Q914055",
+  "sitelinks": 43
+ },
+ "Sancaktepe|TR": {
+  "qid": "Q253182",
+  "sitelinks": 25
+ },
+ "Şanlıurfa|TR": {
+  "qid": "Q133118",
+  "sitelinks": 99
+ },
+ "Sant Martí|ES": {
+  "qid": "Q250935",
+  "sitelinks": 28
+ },
+ "Santa Cruz de Tenerife|ES": {
+  "qid": "Q14328",
+  "sitelinks": 121
+ },
+ "Santa Fe|AR": {
+  "qid": "Q44244",
+  "sitelinks": 76
+ },
+ "Santa Marta|CO": {
+  "qid": "Q209016",
+  "sitelinks": 82
+ },
+ "Santiago de Cuba|CU": {
+  "qid": "Q117040",
+  "sitelinks": 89
+ },
+ "Santiago de los Caballeros|DO": {
+  "qid": "Q42763",
+  "sitelinks": 54
+ },
+ "Santiago de Querétaro|MX": {
+  "qid": "Q173121",
+  "sitelinks": 90
+ },
+ "Santiago|CL": {
+  "qid": "Q2887",
+  "sitelinks": 274
+ },
+ "Santo André|BR": {
+  "qid": "Q191652",
+  "sitelinks": 64
+ },
+ "Santo Domingo Este|DO": {
+  "qid": "Q2713354",
+  "sitelinks": 19
+ },
+ "Santo Domingo Oeste|DO": {
+  "qid": "Q3949488",
+  "sitelinks": 14
+ },
+ "Santo Domingo|DO": {
+  "qid": "Q34820",
+  "sitelinks": 152
+ },
+ "Santos|BR": {
+  "qid": "Q81882",
+  "sitelinks": 94
+ },
+ "São Bernardo do Campo|BR": {
+  "qid": "Q184403",
+  "sitelinks": 63
+ },
+ "São João de Meriti|BR": {
+  "qid": "Q459690",
+  "sitelinks": 43
+ },
+ "São José do Rio Preto|BR": {
+  "qid": "Q192181",
+  "sitelinks": 59
+ },
+ "São José dos Campos|BR": {
+  "qid": "Q191642",
+  "sitelinks": 59
+ },
+ "São José dos Pinhais|BR": {
+  "qid": "Q478818",
+  "sitelinks": 45
+ },
+ "São Luís|BR": {
+  "qid": "Q28441",
+  "sitelinks": 87
+ },
+ "São Paulo|BR": {
+  "qid": "Q174",
+  "sitelinks": 256
+ },
+ "São Vicente|BR": {
+  "qid": "Q272254",
+  "sitelinks": 52
+ },
+ "Sapporo|JP": {
+  "qid": "Q37951",
+  "sitelinks": 161
+ },
+ "Saransk|RU": {
+  "qid": "Q5343",
+  "sitelinks": 104
+ },
+ "Saratov|RU": {
+  "qid": "Q5332",
+  "sitelinks": 148
+ },
+ "Seattle|US": {
+  "qid": "Q5083",
+  "sitelinks": 189
+ },
+ "Sector 1|RO": {
+  "qid": "Q2162427",
+  "sitelinks": 18
+ },
+ "Sector 2|RO": {
+  "qid": "Q2728790",
+  "sitelinks": 19
+ },
+ "Sector 3|RO": {
+  "qid": "Q2455368",
+  "sitelinks": 18
+ },
+ "Sector 4|RO": {
+  "qid": "Q687235",
+  "sitelinks": 18
+ },
+ "Sector 5|RO": {
+  "qid": "Q167630",
+  "sitelinks": 17
+ },
+ "Sector 6|RO": {
+  "qid": "Q167280",
+  "sitelinks": 17
+ },
+ "Seoul|KR": {
+  "qid": "Q8684",
+  "sitelinks": 260
+ },
+ "Serra|BR": {
+  "qid": "Q927537",
+  "sitelinks": 41
+ },
+ "Sevastopol|UA": {
+  "qid": "Q7525",
+  "sitelinks": 152
+ },
+ "Sevilla|ES": {
+  "qid": "Q8717",
+  "sitelinks": 180
+ },
+ "Shakhty|RU": {
+  "qid": "Q198206",
+  "sitelinks": 59
+ },
+ "Shanghai|CN": {
+  "qid": "Q8686",
+  "sitelinks": 251
+ },
+ "Shantou|CN": {
+  "qid": "Q59100",
+  "sitelinks": 78
+ },
+ "Shaoxing|CN": {
+  "qid": "Q42666",
+  "sitelinks": 53
+ },
+ "Sheffield|GB": {
+  "qid": "Q42448",
+  "sitelinks": 122
+ },
+ "Shenyang|CN": {
+  "qid": "Q11720",
+  "sitelinks": 118
+ },
+ "Shenzhen|CN": {
+  "qid": "Q15174",
+  "sitelinks": 136
+ },
+ "Shijiazhuang|CN": {
+  "qid": "Q58401",
+  "sitelinks": 95
+ },
+ "Shiyan|CN": {
+  "qid": "Q71227",
+  "sitelinks": 50
+ },
+ "Shubrā al Khaymah|EG": {
+  "qid": "Q269960",
+  "sitelinks": 54
+ },
+ "Simferopol|UA": {
+  "qid": "Q19566",
+  "sitelinks": 125
+ },
+ "Singapore|SG": {
+  "qid": "Q334",
+  "sitelinks": 333
+ },
+ "Şişli|TR": {
+  "qid": "Q390637",
+  "sitelinks": 41
+ },
+ "Sivas|TR": {
+  "qid": "Q107401",
+  "sitelinks": 90
+ },
+ "Smolensk|RU": {
+  "qid": "Q2337",
+  "sitelinks": 126
+ },
+ "Soacha|CO": {
+  "qid": "Q1011151",
+  "sitelinks": 44
+ },
+ "Sochi|RU": {
+  "qid": "Q39420",
+  "sitelinks": 181
+ },
+ "Sofia|BG": {
+  "qid": "Q472",
+  "sitelinks": 228
+ },
+ "Sokoto|NG": {
+  "qid": "Q503941",
+  "sitelinks": 62
+ },
+ "Soledad de Graciano Sánchez|MX": {
+  "qid": "Q1962080",
+  "sitelinks": 22
+ },
+ "Soledad|CO": {
+  "qid": "Q767071",
+  "sitelinks": 40
+ },
+ "Sorocaba|BR": {
+  "qid": "Q188901",
+  "sitelinks": 61
+ },
+ "Soshanguve|ZA": {
+  "qid": "Q7563836",
+  "sitelinks": 14
+ },
+ "Sosnowiec|PL": {
+  "qid": "Q105060",
+  "sitelinks": 90
+ },
+ "South Boston|US": {
+  "qid": "Q1759693",
+  "sitelinks": 13
+ },
+ "South Dublin|IE": {
+  "qid": "Q822865",
+  "sitelinks": 41
+ },
+ "Southampton|GB": {
+  "qid": "Q79848",
+  "sitelinks": 118
+ },
+ "Southend-on-Sea|GB": {
+  "qid": "Q203995",
+  "sitelinks": 66
+ },
+ "Soweto|ZA": {
+  "qid": "Q217426",
+  "sitelinks": 60
+ },
+ "Stara Darnytsya|UA": {
+  "qid": "Q1970473",
+  "sitelinks": 26
+ },
+ "Staryy Oskol|RU": {
+  "qid": "Q196486",
+  "sitelinks": 71
+ },
+ "Staten Island|US": {
+  "qid": "Q18432",
+  "sitelinks": 100
+ },
+ "Stavropol’|RU": {
+  "qid": "Q5206",
+  "sitelinks": 98
+ },
+ "Sterlitamak|RU": {
+  "qid": "Q196489",
+  "sitelinks": 72
+ },
+ "Stockholm|SE": {
+  "qid": "Q1754",
+  "sitelinks": 279
+ },
+ "Stoke-on-Trent|GB": {
+  "qid": "Q134902",
+  "sitelinks": 87
+ },
+ "Strasbourg|FR": {
+  "qid": "Q6602",
+  "sitelinks": 194
+ },
+ "Stuttgart|DE": {
+  "qid": "Q1022",
+  "sitelinks": 182
+ },
+ "Suez|EG": {
+  "qid": "Q134514",
+  "sitelinks": 91
+ },
+ "Sultanbeyli|TR": {
+  "qid": "Q673890",
+  "sitelinks": 44
+ },
+ "Sultangazi|TR": {
+  "qid": "Q268747",
+  "sitelinks": 32
+ },
+ "Sumy|UA": {
+  "qid": "Q156752",
+  "sitelinks": 95
+ },
+ "Sunshine Coast|AU": {
+  "qid": "Q828357",
+  "sitelinks": 55
+ },
+ "Surabaya|ID": {
+  "qid": "Q11462",
+  "sitelinks": 123
+ },
+ "Surat|IN": {
+  "qid": "Q4629",
+  "sitelinks": 109
+ },
+ "Surgut|RU": {
+  "qid": "Q183002",
+  "sitelinks": 76
+ },
+ "Surrey|CA": {
+  "qid": "Q390583",
+  "sitelinks": 59
+ },
+ "Suzhou|CN": {
+  "qid": "Q42622",
+  "sitelinks": 100
+ },
+ "Svyatoshyn|UA": {
+  "qid": "Q2381039",
+  "sitelinks": 22
+ },
+ "Swansea|GB": {
+  "qid": "Q23051",
+  "sitelinks": 101
+ },
+ "Sydney|AU": {
+  "qid": "Q3130",
+  "sitelinks": 266
+ },
+ "Syktyvkar|RU": {
+  "qid": "Q2143",
+  "sitelinks": 95
+ },
+ "Szczecin|PL": {
+  "qid": "Q393",
+  "sitelinks": 146
+ },
+ "Taganrog|RU": {
+  "qid": "Q170513",
+  "sitelinks": 97
+ },
+ "Taichung|TW": {
+  "qid": "Q245023",
+  "sitelinks": 80
+ },
+ "Taipei|TW": {
+  "qid": "Q1867",
+  "sitelinks": 196
+ },
+ "Taiyuan|CN": {
+  "qid": "Q72778",
+  "sitelinks": 93
+ },
+ "Tamale|GH": {
+  "qid": "Q217040",
+  "sitelinks": 61
+ },
+ "Tambov|RU": {
+  "qid": "Q3550",
+  "sitelinks": 119
+ },
+ "Tampa|US": {
+  "qid": "Q49255",
+  "sitelinks": 127
+ },
+ "Tampere|FI": {
+  "qid": "Q40840",
+  "sitelinks": 169
+ },
+ "Tangier|MA": {
+  "qid": "Q126148",
+  "sitelinks": 125
+ },
+ "Tangshan|CN": {
+  "qid": "Q58422",
+  "sitelinks": 70
+ },
+ "Tanta|EG": {
+  "qid": "Q271771",
+  "sitelinks": 64
+ },
+ "Tapachula|MX": {
+  "qid": "Q988225",
+  "sitelinks": 37
+ },
+ "Târgu Mureş|RO": {
+  "qid": "Q186349",
+  "sitelinks": 74
+ },
+ "Tarsus|TR": {
+  "qid": "Q134287",
+  "sitelinks": 86
+ },
+ "Tashkent|UZ": {
+  "qid": "Q269",
+  "sitelinks": 194
+ },
+ "Taubaté|BR": {
+  "qid": "Q170540",
+  "sitelinks": 58
+ },
+ "Tauranga|NZ": {
+  "qid": "Q207756",
+  "sitelinks": 67
+ },
+ "Tehran|IR": {
+  "qid": "Q3616",
+  "sitelinks": 240
+ },
+ "Tepic|MX": {
+  "qid": "Q207972",
+  "sitelinks": 64
+ },
+ "Teresina|BR": {
+  "qid": "Q165341",
+  "sitelinks": 81
+ },
+ "Ternopil|UA": {
+  "qid": "Q173407",
+  "sitelinks": 101
+ },
+ "Terrassa|ES": {
+  "qid": "Q13939",
+  "sitelinks": 92
+ },
+ "Tétouan|MA": {
+  "qid": "Q185157",
+  "sitelinks": 87
+ },
+ "The Bronx|US": {
+  "qid": "Q18426",
+  "sitelinks": 114
+ },
+ "The Hague|NL": {
+  "qid": "Q36600",
+  "sitelinks": 183
+ },
+ "Thembisa|ZA": {
+  "qid": "Q1580709",
+  "sitelinks": 25
+ },
+ "Thessaloníki|GR": {
+  "qid": "Q17151",
+  "sitelinks": 159
+ },
+ "Tianjin|CN": {
+  "qid": "Q11736",
+  "sitelinks": 156
+ },
+ "Tijuana|MX": {
+  "qid": "Q124739",
+  "sitelinks": 117
+ },
+ "Tilburg|NL": {
+  "qid": "Q26430",
+  "sitelinks": 97
+ },
+ "Timişoara|RO": {
+  "qid": "Q83404",
+  "sitelinks": 115
+ },
+ "Tlalnepantla|MX": {
+  "qid": "Q845307",
+  "sitelinks": 39
+ },
+ "Tlalpan|MX": {
+  "qid": "Q408187",
+  "sitelinks": 35
+ },
+ "Tlaquepaque|MX": {
+  "qid": "Q155277",
+  "sitelinks": 48
+ },
+ "Tokyo|JP": {
+  "qid": "Q1490",
+  "sitelinks": 302
+ },
+ "Toluca|MX": {
+  "qid": "Q209034",
+  "sitelinks": 87
+ },
+ "Tolyatti|RU": {
+  "qid": "Q1341",
+  "sitelinks": 97
+ },
+ "Tomsk|RU": {
+  "qid": "Q976",
+  "sitelinks": 114
+ },
+ "Tonalá|MX": {
+  "qid": "Q1798559",
+  "sitelinks": 33
+ },
+ "Toowoomba|AU": {
+  "qid": "Q478302",
+  "sitelinks": 56
+ },
+ "Toronto|CA": {
+  "qid": "Q172",
+  "sitelinks": 224
+ },
+ "Torreón|MX": {
+  "qid": "Q386991",
+  "sitelinks": 60
+ },
+ "Toulouse|FR": {
+  "qid": "Q7880",
+  "sitelinks": 174
+ },
+ "Townsville|AU": {
+  "qid": "Q190021",
+  "sitelinks": 69
+ },
+ "Trabzon|TR": {
+  "qid": "Q45301",
+  "sitelinks": 121
+ },
+ "Trondheim|NO": {
+  "qid": "Q25804",
+  "sitelinks": 126
+ },
+ "Trujillo|PE": {
+  "qid": "Q214173",
+  "sitelinks": 93
+ },
+ "Tucson|US": {
+  "qid": "Q18575",
+  "sitelinks": 124
+ },
+ "Tuggeranong Administrative District|AU": {
+  "qid": "Q279146",
+  "sitelinks": 9
+ },
+ "Tula|RU": {
+  "qid": "Q2792",
+  "sitelinks": 124
+ },
+ "Tulsa|US": {
+  "qid": "Q44989",
+  "sitelinks": 110
+ },
+ "Turin|IT": {
+  "qid": "Q495",
+  "sitelinks": 180
+ },
+ "Tuxtla|MX": {
+  "qid": "Q207429",
+  "sitelinks": 62
+ },
+ "Tver|RU": {
+  "qid": "Q2288",
+  "sitelinks": 107
+ },
+ "Tyumen|RU": {
+  "qid": "Q5815",
+  "sitelinks": 107
+ },
+ "Uberaba|BR": {
+  "qid": "Q381733",
+  "sitelinks": 53
+ },
+ "Uberlândia|BR": {
+  "qid": "Q194328",
+  "sitelinks": 59
+ },
+ "Ufa|RU": {
+  "qid": "Q911",
+  "sitelinks": 135
+ },
+ "Ulan-Ude|RU": {
+  "qid": "Q6816",
+  "sitelinks": 101
+ },
+ "Ulyanovsk|RU": {
+  "qid": "Q5627",
+  "sitelinks": 111
+ },
+ "Umraniye|TR": {
+  "qid": "Q334924",
+  "sitelinks": 37
+ },
+ "Ürümqi|CN": {
+  "qid": "Q16959",
+  "sitelinks": 122
+ },
+ "Uşak|TR": {
+  "qid": "Q483078",
+  "sitelinks": 77
+ },
+ "Üsküdar|TR": {
+  "qid": "Q326339",
+  "sitelinks": 59
+ },
+ "Utrecht|NL": {
+  "qid": "Q803",
+  "sitelinks": 136
+ },
+ "Uyo|NG": {
+  "qid": "Q1999000",
+  "sitelinks": 45
+ },
+ "Valencia|ES": {
+  "qid": "Q8818",
+  "sitelinks": 169
+ },
+ "Valladolid|ES": {
+  "qid": "Q8356",
+  "sitelinks": 131
+ },
+ "Valledupar|CO": {
+  "qid": "Q376903",
+  "sitelinks": 61
+ },
+ "Van|TR": {
+  "qid": "Q83061",
+  "sitelinks": 93
+ },
+ "Vancouver|CA": {
+  "qid": "Q24639",
+  "sitelinks": 181
+ },
+ "Vantaa|FI": {
+  "qid": "Q127623",
+  "sitelinks": 99
+ },
+ "Varna|BG": {
+  "qid": "Q6506",
+  "sitelinks": 121
+ },
+ "Várzea Grande|BR": {
+  "qid": "Q983884",
+  "sitelinks": 38
+ },
+ "Vaughan|CA": {
+  "qid": "Q44013",
+  "sitelinks": 50
+ },
+ "Velikiy Novgorod|RU": {
+  "qid": "Q2235",
+  "sitelinks": 125
+ },
+ "Venustiano Carranza|MX": {
+  "qid": "Q10832464",
+  "sitelinks": 25
+ },
+ "Veracruz|MX": {
+  "qid": "Q173270",
+  "sitelinks": 85
+ },
+ "Vereeniging|ZA": {
+  "qid": "Q503056",
+  "sitelinks": 42
+ },
+ "Verona|IT": {
+  "qid": "Q2028",
+  "sitelinks": 142
+ },
+ "Victoria de Durango|MX": {
+  "qid": "Q112813",
+  "sitelinks": 71
+ },
+ "Vienna|AT": {
+  "qid": "Q1741",
+  "sitelinks": 294
+ },
+ "Vigo|ES": {
+  "qid": "Q8745",
+  "sitelinks": 109
+ },
+ "Vila Velha|BR": {
+  "qid": "Q334197",
+  "sitelinks": 55
+ },
+ "Villahermosa|MX": {
+  "qid": "Q210886",
+  "sitelinks": 66
+ },
+ "Villavicencio|CO": {
+  "qid": "Q749224",
+  "sitelinks": 54
+ },
+ "Viña del Mar|CL": {
+  "qid": "Q184345",
+  "sitelinks": 75
+ },
+ "Vinnytsya|UA": {
+  "qid": "Q157144",
+  "sitelinks": 103
+ },
+ "Virginia Beach|US": {
+  "qid": "Q49259",
+  "sitelinks": 105
+ },
+ "Vitória|BR": {
+  "qid": "Q168376",
+  "sitelinks": 78
+ },
+ "Vladikavkaz|RU": {
+  "qid": "Q5239",
+  "sitelinks": 103
+ },
+ "Vladimir|RU": {
+  "qid": "Q2684",
+  "sitelinks": 109
+ },
+ "Vladivostok|RU": {
+  "qid": "Q959",
+  "sitelinks": 162
+ },
+ "Volgograd|RU": {
+  "qid": "Q914",
+  "sitelinks": 159
+ },
+ "Vologda|RU": {
+  "qid": "Q1957",
+  "sitelinks": 102
+ },
+ "Volzhsky|RU": {
+  "qid": "Q98995",
+  "sitelinks": 62
+ },
+ "Voronezh|RU": {
+  "qid": "Q3426",
+  "sitelinks": 119
+ },
+ "Vyhurivshchyna-Troieshchyna|UA": {
+  "qid": "Q62226",
+  "sitelinks": 12
+ },
+ "Vykhino-Zhulebino|RU": {
+  "qid": "Q533860",
+  "sitelinks": 16
+ },
+ "Wandsbek|DE": {
+  "qid": "Q1633",
+  "sitelinks": 26
+ },
+ "Warri|NG": {
+  "qid": "Q574593",
+  "sitelinks": 44
+ },
+ "Warsaw|PL": {
+  "qid": "Q270",
+  "sitelinks": 288
+ },
+ "Washington|US": {
+  "qid": "Q61",
+  "sitelinks": 299
+ },
+ "Weifang|CN": {
+  "qid": "Q217698",
+  "sitelinks": 53
+ },
+ "Welkom|ZA": {
+  "qid": "Q1015631",
+  "sitelinks": 38
+ },
+ "Wellington|NZ": {
+  "qid": "Q23661",
+  "sitelinks": 186
+ },
+ "Wenzhou|CN": {
+  "qid": "Q42635",
+  "sitelinks": 66
+ },
+ "West Raleigh|US": {
+  "qid": "Q49006128",
+  "sitelinks": 1
+ },
+ "Wichita|US": {
+  "qid": "Q49266",
+  "sitelinks": 112
+ },
+ "Wiesbaden|DE": {
+  "qid": "Q1721",
+  "sitelinks": 161
+ },
+ "Winnipeg|CA": {
+  "qid": "Q2135",
+  "sitelinks": 130
+ },
+ "Wollongong|AU": {
+  "qid": "Q187861",
+  "sitelinks": 83
+ },
+ "Wolverhampton|GB": {
+  "qid": "Q126269",
+  "sitelinks": 90
+ },
+ "Wrocław|PL": {
+  "qid": "Q1799",
+  "sitelinks": 159
+ },
+ "Wuhan|CN": {
+  "qid": "Q11746",
+  "sitelinks": 180
+ },
+ "Wuppertal|DE": {
+  "qid": "Q2107",
+  "sitelinks": 115
+ },
+ "Wuxi|CN": {
+  "qid": "Q42651",
+  "sitelinks": 76
+ },
+ "Xalapa de Enríquez|MX": {
+  "qid": "Q221051",
+  "sitelinks": 73
+ },
+ "Xi’an|CN": {
+  "qid": "Q5826",
+  "sitelinks": 142
+ },
+ "Xiamen|CN": {
+  "qid": "Q68744",
+  "sitelinks": 85
+ },
+ "Xico|MX": {
+  "qid": "Q1932224",
+  "sitelinks": 18
+ },
+ "Xochimilco|MX": {
+  "qid": "Q643026",
+  "sitelinks": 54
+ },
+ "Yakutsk|RU": {
+  "qid": "Q6610",
+  "sitelinks": 124
+ },
+ "Yangon|MM": {
+  "qid": "Q37995",
+  "sitelinks": 151
+ },
+ "Yantai|CN": {
+  "qid": "Q210493",
+  "sitelinks": 64
+ },
+ "Yaroslavl|RU": {
+  "qid": "Q2423",
+  "sitelinks": 121
+ },
+ "Yekaterinburg|RU": {
+  "qid": "Q887",
+  "sitelinks": 149
+ },
+ "Yokohama|JP": {
+  "qid": "Q38283",
+  "sitelinks": 170
+ },
+ "Yola|NG": {
+  "qid": "Q994114",
+  "sitelinks": 44
+ },
+ "Yoshkar-Ola|RU": {
+  "qid": "Q5449",
+  "sitelinks": 94
+ },
+ "Yunfu|CN": {
+  "qid": "Q59233",
+  "sitelinks": 45
+ },
+ "Zagazig|EG": {
+  "qid": "Q140304",
+  "sitelinks": 63
+ },
+ "Zagreb|HR": {
+  "qid": "Q1435",
+  "sitelinks": 218
+ },
+ "Zapopan|MX": {
+  "qid": "Q147402",
+  "sitelinks": 98
+ },
+ "Zaporizhzhya|UA": {
+  "qid": "Q157835",
+  "sitelinks": 126
+ },
+ "Zaragoza|ES": {
+  "qid": "Q10305",
+  "sitelinks": 155
+ },
+ "Zaria|NG": {
+  "qid": "Q147975",
+  "sitelinks": 57
+ },
+ "Zelenograd|RU": {
+  "qid": "Q207695",
+  "sitelinks": 54
+ },
+ "Zeytinburnu|TR": {
+  "qid": "Q197095",
+  "sitelinks": 37
+ },
+ "Zhengzhou|CN": {
+  "qid": "Q30340",
+  "sitelinks": 139
+ },
+ "Zhongshan|CN": {
+  "qid": "Q59223",
+  "sitelinks": 63
+ },
+ "Zhuhai|CN": {
+  "qid": "Q59095",
+  "sitelinks": 74
+ },
+ "Zhytomyr|UA": {
+  "qid": "Q156713",
+  "sitelinks": 106
+ },
+ "Zibo|CN": {
+  "qid": "Q198370",
+  "sitelinks": 55
+ },
+ "Zunyi|CN": {
+  "qid": "Q28994",
+  "sitelinks": 51
+ },
+ "Zürich|CH": {
+  "qid": "Q72",
+  "sitelinks": 199
+ }
+}

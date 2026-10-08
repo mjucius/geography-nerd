@@ -146,3 +146,21 @@
 2026-10-05T21:19:20Z pm -> team-lead: difficulty progression brief draft ready (options A/B/C, recommend A, 7 open questions)
 2026-10-05T21:27:22Z team-lead -> pm: CEO decisions: A, Wikidata sitelinks, keep 10 levels, no persistence, drop capitals, keep 8/10 + 2 previews, stop at 1,000 cities; write acceptance
 2026-10-05T21:27:45Z pm -> team-lead: v1 scope and acceptance written; no open questions; 3 added items for CEO
+2026-10-05T21:29:53Z team-lead -> dev: CEO approved difficulty progression brief; plan it
+2026-10-05T21:31:09Z dev -> reviewer: plan round 1 (docs/plan.md, T-014..T-018)
+2026-10-05T21:31:40Z reviewer -> dev: project plan round 1 changes (T-015/T-016 capital removal order)
+2026-10-05T21:31:48Z dev -> reviewer: plan round 2, capital removal moved to T-016
+2026-10-05T21:32:14Z reviewer -> dev: project plan round 2 approved
+2026-10-05T21:32:19Z dev -> team-lead: plan approved, T-014..T-018 ready, awaiting go
+2026-10-05T21:32:42Z team-lead -> dev: CEO go on difficulty plan (M1-M2, T-014..T-018); start ready tickets
+2026-10-05T21:32:55Z dev -> reviewer: T-014 plan review
+2026-10-05T21:33:48Z reviewer -> dev: T-014 plan round 1 changes
+2026-10-05T21:33:57Z dev -> reviewer: T-014 plan round 2
+2026-10-05T21:34:24Z reviewer -> dev: T-014 plan round 2 approved
+2026-10-05T23:44:16Z dev -> reviewer: T-014 code review
+2026-10-08T00:19:51Z team-lead -> dev: resumed after restart; T-014 at code-review
+2026-10-08T00:20:40Z reviewer -> dev: T-014 code round 1 changes (override validation, mutation proof)
+2026-10-08T00:23:59Z dev -> reviewer: T-014 code round 2 (override validation, failing-test demo)
+2026-10-08T00:24:10Z dev -> reviewer: T-014 round 2 reminder, tree checked for dev-2 leftovers (none)
+2026-10-08T00:24:56Z reviewer -> dev: T-014 code round 2 approved
+2026-10-08T00:25:01Z dev -> team-lead: T-014 approved, committing
