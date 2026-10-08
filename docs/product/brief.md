@@ -57,17 +57,26 @@ CEO, 2026-10-05:
 5. Drop "capitals". Early levels use the most familiar cities.
 6. Keep the 8/10 pass bar and the 2 next-level preview questions as they are.
 7. The hardest level stops at the ~1,000 cities already in the data.
+8. Never pair two cities with the same name in one question (for example London, UK and London, Canada). (CEO, 2026-10-08)
+9. Remove sub-city entries such as boroughs and districts (Eixample, Hamburg-Nord, "Sector 4") in v1. (CEO, 2026-10-08) The CEO confirmed the definition in acceptance 11, which also removes non-city administrative areas.
+10. PM clarification (from the brief, 2026-10-08): when the same place appears twice under two names with the same Wikidata ID, it ships once. These rows are removed through `data/excluded-cities.json` with the reason "duplicate of <name>". The count then falls below 1,000 and nothing replaces them (Decision 7). For Benito Juárez/Benito Juarez (a Mexico City alcaldía) and Fuencarral/Fuencarral-El Pardo (a Madrid district), both rows go as sub-city entries under criterion 11. Keep "Lexington" and "Jaboatão dos Guararapes".
 
 ## v1 scope and acceptance
 **In scope:** a build script that fetches Wikidata sitelink counts once and bakes them into the city data, all ~1,000 cities in a compact data file, a trickiness measure in km, and one level table in place of the current population and ratio switches. **Out of scope:** any change to the UI flow or the level names, persisting the level, and new cities beyond the ~1,000.
 
 Acceptance:
-1. **Data.** The shipped data includes every city in `data/cities-import.sql` (~1,000), each with a sitelink count. The game makes no network calls for this at runtime; the counts are committed. The data file is no larger per city than today's.
+1. **Data.** The shipped data includes every city in `data/cities-import.sql` (~1,000) except the sub-city entries removed under criterion 11, each with a sitelink count. The game makes no network calls for this at runtime; the counts are committed. The data file is no larger per city than today's.
 2. **Credits.** Wikidata (CC0) is credited in `ATTRIBUTION.md` and in the in-app Credits.
 3. **No capitals.** `is_capital` and the hand-written capitals list are gone. Level 1 uses only the most familiar cities.
 4. **Two dials, km.** Each pair is scored by the gap on the asked axis and the gap on the other axis, in the same km the reveal shows. The asked axis is still the one with the smaller gap.
 5. **Monotonic ladder.** Each level from 2 to 10 is at least as hard as the one before on both familiarity and trickiness, and strictly harder on at least one. A test enforces this from the level table.
-6. **Ends of the ladder.** Level 1 uses famous cities with a clear gap on the asked axis. Level 10 draws from all ~1,000 cities and includes pairs close on the asked axis and far apart on the other.
+6. **Ends of the ladder.** Level 1 uses famous cities with a clear gap on the asked axis. Level 10 draws from every shipped city (the ~1,000 minus removals under criterion 11 and duplicates) and includes pairs close on the asked axis and far apart on the other.
 7. **Enough pairs.** Every level has at least 200 valid pairs (a test checks this), and no pair appears twice in one quiz.
 8. **Unchanged.** There are still 10 levels with the same names. 8/10 still unlocks the next level, and each quiz still has 8 current-level and 2 next-level preview questions (10 at level 10). The level resets each visit, and `PRIVACY.md` is unchanged.
 9. `npm test` and `npm run lint` pass.
+10. **No same-name pairs (Decision 8).** No question pairs two cities whose names, as displayed, are the same when case and accents are ignored. For example, London, UK and London, Canada never appear together. A test checks this.
+11. **No sub-city entries (Decision 9).** A *sub-city entry* is a place that is part of another city in the data, or is an administrative area rather than a city. That covers boroughs, districts, sectors, wards, alcaldías, neighbourhoods and local government areas, for example Eixample, Hamburg-Nord, Sector 4, Gustavo A. Madero, South Boston and Tuggeranong Administrative District. A separate municipality inside a metro area, such as Brampton, Yokohama, Giza or Quezon City, is a city in its own right and stays.
+    - **How we decide:** the source of truth is a reviewed, committed list, `data/excluded-cities.json`, written as `{ "Name|CC": "part of <city>" }`. The generator drops every entry on it.
+    - **How the list is built:** a script reads Wikidata *instance of* (P31) for each committed QID and flags anything whose types are only sub-city or administrative-area classes. Dev reviews the flagged names and adds or removes entries by hand. Name patterns alone aren't enough: "Sector 4" matches, but Gustavo A. Madero doesn't, and a "-Nord" pattern also flags real cities such as Cluj-Napoca.
+    - **Why not GeoNames PPLX:** `cities-import.sql` doesn't keep GeoNames feature codes, so using PPLX would mean re-sourcing the data.
+    - **Done when:** every example above is gone, the list gives a reason for each entry, and criteria 1 and 7 still hold after the removals.
