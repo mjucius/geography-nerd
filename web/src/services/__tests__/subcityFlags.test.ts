@@ -10,6 +10,7 @@ const read = (file: string) => readFileSync(new URL(file, root), 'utf8');
 type Report = { classes: Record<string, string>; cities: Record<string, { tier: string; classes: string[] }> };
 const report: Report = JSON.parse(read('data/subcity-flags.json'));
 const excluded: Record<string, string> = JSON.parse(read('data/excluded-cities.json'));
+const kept: Record<string, string> = JSON.parse(read('data/kept-after-review.json'));
 const sqlKeys = [...read('data/cities-import.sql').matchAll(/\('((?:[^']|'')+)', '([^']+)', [0-9]+, -?[0-9.]+, -?[0-9.]+\)/g)].map(
   (m) => `${m[1].replace(/''/g, "'")}|${m[2]}`
 );
@@ -30,8 +31,8 @@ describe('classify', () => {
 });
 
 describe('data/subcity-flags.json', () => {
-  it('covers exactly the shipped cities', () => {
-    expect(Object.keys(report.cities).sort()).toEqual(sqlKeys.filter((k) => !(k in excluded)).sort());
+  it('covers exactly the cities of the SQL, excluded ones included', () => {
+    expect(Object.keys(report.cities).sort()).toEqual([...sqlKeys].sort());
   });
 
   it('agrees with the classifier for every city (so a classifier change shows up without refetching)', () => {
@@ -52,3 +53,22 @@ describe('data/subcity-flags.json', () => {
     expect(report.cities[key].tier).toBe('');
   });
 });
+
+describe('review of the flagged and review cities', () => {
+  const marked = Object.keys(report.cities).filter((k) => report.cities[k].tier);
+
+  it('has put every flagged or review city on exactly one of the two lists', () => {
+    for (const key of marked) {
+      expect(key in excluded || key in kept, key).toBe(true);
+      expect(key in excluded && key in kept, key).toBe(false);
+    }
+  });
+
+  it('keeps only cities the report marks, each with a reason', () => {
+    for (const [key, reason] of Object.entries(kept)) {
+      expect(marked, key).toContain(key);
+      expect(reason.length, key).toBeGreaterThan(10);
+    }
+  });
+});
+

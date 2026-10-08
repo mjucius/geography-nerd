@@ -79,6 +79,20 @@ describe('LOCAL_CITIES', () => {
     expect(shipped('Jaboatão dos Guararapes', 'BR')).toHaveLength(1);
   });
 
+  it.each([
+    'Eixample', 'Hamburg-Nord', 'Sector 1', 'Sector 2', 'Sector 3', 'Sector 4', 'Sector 5', 'Sector 6',
+    'Gustavo Adolfo Madero', 'South Boston', 'Tuggeranong Administrative District', 'Zeytinburnu', 'Bahçelievler',
+  ])('does not ship the sub-city entry %s', (name) => {
+    expect(LOCAL_CITIES.filter((c) => c.name === name)).toHaveLength(0);
+  });
+
+  it.each(['Brampton', 'Yokohama', 'Giza', 'Quezon City', 'Logan City', 'Benin City', 'Adapazarı', 'İskenderun', 'Gebze'])(
+    'still ships the separate city %s',
+    (name) => {
+      expect(LOCAL_CITIES.filter((c) => c.name === name)).toHaveLength(1);
+    }
+  );
+
   it('has no capital flag anywhere', () => {
     for (const c of LOCAL_CITIES) expect(c).not.toHaveProperty('is_capital');
     const rows: unknown[][] = JSON.parse(readFileSync(new URL('../../data/cities.json', import.meta.url), 'utf8')).cities;

@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * Reads the Wikidata instance-of classes (P31) of every shipped city and writes
+ * Reads the Wikidata instance-of classes (P31) of every city in data/cities-import.sql and writes
  * data/subcity-flags.json, a report for reviewing which cities are really parts of a city.
  * One-time, run by hand: npm run flag:subcity
  * The game never reads the report; data/excluded-cities.json (reviewed by hand) decides what is dropped.
@@ -39,8 +39,8 @@ async function entities(qids, props, extra = {}) {
 }
 
 const sitelinks = JSON.parse(fs.readFileSync('data/city-sitelinks.json', 'utf8'));
-const excluded = JSON.parse(fs.readFileSync('data/excluded-cities.json', 'utf8'));
-const keys = Object.keys(sitelinks).filter((k) => !(k in excluded)).sort((a, b) => a.localeCompare(b));
+// Every SQL city, including ones excluded from the game, so the review (data/excluded-cities.json, data/kept-after-review.json) can see them all.
+const keys = Object.keys(sitelinks).sort((a, b) => a.localeCompare(b));
 
 const claims = await entities(keys.map((k) => sitelinks[k].qid), 'claims');
 const classesOf = Object.fromEntries(

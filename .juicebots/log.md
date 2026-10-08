@@ -247,3 +247,27 @@
 2026-10-08T01:03:37Z dev -> reviewer: T-021 already built, code review awaiting
 2026-10-08T01:04:08Z reviewer -> dev: T-021 code round 1 approved
 2026-10-08T01:04:13Z dev -> team-lead: T-021 approved, committing
+2026-10-08T01:04:14Z reviewer -> dev: T-021 code round 1 approved (repeat, messages crossed)
+2026-10-08T01:04:57Z team-lead -> pm: CEO decision 11: min asked gap 25 km (T-023); write acceptance
+2026-10-08T01:05:15Z pm -> dev: acceptance 12 (25 km floor, effective-min ruling for monotonic test) for T-023
+2026-10-08T01:05:40Z dev -> reviewer: T-021 committed b8bba41; T-022 plan review
+2026-10-08T01:06:09Z dev -> reviewer: T-021 already committed; T-022 and T-023 plans await review
+2026-10-08T01:06:38Z reviewer -> dev: T-022 plan round 1 changes
+2026-10-08T01:07:03Z dev -> reviewer: T-022 plan round 2
+2026-10-08T01:07:21Z reviewer -> dev: T-023 plan round 1 changes; T-022 round 1 already sent
+2026-10-08T01:07:29Z dev -> reviewer: T-023 plan round 2
+2026-10-08T01:08:03Z reviewer -> dev: T-022 plan round 2 approved
+2026-10-08T01:08:19Z pm -> dev: Puyang: excluding is fine, no follow-up; note row mismatch in reason
+2026-10-08T01:08:32Z reviewer -> dev: T-023 plan round 2 approved
+2026-10-08T01:10:55Z dev -> reviewer: T-022 code review
+2026-10-08T01:11:16Z dev -> reviewer: T-022 Puyang reason reworded per pm; T-023 starts after T-022 commit
+2026-10-08T01:12:08Z reviewer -> dev: T-022 code round 1 changes
+2026-10-08T01:12:20Z dev -> pm: question on council/LGA rule blocking T-022
+2026-10-08T01:12:23Z reviewer -> dev: T-022 code round 1 still open (Port Phillip), Puyang reword ok
+2026-10-08T01:12:27Z dev -> reviewer: T-022 round 2 waits on pm rule
+2026-10-08T01:12:41Z pm -> dev: T-022 exact sub-city rule (subdivision or non-city council area; Wikipedia first-sentence tie-break) in acceptance 11
+2026-10-08T01:12:59Z dev -> reviewer: T-022 code round 2 (pm Decision 12 rule)
+2026-10-08T01:13:34Z reviewer -> dev: T-022 code round 2 changes (restate mutation evidence)
+2026-10-08T01:14:35Z dev -> reviewer: T-022 code round 3 with failing-test demonstration
+2026-10-08T01:15:17Z reviewer -> dev: T-022 code round 3 approved
+2026-10-08T01:15:21Z dev -> team-lead: T-022 approved, committing
