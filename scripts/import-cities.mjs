@@ -6,19 +6,22 @@
  * Downloads the GeoNames cities1000.zip file, parses it, applies regional
  * weighting, and regenerates data/cities-import.sql with the top ~1000 cities.
  *
- * Usage: npm run import-cities
+ * Usage: npm run import-cities [-- output-file]
  *
  * After running, also run `npm run generate:local-cities` to rebuild the
  * bundled web/src/data/cities.json that ships with the app (run `npm run fetch:sitelinks` first for new cities).
  */
 
 import fs from 'node:fs';
+import path from 'node:path';
 import https from 'node:https';
 import zlib from 'node:zlib';
 import { execSync } from 'node:child_process';
+import { formatCitiesSql } from './cities-sql.mjs';
 
 const GEONAMES_URL = 'https://download.geonames.org/export/dump/cities1000.zip';
-const OUTPUT_FILE = 'data/cities-import.sql';
+// Optional first argument: where to write the SQL (default: the file the generator reads).
+const OUTPUT_FILE = process.argv[2] ?? 'data/cities-import.sql';
 const ZIP_FILE = 'cities1000.zip';
 const DATA_FILE = 'cities1000.txt';
 
@@ -225,35 +228,6 @@ function selectCities(cities) {
   return final;
 }
 
-function generateSQL(cities) {
-  let sql = '-- Generated SQL for importing cities\n\n';
-  sql += 'BEGIN;\n\n';
-
-  const batchSize = 100;
-  for (let i = 0; i < cities.length; i += batchSize) {
-    const batch = cities.slice(i, i + batchSize);
-
-    sql += 'INSERT INTO cities (name, country, country_code, population, latitude, longitude, region) VALUES\n';
-
-    const values = batch.map((city) => {
-      const name = city.name.replace(/'/g, "''");
-      const country = city.countryCode;
-      const population = city.population;
-      const lat = city.latitude;
-      const lon = city.longitude;
-      const region = getRegion(country);
-
-      return `('${name}', '${country}', '${country}', ${population}, ${lat}, ${lon}, '${region}')`;
-    });
-
-    sql += values.join(',\n') + ';\n\n';
-  }
-
-  sql += 'COMMIT;\n';
-
-  return sql;
-}
-
 async function main() {
   try {
     if (!fs.existsSync(DATA_FILE)) {
@@ -277,9 +251,9 @@ async function main() {
     const selected = selectCities(cities);
 
     console.log('\nGenerating SQL...');
-    const sql = generateSQL(selected);
+    const sql = formatCitiesSql(selected);
 
-    fs.mkdirSync('data', { recursive: true });
+    fs.mkdirSync(path.dirname(OUTPUT_FILE), { recursive: true });
     fs.writeFileSync(OUTPUT_FILE, sql);
     console.log(`\nSQL saved to ${OUTPUT_FILE}`);
 

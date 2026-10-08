@@ -10,6 +10,7 @@
 
 import fs from 'node:fs';
 import { pickCandidate } from './sitelinks-match.mjs';
+import { parseCitiesSql } from './cities-sql.mjs';
 
 const API = 'https://www.wikidata.org/w/api.php';
 const HEADERS = { 'User-Agent': 'geography-nerd-sitelinks/1.0 (https://github.com/mjucius/geography-nerd)' };
@@ -45,12 +46,8 @@ const toCandidate = (qid, e) => {
 };
 
 const sql = fs.readFileSync('data/cities-import.sql', 'utf8');
-const cities = [...sql.matchAll(/\('((?:[^']|'')+)', '([^']+)', ([0-9]+), (-?[0-9.]+), (-?[0-9.]+)\)/g)].map((m) => ({
-  name: m[1].replace(/''/g, "'"),
-  cc: m[2],
-  lat: Number(m[4]),
-  lon: Number(m[5]),
-}));
+const cities = parseCitiesSql(sql).map((c) => ({ name: c.name, cc: c.countryCode, lat: c.latitude, lon: c.longitude }));
+if (cities.length === 0) throw new Error('No cities found in data/cities-import.sql (wrong row format?)');
 const overrides = JSON.parse(fs.readFileSync('data/wikidata-overrides.json', 'utf8'));
 
 const result = {};

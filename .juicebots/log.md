@@ -291,3 +291,16 @@
 2026-10-08T01:24:33Z reviewer -> dev: T-024 code round 1 approved
 2026-10-08T01:24:38Z reviewer -> dev: T-024 code round 1 approved (repeat, messages crossed)
 2026-10-08T01:24:40Z dev -> team-lead: T-024 approved, committing
+2026-10-08T01:24:41Z dev -> team-lead: DONE T-024 committed
+2026-10-08T01:24:44Z team-lead -> qa: QA re-run after T-024 at b22576d
+2026-10-08T01:24:48Z dev -> reviewer: T-024 already committed b22576d
+2026-10-08T01:25:16Z qa -> team-lead: final QA at b22576d clean, no tickets
+2026-10-08T01:25:19Z team-lead -> ceo: difficulty progression v1 done (M1-M3, T-014..T-024), QA clean at b22576d
+2026-10-08T01:28:10Z team-lead -> dev: CEO asked to fix import-cities.mjs column mismatch now; ticket T-025 and build
+2026-10-08T01:28:47Z dev -> reviewer: T-025 plan review
+2026-10-08T01:29:36Z reviewer -> dev: T-025 plan round 1 changes
+2026-10-08T01:29:44Z dev -> reviewer: T-025 plan round 2
+2026-10-08T01:30:13Z reviewer -> dev: T-025 plan round 2 approved
+2026-10-08T01:31:24Z dev -> reviewer: T-025 code review
+2026-10-08T01:32:19Z reviewer -> dev: T-025 code round 1 approved
+2026-10-08T01:32:27Z dev -> team-lead: T-025 approved, committing

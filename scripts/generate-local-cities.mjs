@@ -1,4 +1,5 @@
 import fs from 'node:fs';
+import { parseCitiesSql } from './cities-sql.mjs';
 
 const importSql = fs.readFileSync('data/cities-import.sql', 'utf8');
 const schemaSql = fs.readFileSync('data/countries.sql', 'utf8');
@@ -12,16 +13,15 @@ for (const match of schemaSql.matchAll(/\('([^']+)', '((?:[^']|'')+)', '([^']+)'
 }
 
 // One row per city: name, country code, population, lat, lon, sitelinks.
-const sqlRows = [...importSql.matchAll(/\('((?:[^']|'')+)', '([^']+)', ([0-9]+), (-?[0-9.]+), (-?[0-9.]+)\)/g)].map((match) => ({
-  key: `${match[1].replace(/''/g, "'")}|${match[2]}`,
-  match,
-}));
+const cities = parseCitiesSql(importSql);
+if (cities.length === 0) throw new Error('No cities found in data/cities-import.sql (wrong row format?)');
+const sqlRows = cities.map((c) => ({ key: `${c.name}|${c.countryCode}`, city: c }));
 for (const key of Object.keys(excluded)) {
   if (!sqlRows.some((r) => r.key === key)) throw new Error(`Excluded city ${key} is not in data/cities-import.sql`);
 }
-const rows = sqlRows.filter((r) => !(r.key in excluded)).map(({ key, match }) => {
+const rows = sqlRows.filter((r) => !(r.key in excluded)).map(({ key, city }) => {
   if (!sitelinks[key]) throw new Error(`No sitelink count for ${key}; run npm run fetch:sitelinks`);
-  return [key.split('|')[0], match[2], Number(match[3]), Number(match[4]), Number(match[5]), sitelinks[key].sitelinks];
+  return [city.name, city.countryCode, city.population, city.latitude, city.longitude, sitelinks[key].sitelinks];
 });
 
 const usedCodes = [...new Set(rows.map((r) => r[1]))].sort();
