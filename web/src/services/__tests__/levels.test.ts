@@ -3,7 +3,7 @@ import { LEVELS } from '../levels';
 import { getCitiesByDifficulty } from '../cityDataService';
 import { LOCAL_CITIES } from '../../data/localCities';
 import { validPairs } from '../quizService';
-import type { DifficultyLevel } from '../../types';
+import type { City, DifficultyLevel } from '../../types';
 
 const allLevels: DifficultyLevel[] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
@@ -50,5 +50,38 @@ describe('level table', () => {
     expect(has(validPairs(pool, 10), medan, buenaventura)).toBe(false);
     const nudged = [{ ...medan, latitude: medan.latitude + 0.001 }, buenaventura];
     expect(has(validPairs(nudged, 10), nudged[0], buenaventura)).toBe(true);
+  });
+});
+
+const fold = (name: string) => name.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+const displayed = (c: City) => fold(c.name === 'Washington' && c.country_code === 'US' ? 'Washington D.C.' : c.name);
+
+describe('same-name pairs', () => {
+  it.each(allLevels)('level %i has no pair of cities with the same displayed name', async (level) => {
+    for (const [a, b] of validPairs(await getCitiesByDifficulty(level), level)) {
+      expect(displayed(a)).not.toBe(displayed(b));
+    }
+  });
+
+  it('never pairs London, UK with London, Canada, though their gaps fit level 3', () => {
+    const londons = LOCAL_CITIES.filter((c) => c.name === 'London');
+    expect(londons.map((c) => c.country_code).sort()).toEqual(['CA', 'GB']);
+    // About 950 km on the asked axis and far more on the other: inside level 3's band (700 km and up).
+    expect(validPairs([...londons], 3)).toEqual([]);
+  });
+
+  // Level 1 needs an asked gap of 1500 km or more, which these two cities have.
+  const at = (id: number, name: string, latitude: number, longitude: number, country_code = 'XX'): City => ({
+    id, name, country: country_code, country_code, population: 1, sitelinks: 1,
+    latitude, longitude, location: { type: 'Point', coordinates: [longitude, latitude] },
+  });
+  const pairedAtLevel1 = (a: City, b: City) => validPairs([a, b], 1).length === 1;
+
+  it('folds accents and case, and compares the displayed name', () => {
+    expect(pairedAtLevel1(at(1, 'Cartagena', 0, 0), at(2, 'Lima', 20, 40))).toBe(true);
+    expect(pairedAtLevel1(at(1, 'Córdoba', 0, 0), at(2, 'Cordoba', 20, 40))).toBe(false);
+    expect(pairedAtLevel1(at(1, 'LONDON', 0, 0), at(2, 'London', 20, 40))).toBe(false);
+    expect(pairedAtLevel1(at(1, 'Washington', 0, 0, 'US'), at(2, 'Washington D.C.', 20, 40))).toBe(false);
+    expect(pairedAtLevel1(at(1, 'Washington', 0, 0, 'GB'), at(2, 'Washington D.C.', 20, 40))).toBe(true);
   });
 });

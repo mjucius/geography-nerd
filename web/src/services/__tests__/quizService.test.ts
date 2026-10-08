@@ -54,6 +54,9 @@ describe('generateQuestions', () => {
           const asked = Math.min(ns.km, ew.km);
           const other = Math.max(ns.km, ew.km);
           const band = LEVELS[q.difficultyLevel - 1];
+          const shown = q.questionTextParts.flatMap((p) => (p.type === 'city' ? [p.cityName.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()] : []));
+          expect(shown).toHaveLength(2);
+          expect(shown[0]).not.toBe(shown[1]);
           expect(asked).toBeGreaterThan(0);
           expect(asked).toBeGreaterThanOrEqual(band.askedMin);
           expect(asked).toBeLessThanOrEqual(band.askedMax);

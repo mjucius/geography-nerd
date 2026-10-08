@@ -11,19 +11,25 @@ function gaps(a: City, b: City) {
   return { asked: Math.min(ns.km, ew.km), other: Math.max(ns.km, ew.km) };
 }
 
+// Name as the player sees it, folded for comparing: London in the UK and London in Canada must not meet.
+const nameKey = (c: City) => formatCityName(c.name, c.country_code).normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
+
 const pairCache = new WeakMap<City[], Pair[]>();
 
 /**
  * Every pair of the pool that fits the level's band. An asked gap of exactly zero is out:
  * the cities share that axis, which a North/South or East/West answer cannot express.
+ * Two cities with the same displayed name (ignoring case and accents) never pair.
  */
 export function validPairs(pool: City[], level: DifficultyLevel): Pair[] {
   const cached = pairCache.get(pool);
   if (cached) return cached;
   const { askedMin, askedMax, otherMin } = LEVELS[level - 1];
+  const keys = pool.map(nameKey);
   const pairs: Pair[] = [];
   for (let i = 0; i < pool.length; i++) {
     for (let j = i + 1; j < pool.length; j++) {
+      if (keys[i] === keys[j]) continue;
       const { asked, other } = gaps(pool[i], pool[j]);
       if (asked > 0 && asked >= askedMin && asked <= askedMax && other >= otherMin) pairs.push([pool[i], pool[j]]);
     }
