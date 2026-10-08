@@ -82,11 +82,13 @@ describe('LOCAL_CITIES', () => {
   it.each([
     'Eixample', 'Hamburg-Nord', 'Sector 1', 'Sector 2', 'Sector 3', 'Sector 4', 'Sector 5', 'Sector 6',
     'Gustavo Adolfo Madero', 'South Boston', 'Tuggeranong Administrative District', 'Zeytinburnu', 'Bahçelievler',
+    'Archway', 'Üsküdar', 'Bağcılar', 'Sancaktepe', 'Neue Neustadt', 'Çankaya', 'Muratpaşa', 'Ojo de Agua', 'New Territories',
+    'Khabarovsk Vtoroy', 'Mar’ino', 'Lekki', 'Al Başrah al Qadīmah', 'Al Mawşil al Jadīdah', 'Sunshine Coast', 'Marne La Vallée', 'Ebute Ikorodu',
   ])('does not ship the sub-city entry %s', (name) => {
     expect(LOCAL_CITIES.filter((c) => c.name === name)).toHaveLength(0);
   });
 
-  it.each(['Brampton', 'Yokohama', 'Giza', 'Quezon City', 'Logan City', 'Benin City', 'Adapazarı', 'İskenderun', 'Gebze'])(
+  it.each(['Brampton', 'Yokohama', 'Giza', 'Quezon City', 'Logan City', 'Benin City', 'Adapazarı', 'İskenderun', 'Gebze', 'Tarsus', 'Alanya', 'Santo Domingo Este', 'Santo Domingo Oeste'])(
     'still ships the separate city %s',
     (name) => {
       expect(LOCAL_CITIES.filter((c) => c.name === name)).toHaveLength(1);

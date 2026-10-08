@@ -1,6 +1,12 @@
 // Wikidata instance-of (P31) classes that say a place is part of a city or is an administrative area, not a city.
 // Strong: names a part of a city or a plainly sub-city kind. Weak: sub-city in some countries, an ordinary place in others.
 export const STRONG = new Set([
+  'Q253019', // Ortsteil (a part of a German municipality)
+  'Q14562709', // London Underground station
+  'Q55491', // underground railway station
+  'Q22808403', // underground station
+  'Q55488', // railway station
+  'Q928830', // metro station
   'Q15921300', // sector of Bucharest
   'Q278976', // borough of Hamburg
   'Q408804', // borough of New York City
@@ -31,6 +37,8 @@ export const STRONG = new Set([
 ]);
 
 export const WEAK = new Set([
+  'Q2460358', // municipality of Turkey (every Turkish municipality: Istanbul districts and towns alike)
+  'Q82794', // region
   'Q2327515', // City district in Baden-Württemberg (Stadtkreis: also a real city)
   'Q188509', // suburb
   'Q15243209', // historic district

@@ -23,6 +23,17 @@ describe('classify', () => {
     }
   });
 
+  it('flags a part of a municipality (Ortsteil) and any station', () => {
+    for (const label of ['Ortsteil', 'London Underground station', 'underground railway station', 'underground station', 'railway station', 'metro station']) {
+      expect(classify([idOf(label)]), label).toBe('flagged');
+    }
+  });
+
+  it('marks a Turkish municipality or a bare region for review', () => {
+    expect(classify([idOf('municipality of Turkey'), idOf('town')])).toBe('review');
+    expect(classify([idOf('region')])).toBe('review');
+  });
+
   it('marks only-weak classes for review and leaves ordinary cities alone', () => {
     expect(classify(['district of Turkey', 'town', 'municipality of Turkey'].map(idOf))).toBe('review');
     expect(classify(['city', 'big city'].map(idOf))).toBe('');
