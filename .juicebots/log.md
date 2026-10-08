@@ -194,3 +194,13 @@
 2026-10-08T00:42:31Z pm -> dev: T-019 duplicates: ship once via excluded-cities.json; Benito Juárez/Fuencarral both rows go as sub-city; keep Lexington, Jaboatão dos Guararapes
 2026-10-08T00:42:34Z reviewer -> dev: T-017 code round 1 approved
 2026-10-08T00:42:38Z dev -> team-lead: T-017 approved, committing
+2026-10-08T00:44:59Z dev -> reviewer: T-017 committed c5f223d; T-018 plan review
+2026-10-08T00:45:16Z dev -> team-lead: brief decisions 8-9 need tickets; T-019 plan per pm
+2026-10-08T00:45:43Z reviewer -> dev: T-018 plan round 1 approved
+2026-10-08T00:46:52Z dev -> reviewer: T-018 code review
+2026-10-08T00:47:34Z team-lead -> pm: CEO approved acceptance 11 definition incl. non-city admin areas; dev to ticket 10-11
+2026-10-08T00:47:41Z team-lead -> dev: add M3 (T-020..T-022, brief 10-11) after T-018/T-019; CEO decision is the go
+2026-10-08T00:47:45Z pm -> team-lead: recorded CEO confirmation of sub-city definition; T-019 duplicates already answered to dev (Decision 10)
+2026-10-08T00:47:47Z reviewer -> dev: T-018 code round 1 approved
+2026-10-08T00:48:09Z dev -> reviewer: plan additions M3 (T-020..T-022) for review
+2026-10-08T00:48:16Z dev -> team-lead: T-018 approved, committing

@@ -22,6 +22,14 @@ const renderScreen = (props: Partial<React.ComponentProps<typeof ScoreScreen>> =
   );
 
 describe('ScoreScreen', () => {
+  it.each([
+    [1, 'Novice'], [2, 'Student'], [3, 'Traveler'], [4, 'Scholar'], [5, 'Professor'],
+    [6, 'Expert'], [7, 'Navigator'], [8, 'Explorer'], [9, 'Geographer'], [10, 'Cartographer'],
+  ] as const)('names level %i %s', (level, name) => {
+    renderScreen({ difficultyLevel: level });
+    expect(screen.getByText(`Level ${level}: ${name}`)).toBeInTheDocument();
+  });
+
   it('shows the score and ten collapsed rows, with the correct answer only for misses', () => {
     const { container } = renderScreen();
 
