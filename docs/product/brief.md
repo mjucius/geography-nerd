@@ -1,5 +1,5 @@
 ---
-status: draft          # draft | approved (only team-lead sets approved)
+status: approved          # draft | approved (only team-lead sets approved)
 ---
 # Geography Nerd: difficulty progression
 
