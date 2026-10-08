@@ -180,3 +180,17 @@
 2026-10-08T00:34:45Z dev -> reviewer: T-016 code review
 2026-10-08T00:35:41Z reviewer -> dev: T-016 code round 1 approved
 2026-10-08T00:35:46Z dev -> team-lead: T-016 approved, committing
+2026-10-08T00:36:57Z dev -> reviewer: T-016 committed 70de51f; T-017 plan review
+2026-10-08T00:37:06Z team-lead -> qa: QA M1 (T-014 to T-016, familiarity ladder) at 70de51f
+2026-10-08T00:37:40Z reviewer -> dev: T-017 plan round 1 changes
+2026-10-08T00:38:06Z dev -> reviewer: T-017 plan round 2
+2026-10-08T00:38:47Z reviewer -> dev: T-017 plan round 2 approved
+2026-10-08T00:39:42Z qa -> team-lead: M1 QA done at 70de51f, filed T-019
+2026-10-08T00:39:48Z team-lead -> dev: M1 QA filed T-019 (duplicate Wikidata IDs); work it after T-017
+2026-10-08T00:41:17Z team-lead -> pm: CEO decisions: never pair same-name cities; remove districts/boroughs in v1; write acceptance
+2026-10-08T00:41:40Z dev -> reviewer: T-017 code review
+2026-10-08T00:41:53Z dev -> pm: T-019 question, 996 cities OK?
+2026-10-08T00:41:57Z pm -> team-lead: acceptance 10 (same-name) and 11 (sub-city rule) added for Decisions 8-9
+2026-10-08T00:42:31Z pm -> dev: T-019 duplicates: ship once via excluded-cities.json; Benito Juárez/Fuencarral both rows go as sub-city; keep Lexington, Jaboatão dos Guararapes
+2026-10-08T00:42:34Z reviewer -> dev: T-017 code round 1 approved
+2026-10-08T00:42:38Z dev -> team-lead: T-017 approved, committing

@@ -1,46 +1,35 @@
 import type { City, Question, DifficultyLevel, QuestionTextPart } from '../types';
 import { getCitiesByDifficulty } from './cityDataService';
+import { getDistanceInfo } from './distance';
+import { LEVELS } from './levels';
 
-/**
- * Calculate distance ratio between lat and lon differences
- * Ratio = shorter distance / longer distance
- * Lower ratio = harder (more aligned on one axis)
- */
-function getDistanceRatio(latDiff: number, lonDiff: number): number {
-  if (latDiff === 0 || lonDiff === 0) return Infinity;
-  const shorter = Math.min(latDiff, lonDiff);
-  const longer = Math.max(latDiff, lonDiff);
-  return shorter / longer;
+type Pair = [City, City];
+
+// Asked gap = the smaller of the north-south and east-west gaps in km (the same km the reveal shows), other gap = the larger.
+function gaps(a: City, b: City) {
+  const { ns, ew } = getDistanceInfo(a, b);
+  return { asked: Math.min(ns.km, ew.km), other: Math.max(ns.km, ew.km) };
 }
 
+const pairCache = new WeakMap<City[], Pair[]>();
+
 /**
- * Check if a ratio matches the requirements for a given tier
+ * Every pair of the pool that fits the level's band. An asked gap of exactly zero is out:
+ * the cities share that axis, which a North/South or East/West answer cannot express.
  */
-function isValidRatioForTier(ratio: number, tier: DifficultyLevel): boolean {
-  switch (tier) {
-    case 1:
-      return ratio > 0.75; // Capital Foundations: clear axis difference
-    case 2:
-      return true; // Capital Challenge: any ratio
-    case 3:
-      return true; // Capital Precision: any ratio
-    case 4:
-      return ratio > 0.5; // Global Capitals: clear ratio
-    case 5:
-      return ratio >= 0.05 && ratio <= 0.5; // Capital Extremes: close ratio
-    case 6:
-      return ratio > 0.75; // Major Cities WW: clear ratio
-    case 7:
-      return true; // City Expert: any ratio
-    case 8:
-      return ratio >= 0.01 && ratio <= 0.2; // Geographic Precision: very close
-    case 9:
-      return ratio < 0.01; // The Challenge: extreme alignment
-    case 10:
-      return true; // Random Extreme: any ratio
-    default:
-      return true;
+export function validPairs(pool: City[], level: DifficultyLevel): Pair[] {
+  const cached = pairCache.get(pool);
+  if (cached) return cached;
+  const { askedMin, askedMax, otherMin } = LEVELS[level - 1];
+  const pairs: Pair[] = [];
+  for (let i = 0; i < pool.length; i++) {
+    for (let j = i + 1; j < pool.length; j++) {
+      const { asked, other } = gaps(pool[i], pool[j]);
+      if (asked > 0 && asked >= askedMin && asked <= askedMax && other >= otherMin) pairs.push([pool[i], pool[j]]);
+    }
   }
+  pairCache.set(pool, pairs);
+  return pairs;
 }
 
 /**
@@ -55,108 +44,44 @@ function formatCityName(cityName: string, countryCode?: string): string {
 }
 
 /**
- * Generate 10 questions: 8 from current tier + 2 preview from next tier (if not tier 10)
+ * Generate 10 questions: 8 from the current level + 2 preview from the next level (10 from the current level at level 10).
+ * No pair appears twice, not even across the two levels.
  */
 export async function generateQuestions(cities: City[], difficultyLevel: DifficultyLevel = 1): Promise<Question[]> {
-  const questions: Question[] = [];
-  const shuffledCities = shuffleArray([...cities]);
-
-  // Determine how many questions from current tier vs next tier
-  const isMaxTier = difficultyLevel === 10;
-  const questionsFromCurrentTier = isMaxTier ? 10 : 8;
-  const questionsFromNextTier = isMaxTier ? 0 : 2;
-
-  // Generate questions from current tier
-  for (let i = 0; i < questionsFromCurrentTier; i++) {
-    const question = generateSingleQuestion(shuffledCities, difficultyLevel);
-    if (question) {
-      questions.push(question);
+  const used = new Set<string>();
+  const pick = (pool: City[], level: DifficultyLevel, count: number) => {
+    const pairs = shuffleArray(validPairs(pool, level));
+    const questions: Question[] = [];
+    for (const [a, b] of pairs) {
+      if (questions.length === count) break;
+      const key = `${Math.min(a.id, b.id)}-${Math.max(a.id, b.id)}`;
+      if (used.has(key)) continue;
+      used.add(key);
+      const [first, second] = Math.random() < 0.5 ? [a, b] : [b, a];
+      questions.push(buildQuestion(first, second, level));
     }
-  }
+    return questions;
+  };
 
-  // Generate preview questions from next tier (if applicable)
-  if (!isMaxTier && questionsFromNextTier > 0) {
-    const nextTier = (difficultyLevel + 1) as DifficultyLevel;
-    const nextTierCities = await getCitiesByDifficulty(nextTier);
-    const shuffledNextCities = shuffleArray([...nextTierCities]);
-
-    for (let i = 0; i < questionsFromNextTier; i++) {
-      const question = generateSingleQuestion(shuffledNextCities, nextTier);
-      if (question) {
-        questions.push(question);
-      }
-    }
-  }
-
-  while (questions.length < 10) {
-    const question = generateSingleQuestion(shuffledCities, difficultyLevel, false);
-    if (!question) break;
-    questions.push(question);
+  const isMaxLevel = difficultyLevel === 10;
+  const questions = pick(cities, difficultyLevel, isMaxLevel ? 10 : 8);
+  if (!isMaxLevel) {
+    const nextLevel = (difficultyLevel + 1) as DifficultyLevel;
+    questions.push(...pick(await getCitiesByDifficulty(nextLevel), nextLevel, 2));
   }
 
   // Shuffle final question order to mix current and preview questions
   return shuffleArray(questions);
 }
 
-/**
- * Generate a single question with proper ratio validation
- */
-function generateSingleQuestion(
-  cities: City[],
-  tier: DifficultyLevel,
-  enforceRatio = true
-): Question | null {
-  let city1: City | null = null;
-  let city2: City | null = null;
-  let isValidPair = false;
-  let attempts = 0;
-  const maxAttempts = 100;
+export function buildQuestion(city1: City, city2: City, tier: DifficultyLevel): Question {
+  const { ns, ew } = getDistanceInfo(city1, city2);
 
-  while (!isValidPair && attempts < maxAttempts && cities.length >= 2) {
-    attempts++;
-
-    const indices = getRandomPair(cities.length);
-    city1 = cities[indices[0]];
-    city2 = cities[indices[1]];
-
-    // Calculate distance ratio
-    const latDiff = Math.abs(city1.latitude - city2.latitude);
-    let lonDiff = city1.longitude - city2.longitude;
-    if (lonDiff > 180) {
-      lonDiff -= 360;
-    } else if (lonDiff < -180) {
-      lonDiff += 360;
-    }
-    const lonDiffAbs = Math.abs(lonDiff);
-    const ratio = getDistanceRatio(latDiff, lonDiffAbs);
-
-    // Check if ratio matches tier requirements
-    // ponytail: the last attempt is accepted even if it fails the gate, so the question keeps its tier and pool; T-017 enumerates valid pairs instead.
-    if (!enforceRatio || isValidRatioForTier(ratio, tier) || attempts === maxAttempts) {
-      isValidPair = true;
-    }
-  }
-
-  if (!city1 || !city2 || !isValidPair) {
-    return null;
-  }
-
-  // Calculate distances for question
-  const latDiff = Math.abs(city1.latitude - city2.latitude);
-  let lonDiff = city1.longitude - city2.longitude;
-  if (lonDiff > 180) {
-    lonDiff -= 360;
-  } else if (lonDiff < -180) {
-    lonDiff += 360;
-  }
-  const lonDiffAbs = Math.abs(lonDiff);
-
-  // Choose question type based on which difference is smaller
-  const isLatitudinal = latDiff < lonDiffAbs;
+  // The asked axis is the one with the smaller gap in km; a tie asks east-west.
+  const isLatitudinal = ns.km < ew.km;
 
   let questionText: string;
   let correctAnswer: 'North' | 'South' | 'East' | 'West';
-
   const country1Name = city1.countries?.name || city1.country;
   const country2Name = city2.countries?.name || city2.country;
   const formattedCity1Name = formatCityName(city1.name, city1.country_code);
@@ -166,7 +91,7 @@ function generateSingleQuestion(
 
   if (isLatitudinal) {
     questionText = `Is ${formattedCity1Name}, ${country1Name} north or south of ${formattedCity2Name}, ${country2Name}?`;
-    correctAnswer = city1.latitude > city2.latitude ? 'North' : 'South';
+    correctAnswer = ns.direction;
     questionTextParts = [
       { type: 'text', content: 'Is ' },
       { type: 'city', cityName: formattedCity1Name, countryName: country1Name },
@@ -176,7 +101,7 @@ function generateSingleQuestion(
     ];
   } else {
     questionText = `Is ${formattedCity1Name}, ${country1Name} east or west of ${formattedCity2Name}, ${country2Name}?`;
-    correctAnswer = lonDiff > 0 ? 'East' : 'West';
+    correctAnswer = ew.direction;
     questionTextParts = [
       { type: 'text', content: 'Is ' },
       { type: 'city', cityName: formattedCity1Name, countryName: country1Name },
@@ -196,17 +121,6 @@ function generateSingleQuestion(
     options: isLatitudinal ? ['North', 'South'] : ['East', 'West'],
     difficultyLevel: tier
   };
-}
-
-function getRandomPair(length: number): [number, number] {
-  const index1 = Math.floor(Math.random() * length);
-  let index2 = Math.floor(Math.random() * length);
-
-  while (index2 === index1) {
-    index2 = Math.floor(Math.random() * length);
-  }
-
-  return [index1, index2];
 }
 
 function shuffleArray<T>(array: T[]): T[] {
