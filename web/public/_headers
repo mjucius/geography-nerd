@@ -1,3 +1,3 @@
-# Read by the host at deploy time, not served. Keeps the HSTS header Netlify sent by default.
+# Read by Cloudflare at deploy time, not served.
 /*
   Strict-Transport-Security: max-age=31536000

@@ -1,7 +1,9 @@
 # Static site served by Cloudflare as an assets-only Worker: no Worker code.
-# Build first: npm run build:web
+# Workers Builds deploys it from main. Build first if deploying by hand: npm run build:web
 name = "geography-nerd"
 compatibility_date = "2026-11-05"
+workers_dev = false
+routes = [{ pattern = "geographynerd.jucius.com", custom_domain = true }]
 
 [assets]
 directory = "web/dist"
