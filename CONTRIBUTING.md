@@ -17,6 +17,8 @@ npm run build:web
 npm run test -w web
 ```
 
+Merges to `main` deploy to production automatically through Cloudflare Workers Builds.
+
 ## Data Changes
 
 City data is derived from GeoNames and must keep attribution intact.
