@@ -22,6 +22,7 @@ build/
 
 # Runtime
 .netlify/
+.wrangler/
 .cache/
 .claude/settings.local.json
 
