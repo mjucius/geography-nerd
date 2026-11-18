@@ -17,7 +17,7 @@ npm run build:web
 npm run test -w web
 ```
 
-Merges to `main` deploy to production automatically through Cloudflare Workers Builds.
+Merges to `main` do not deploy. Production deploys when a `v*` tag is pushed (for example by publishing a GitHub release), through `.github/workflows/deploy.yml`.
 
 ## Data Changes
 
