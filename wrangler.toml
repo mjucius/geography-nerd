@@ -1,5 +1,5 @@
 # Static site served by Cloudflare as an assets-only Worker: no Worker code.
-# Workers Builds deploys it from main. Build first if deploying by hand: npm run build:web
+# Deployed by .github/workflows/deploy.yml when a v* tag is pushed. Build first if deploying by hand: npm run build:web
 name = "geography-nerd"
 compatibility_date = "2026-11-05"
 workers_dev = false
