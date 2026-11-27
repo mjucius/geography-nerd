@@ -21,9 +21,9 @@ Merges to `main` do not deploy. Production deploys only from `v*` release tags, 
 
 ## Releasing
 
-Run the **Release** workflow from the Actions tab (Run workflow, on `main`) with the new version, such as `v1.2.3`, and optionally a Markdown summary for the top of the release notes. It lints, builds and tests the tip of `main`, creates the tag and a GitHub release with generated notes at that commit, then deploys it. No local checkout is needed.
+Open a pull request that raises `version` in the root `package.json` (`npm version 1.2.3 --no-git-tag-version` also updates `package-lock.json`) and rewrites `.github/release-summary.md`, the Markdown shown above the generated release notes. Merging it starts the **Release** workflow, which lints, builds and tests that commit of `main`, creates the `v1.2.3` tag and a GitHub release at it, then deploys. It only releases when the version changed, is newer than every existing tag and has no tag yet, so other edits to `package.json` do nothing.
 
-Publishing a GitHub release by hand, or pushing a `v*` tag, still deploys too.
+You can also run **Release** by hand from the Actions tab (Run workflow, on `main`) with a version and an optional summary. Publishing a GitHub release by hand, or pushing a `v*` tag, still deploys too.
 
 To roll back, run the **Deploy** workflow by hand with an older tag, such as `v1.1.3`.
 
