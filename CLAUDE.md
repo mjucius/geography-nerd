@@ -4,4 +4,4 @@ Test command: `npm test`
 
 Team state lives in `.juicebots/` and `docs/product/`.
 
-Releasing: start the `Release` workflow (`.github/workflows/release.yml`) on `main` with inputs `version` (e.g. `v1.2.3`) and an optional `summary`. Sessions cannot push tags, so do not tag locally. Roll back by starting `Deploy` with an older tag as `ref`.
+Releasing: open a PR that bumps `version` in the root `package.json` (`npm version X.Y.Z --no-git-tag-version`) and rewrites `.github/release-summary.md`; merging it runs `.github/workflows/release.yml`, which tags, releases and deploys. Sessions cannot push tags or start workflows, so do not tag locally or dispatch. Roll back by having the user run `Deploy` by hand with an older tag as `ref`.

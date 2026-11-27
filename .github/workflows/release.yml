@@ -1,13 +1,18 @@
 name: Release
-run-name: Release ${{ inputs.version }}
+run-name: ${{ github.event_name == 'push' && format('Release check for {0}', github.sha) || format('Release {0}', inputs.version) }}
 
-# Cuts a release from the current tip of main without a local checkout:
-# checks main, creates the tag and GitHub release, then deploys it.
-# Start it from the Actions tab (Run workflow) or through the API.
+# Cuts a release from main without a local checkout, in either of two ways:
+# - Merge a PR to main that raises "version" in the root package.json and
+#   updates .github/release-summary.md. The new version is released.
+# - Run this workflow by hand from the Actions tab with a version.
+# Either way it checks main, creates the tag and GitHub release, then deploys.
 #
 # A tag pushed with GITHUB_TOKEN does not start other workflows, so this
 # calls deploy.yml directly instead of relying on its tag trigger.
 on:
+  push:
+    branches: [main]
+    paths: [package.json]
   workflow_dispatch:
     inputs:
       version:
@@ -31,83 +36,129 @@ jobs:
     name: Check version and main
     runs-on: ubuntu-latest
     outputs:
+      release: ${{ steps.plan.outputs.release }}
+      version: ${{ steps.plan.outputs.version }}
       sha: ${{ github.sha }}
     steps:
-      - name: Check inputs
-        env:
-          VERSION: ${{ inputs.version }}
-          REF: ${{ github.ref }}
-        run: |
-          if [ "$REF" != "refs/heads/main" ]; then
-            echo "::error::Run this workflow from main (got $REF)."
-            exit 1
-          fi
-          if ! [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
-            echo "::error::Version must look like v1.2.3 (got '$VERSION')."
-            exit 1
-          fi
-
       - name: Checkout
         uses: actions/checkout@v7
         with:
           fetch-depth: 0
           fetch-tags: true
 
-      - name: Check the tag is new
+      - name: Decide version
+        id: plan
         env:
-          VERSION: ${{ inputs.version }}
+          EVENT: ${{ github.event_name }}
+          REF: ${{ github.ref }}
+          INPUT_VERSION: ${{ inputs.version }}
+          BEFORE: ${{ github.event.before }}
         run: |
+          if [ "$REF" != "refs/heads/main" ]; then
+            echo "::error::Releases are only made from main (got $REF)."
+            exit 1
+          fi
+
+          if [ "$EVENT" = "push" ]; then
+            VERSION="v$(jq -r .version package.json)"
+            OLD=""
+            if [ -n "$BEFORE" ] && git cat-file -e "$BEFORE" 2>/dev/null; then
+              OLD="v$(git show "$BEFORE:package.json" | jq -r .version)"
+            fi
+            if [ "$VERSION" = "$OLD" ]; then
+              echo "package.json version is still $VERSION; nothing to release."
+              echo "release=false" >> "$GITHUB_OUTPUT"
+              exit 0
+            fi
+          else
+            VERSION="$INPUT_VERSION"
+          fi
+
+          if ! [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Version must look like v1.2.3 (got '$VERSION')."
+            exit 1
+          fi
           if git rev-parse -q --verify "refs/tags/$VERSION" >/dev/null; then
             echo "::error::Tag $VERSION already exists."
             exit 1
           fi
+          LATEST="$(git tag -l 'v*' | grep -E '^v[0-9]+\.[0-9]+\.[0-9]+$' | sort -V | tail -n 1)"
+          if [ -n "$LATEST" ] && [ "$(printf '%s\n%s\n' "$LATEST" "$VERSION" | sort -V | tail -n 1)" != "$VERSION" ]; then
+            echo "::error::$VERSION is not newer than the latest release, $LATEST."
+            exit 1
+          fi
+
+          echo "Releasing $VERSION."
+          echo "release=true" >> "$GITHUB_OUTPUT"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
 
       - name: Set up Node.js
+        if: steps.plan.outputs.release == 'true'
         uses: actions/setup-node@v7
         with:
           node-version: "24"
           cache: "npm"
 
       - name: Install dependencies
+        if: steps.plan.outputs.release == 'true'
         run: npm ci
 
       - name: Lint
+        if: steps.plan.outputs.release == 'true'
         run: npm run lint
 
       - name: Build
+        if: steps.plan.outputs.release == 'true'
         run: npm run build:web
 
       - name: Test
+        if: steps.plan.outputs.release == 'true'
         run: npm run test
 
   release:
     name: Create tag and release
     needs: verify
+    if: needs.verify.outputs.release == 'true'
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          ref: ${{ needs.verify.outputs.sha }}
+
       - name: Create release
         env:
           GH_TOKEN: ${{ github.token }}
           GH_REPO: ${{ github.repository }}
-          VERSION: ${{ inputs.version }}
-          SUMMARY: ${{ inputs.summary }}
+          EVENT: ${{ github.event_name }}
+          VERSION: ${{ needs.verify.outputs.version }}
+          INPUT_SUMMARY: ${{ inputs.summary }}
           SHA: ${{ needs.verify.outputs.sha }}
         run: |
+          if [ "$EVENT" = "push" ]; then
+            if [ -f .github/release-summary.md ]; then
+              cp .github/release-summary.md "$RUNNER_TEMP/summary.md"
+            else
+              : > "$RUNNER_TEMP/summary.md"
+            fi
+          else
+            printf '%s\n' "$INPUT_SUMMARY" > "$RUNNER_TEMP/summary.md"
+          fi
           gh release create "$VERSION" \
             --target "$SHA" \
             --title "$VERSION" \
-            --notes "$SUMMARY" \
+            --notes-file "$RUNNER_TEMP/summary.md" \
             --generate-notes \
             --latest
 
   deploy:
     name: Deploy
-    needs: release
+    needs: [verify, release]
     permissions:
       contents: read
     uses: ./.github/workflows/deploy.yml
     with:
-      ref: ${{ inputs.version }}
+      ref: ${{ needs.verify.outputs.version }}
     secrets: inherit
