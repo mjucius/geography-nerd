@@ -17,7 +17,17 @@ npm run build:web
 npm run test -w web
 ```
 
-Merges to `main` do not deploy. Production deploys when a `v*` tag is pushed (for example by publishing a GitHub release), through `.github/workflows/deploy.yml`.
+Merges to `main` do not deploy. Production deploys only from `v*` release tags, through `.github/workflows/deploy.yml`.
+
+## Releasing
+
+Run the **Release** workflow from the Actions tab (Run workflow, on `main`) with the new version, such as `v1.2.3`, and optionally a Markdown summary for the top of the release notes. It lints, builds and tests the tip of `main`, creates the tag and a GitHub release with generated notes at that commit, then deploys it. No local checkout is needed.
+
+Publishing a GitHub release by hand, or pushing a `v*` tag, still deploys too.
+
+To roll back, run the **Deploy** workflow by hand with an older tag, such as `v1.1.3`.
+
+Every deploy runs in the `production` environment. Add required reviewers to it (Settings > Environments > production) to make each deploy wait for approval.
 
 ## Data Changes
 

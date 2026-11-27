@@ -1,17 +1,54 @@
 name: Deploy
+run-name: Deploy ${{ inputs.ref || github.ref_name }}
 
-# Production deploys only from release tags. To roll back, re-run an older tag's Deploy run.
+# Production deploys only from release tags:
+# - pushing a v* tag (for example by publishing a GitHub release by hand),
+# - the Release workflow, which calls this after creating the tag,
+# - running this workflow by hand with an existing tag, e.g. to roll back.
 on:
   push:
     tags: ["v*"]
+  workflow_call:
+    inputs:
+      ref:
+        description: "Release tag to deploy, e.g. v1.2.3"
+        required: true
+        type: string
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Existing release tag to deploy, e.g. v1.2.3 (use an older tag to roll back)"
+        required: true
+        type: string
+
+permissions:
+  contents: read
 
 jobs:
   deploy:
     name: Build, test, deploy to Cloudflare
     runs-on: ubuntu-latest
+    # Add required reviewers to this environment in Settings > Environments
+    # to make every production deploy wait for approval.
+    environment: production
+    concurrency:
+      group: deploy-production
+      cancel-in-progress: false
     steps:
+      - name: Check tag
+        if: inputs.ref != ''
+        env:
+          REF: ${{ inputs.ref }}
+        run: |
+          if ! [[ "$REF" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Deploy needs a release tag like v1.2.3 (got '$REF')."
+            exit 1
+          fi
+
       - name: Checkout
         uses: actions/checkout@v7
+        with:
+          ref: ${{ inputs.ref && format('refs/tags/{0}', inputs.ref) || github.ref }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v7
