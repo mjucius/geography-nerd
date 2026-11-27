@@ -1,0 +1,113 @@
+name: Release
+run-name: Release ${{ inputs.version }}
+
+# Cuts a release from the current tip of main without a local checkout:
+# checks main, creates the tag and GitHub release, then deploys it.
+# Start it from the Actions tab (Run workflow) or through the API.
+#
+# A tag pushed with GITHUB_TOKEN does not start other workflows, so this
+# calls deploy.yml directly instead of relying on its tag trigger.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: "New version tag, e.g. v1.2.3"
+        required: true
+        type: string
+      summary:
+        description: "Markdown shown above the generated release notes (optional)"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    name: Check version and main
+    runs-on: ubuntu-latest
+    outputs:
+      sha: ${{ github.sha }}
+    steps:
+      - name: Check inputs
+        env:
+          VERSION: ${{ inputs.version }}
+          REF: ${{ github.ref }}
+        run: |
+          if [ "$REF" != "refs/heads/main" ]; then
+            echo "::error::Run this workflow from main (got $REF)."
+            exit 1
+          fi
+          if ! [[ "$VERSION" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+            echo "::error::Version must look like v1.2.3 (got '$VERSION')."
+            exit 1
+          fi
+
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0
+          fetch-tags: true
+
+      - name: Check the tag is new
+        env:
+          VERSION: ${{ inputs.version }}
+        run: |
+          if git rev-parse -q --verify "refs/tags/$VERSION" >/dev/null; then
+            echo "::error::Tag $VERSION already exists."
+            exit 1
+          fi
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Build
+        run: npm run build:web
+
+      - name: Test
+        run: npm run test
+
+  release:
+    name: Create tag and release
+    needs: verify
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          VERSION: ${{ inputs.version }}
+          SUMMARY: ${{ inputs.summary }}
+          SHA: ${{ needs.verify.outputs.sha }}
+        run: |
+          gh release create "$VERSION" \
+            --target "$SHA" \
+            --title "$VERSION" \
+            --notes "$SUMMARY" \
+            --generate-notes \
+            --latest
+
+  deploy:
+    name: Deploy
+    needs: release
+    permissions:
+      contents: read
+    uses: ./.github/workflows/deploy.yml
+    with:
+      ref: ${{ inputs.version }}
+    secrets: inherit
